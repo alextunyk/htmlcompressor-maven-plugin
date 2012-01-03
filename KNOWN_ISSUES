@@ -1,0 +1,3 @@
+KNOWN ISSUES
+    1. closure-compiler dependency is optional due to issue when starting selenium server which is using 1.7.1 and with this dependency it is trying to use 1.8.1 that causes error
+    2. If no files with htm/html or xml extension to be compressed then plugin gives NullPointerException. For example you have JSP files to be compressed and no HTML files at all, then in this case please use fileExt plugin settings to control which file types must be processed. By default plugin is looking for htm/html and xml only.
