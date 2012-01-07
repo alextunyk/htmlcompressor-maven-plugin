@@ -2,7 +2,7 @@
 Maven HTMLCompressor Plugin
 ===========================
 
-:Version: 1.3
+:Version: 1.3-SNAPSHOT
 :Keywords: HTML/XML compression, htmlcompressor, Java, Maven plugin
 :Copyright: Alex Tunyk <alex at tunyk.com>
 :License: Apache License version 2.0
@@ -21,7 +21,7 @@ The simplest way to start using this plugin is:
             <plugin>
                 <groupId>com.tunyk.mvn.plugins.htmlcompressor</groupId>
                 <artifactId>htmlcompressor-maven-plugin</artifactId>
-                <version>1.3</version>
+                <version>1.3-SNAPSHOT</version>
                 <configuration>
                     <goalPrefix>htmlcompressor</goalPrefix>
                 </configuration>
