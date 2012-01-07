@@ -22,7 +22,7 @@
     <dependency>
       <groupId>com.googlecode.htmlcompressor</groupId>
       <artifactId>htmlcompressor</artifactId>
-      <version>1.4</version>
+      <version>1.5.2</version>
     </dependency>
 	<dependency>
 	  <groupId>com.google.javascript</groupId>
@@ -143,7 +143,7 @@
         <version>2.1</version>
         <configuration>
           <mavenExecutorId>forked-path</mavenExecutorId>
-		  <connectionUrl>scm:svn:http://htmlcompressor-maven-plugin.googlecode.com/svn/trunk/</connectionUrl>
+		  <connectionUrl>scm:git:https://github.com/TUNYK/htmlcompressor-maven-plugin.git</connectionUrl>
         </configuration>
       </plugin>
     </plugins>
@@ -172,7 +172,7 @@
   <!-- ====================================================================== -->
   <name>Maven HTMLCompressor Plugin</name>
   <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
-  <url>http://htmlcompressor-maven-plugin.googlecode.com/</url>
+  <url>https://github.com/TUNYK/htmlcompressor-maven-plugin</url>
   <inceptionYear>2011</inceptionYear>
   <licenses>
     <license>
@@ -206,13 +206,13 @@
   <!-- Environment Settings                                                   -->
   <!-- ====================================================================== -->
   <issueManagement>
-    <system>Google Code - Issue Tracking</system>
-    <url>http://code.google.com/p/htmlcompressor-maven-plugin/issues/list</url>
+    <system>GitHub Issue Tracking</system>
+    <url>https://github.com/TUNYK/htmlcompressor-maven-plugin/issues</url>
   </issueManagement>
   <scm>
-    <connection>scm:svn:http://htmlcompressor-maven-plugin.googlecode.com/svn/trunk/</connection>
-    <developerConnection>scm:svn:https://htmlcompressor-maven-plugin.googlecode.com/svn/trunk/</developerConnection>
-    <url>http://code.google.com/p/htmlcompressor-maven-plugin/source/browse/trunk</url>
+    <connection>scm:git:https://github.com/TUNYK/htmlcompressor-maven-plugin.git</connection>
+    <developerConnection>scm:git:https://github.com/TUNYK/htmlcompressor-maven-plugin.git</developerConnection>
+    <url>https://github.com/TUNYK/htmlcompressor-maven-plugin</url>
   </scm>
   
   <!-- ====================================================================== -->

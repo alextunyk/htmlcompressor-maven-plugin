@@ -28,6 +28,7 @@ import java.text.NumberFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
 
 /**
  * @author Alex Tunyk <alex at tunyk.com>
@@ -83,7 +84,7 @@ public class FileTool {
         if (integrationCode.indexOf(replacePattern) == -1) {
             integrationCode += replacePattern;
         }
-        String contents = integrationCode.replaceFirst(replacePattern, json.toString().replace("\\", "\\\\"));
+        String contents = integrationCode.replaceFirst(replacePattern, Matcher.quoteReplacement(json.toString()));
         FileUtils.writeStringToFile(file, contents, fileEncoding);
     }
 
