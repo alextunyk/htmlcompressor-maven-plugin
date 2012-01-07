@@ -143,7 +143,7 @@
         <version>2.1</version>
         <configuration>
           <mavenExecutorId>forked-path</mavenExecutorId>
-          <connectionUrl>scm:git:ssh://git@github.com:TUNYK/htmlcompressor-maven-plugin.git</connectionUrl>
+          <connectionUrl>scm:git:https://github.com/TUNYK/htmlcompressor-maven-plugin.git</connectionUrl>
         </configuration>
       </plugin>
     </plugins>
@@ -210,9 +210,9 @@
     <url>https://github.com/TUNYK/htmlcompressor-maven-plugin/issues</url>
   </issueManagement>
   <scm>
-    <connection>scm:git:ssh://git@github.com:TUNYK/htmlcompressor-maven-plugin.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com:TUNYK/htmlcompressor-maven-plugin.git</developerConnection>
-    <url>https://github.com/TUNYK/htmlcompressor-maven-plugin.git</url>
+    <connection>scm:git:https://github.com/TUNYK/htmlcompressor-maven-plugin.git</connection>
+    <developerConnection>scm:git:https://github.com/TUNYK/htmlcompressor-maven-plugin.git</developerConnection>
+    <url>https://github.com/TUNYK/htmlcompressor-maven-plugin</url>
   </scm>
   
   <!-- ====================================================================== -->
