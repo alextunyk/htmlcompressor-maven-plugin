@@ -79,6 +79,11 @@ public class XmlCompressorMojo extends AbstractMojo {
     private String encoding = "utf-8";
 
     public void execute() throws MojoExecutionException {
+        if (!enabled) {
+            getLog().info("XML compression was turned off.");
+            return;
+        }
+
         getLog().info("Compressing " + srcFolder);
         XmlCompressor xmlCompressor = new XmlCompressor(srcFolder, targetFolder);
         xmlCompressor.setFileExt(fileExt);
