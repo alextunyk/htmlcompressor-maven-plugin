@@ -2,7 +2,10 @@
 Maven HTMLCompressor Plugin
 ===========================
 
-[![endorse](http://api.coderwall.com/alextunyk/endorsecount.png)](http://coderwall.com/alextunyk)
+|endorse|
+
+.. |endorse| image:: http://api.coderwall.com/alextunyk/endorsecount.png
+   :target: http://coderwall.com/alextunyk
 
 :Version: 1.3-SNAPSHOT
 :Keywords: HTML/XML compression, htmlcompressor, Java, Maven plugin
