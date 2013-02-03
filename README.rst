@@ -1,3 +1,4 @@
+[![endorse](http://api.coderwall.com/alextunyk/endorsecount.png)](http://coderwall.com/alextunyk)
 ===========================
 Maven HTMLCompressor Plugin
 ===========================
