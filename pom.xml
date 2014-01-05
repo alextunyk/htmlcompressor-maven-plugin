@@ -1,12 +1,12 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.sonatype.oss</groupId>
     <artifactId>oss-parent</artifactId>
-    <version>7</version>
+    <version>9</version>
   </parent>
-  
+
   <!-- ====================================================================== -->
   <!-- Basic Information                                                      -->
   <!-- ====================================================================== -->
@@ -14,7 +14,7 @@
   <artifactId>htmlcompressor-maven-plugin</artifactId>
   <version>1.4-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
-  
+
   <!-- ====================================================================== -->
   <!-- Dependencies                                                           -->
   <!-- ====================================================================== -->
@@ -27,19 +27,19 @@
     <dependency>
       <groupId>com.google.javascript</groupId>
       <artifactId>closure-compiler</artifactId>
-      <version>r1043</version>
+      <version>v20131014</version>
       <!-- this is optional due to issue when starting selenium server which is using 1.7.1 and with this dependency it is trying to use 1.8.1 that causes error -->
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.yahoo.platform.yui</groupId>
       <artifactId>yuicompressor</artifactId>
-      <version>2.4.6</version>
+      <version>2.4.7</version>
     </dependency>
     <dependency>
       <groupId>javax.servlet.jsp</groupId>
-      <artifactId>jsp-api</artifactId>
-      <version>2.1</version>
+      <artifactId>javax.servlet.jsp-api</artifactId>
+      <version>2.2.1</version>
     </dependency>
     <dependency>
       <groupId>org.apache.velocity</groupId>
@@ -47,38 +47,38 @@
       <version>2.0</version>
     </dependency>
     <dependency>
-      <groupId>org.apache.commons</groupId>
+      <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>1.3.2</version>
+      <version>2.4</version>
     </dependency>
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20090211</version>
+      <version>20140107</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>3.0.3</version>
+      <version>3.1.1</version>
     </dependency>
     <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>1.5.10</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.7.7</version>
     </dependency>
     <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>1.5.10</version>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.7</version>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.8.2</version>
+      <version>4.11</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
-  
+
   <!-- ====================================================================== -->
   <!-- Common Properties                                                      -->
   <!-- ====================================================================== -->
@@ -96,7 +96,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.0.1</version>
+        <version>1.3.1</version>
         <executions>
           <execution>
             <id>enforce-versions</id>
@@ -106,7 +106,7 @@
             <configuration>
               <rules>
                 <requireMavenVersion>
-                  <version>2.2.1</version>
+                  <version>3.1.1</version>
                 </requireMavenVersion>
                 <requireJavaVersion>
                   <version>1.6</version>
@@ -120,7 +120,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>2.3.2</version>
+        <version>3.1</version>
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
@@ -131,7 +131,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-install-plugin</artifactId>
-        <version>2.3.1</version>
+        <version>2.5.1</version>
         <configuration>
           <createChecksum>true</createChecksum>
         </configuration>
@@ -140,7 +140,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
-        <version>2.1</version>
+        <version>2.5</version>
         <configuration>
           <mavenExecutorId>forked-path</mavenExecutorId>
           <connectionUrl>scm:git:ssh://git@github.com/TUNYK/htmlcompressor-maven-plugin.git</connectionUrl>
@@ -157,16 +157,21 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.6</version>
+        <version>2.11</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>2.8</version>
+        <version>2.9.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.1</version>
       </plugin>
     </plugins>
   </reporting>
-  
+
   <!-- ====================================================================== -->
   <!-- More Information                                                       -->
   <!-- ====================================================================== -->
@@ -201,7 +206,7 @@
       <timezone>2</timezone>
     </developer>
   </developers>
-  
+
   <!-- ====================================================================== -->
   <!-- Environment Settings                                                   -->
   <!-- ====================================================================== -->
@@ -214,7 +219,7 @@
     <developerConnection>scm:git:ssh://git@github.com/TUNYK/htmlcompressor-maven-plugin.git</developerConnection>
     <url>https://github.com/TUNYK/htmlcompressor-maven-plugin</url>
   </scm>
-  
+
   <!-- ====================================================================== -->
   <!-- Profile Settings                                                       -->
   <!-- ====================================================================== -->
@@ -232,7 +237,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.3</version>
+            <version>1.5</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>

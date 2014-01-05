@@ -7,7 +7,7 @@ Maven HTMLCompressor Plugin
 .. |endorse| image:: http://api.coderwall.com/alextunyk/endorsecount.png
    :target: http://coderwall.com/alextunyk
 
-:Version: 1.3-SNAPSHOT
+:Version: 1.4-SNAPSHOT
 :Keywords: HTML/XML compression, htmlcompressor, Java, Maven plugin
 :Copyright: Alex Tunyk <alex at tunyk.com>
 :License: Apache License version 2.0
@@ -26,7 +26,7 @@ The simplest way to start using this plugin is:
             <plugin>
                 <groupId>com.tunyk.mvn.plugins.htmlcompressor</groupId>
                 <artifactId>htmlcompressor-maven-plugin</artifactId>
-                <version>1.3-SNAPSHOT</version>
+                <version>1.4-SNAPSHOT</version>
                 <configuration>
                     <goalPrefix>htmlcompressor</goalPrefix>
                 </configuration>
@@ -34,9 +34,9 @@ The simplest way to start using this plugin is:
         </plugins>
     </build>
 
-2.Put XML files under ``src/main/resources/xml`` and HTML files under ``src/main/resources/html``
+2.Put XML and HTML files under ``src/main/resources`` into any underlying structure as HTMLCompressor will recursively process files
 
-3.For HTML compression, create ``integration.js`` file under ``src/main/resources/html`` with the contents like below. It will integrate HTML templates into JavaScript (%s will be replaced with JSON object and copied to the target folder).
+3.For HTML compression, create ``integration.js`` file under ``src/main/resources`` where html is stored with the contents like below. It will integrate HTML templates into JavaScript (%s will be replaced with JSON object and copied to the target folder).
 ::
     var htmlTemplatesInjector = {
         htmlTemplates: %s
@@ -47,7 +47,7 @@ The simplest way to start using this plugin is:
     mvn htmlcompressor:html
     mvn htmlcompressor:xml
 
-5.Check the target/htmlcompressor folder for output.
+5.Check the target folder for output where resources are stored.
 
 Here is `demo you can download <https://github.com/TUNYK/htmlcompressor-maven-plugin/downloads>`_
 

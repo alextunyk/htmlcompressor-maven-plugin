@@ -32,49 +32,49 @@ public class XmlCompressorMojo extends AbstractMojo {
     /**
      * file types to be processed
      *
-     * @parameter expression="${htmlcompressor.fileExt}"
+     * @parameter property="htmlcompressor.fileExt"
      */
     private String[] fileExt;
 
     /**
      * if false all compression is off (default is true)
      *
-     * @parameter expression="${htmlcompressor.enabled}" default-value="true"
+     * @parameter property="htmlcompressor.enabled" default-value="true"
      */
     private Boolean enabled = true;
 
     /**
      * if false keeps XML comments (default is true)
      *
-     * @parameter expression="${htmlcompressor.removeComments}" default-value="true"
+     * @parameter property="htmlcompressor.removeComments" default-value="true"
      */
     private Boolean removeComments = true;
 
     /**
      * removes iter-tag whitespace characters  (default is true)
      *
-     * @parameter expression="${htmlcompressor.removeIntertagSpaces}" default-value="true"
+     * @parameter property="htmlcompressor.removeIntertagSpaces" default-value="true"
      */
     private Boolean removeIntertagSpaces = true;
 
     /**
      * source folder where xml files are located.
      *
-     * @parameter expression="${htmlcompressor.srcFolder}" default-value="${basedir}/src/main/resources/xml"
+     * @parameter property="htmlcompressor.srcFolder" default-value="${basedir}/src/main/resources"
      */
-    private String srcFolder = "src/main/resources/xml";
+    private String srcFolder = "src/main/resources";
 
     /**
      * target folder where compressed xml files will be placed.
      *
-     * @parameter expression="${htmlcompressor.targetFolder}" default-value="${project.build.directory}/htmlcompressor/xml"
+     * @parameter property="htmlcompressor.targetFolder" default-value="${project.build.directory}/classes"
      */
-    private String targetFolder = "target/htmlcompressor/xml";
+    private String targetFolder = "target/classes";
 
     /**
      * Charset encoding for files to read and create
      *
-     * @parameter expression="${htmlcompressor.encoding}" default-value="utf-8"
+     * @parameter property="htmlcompressor.encoding" default-value="utf-8"
      */
     private String encoding = "utf-8";
 

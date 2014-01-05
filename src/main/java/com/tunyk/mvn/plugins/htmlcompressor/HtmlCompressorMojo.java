@@ -21,7 +21,6 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 import com.google.javascript.jscomp.CompilationLevel;
 import com.google.javascript.jscomp.JSSourceFile;
 import com.googlecode.htmlcompressor.compressor.ClosureJavaScriptCompressor;
-import com.googlecode.htmlcompressor.compressor.Compressor;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -46,280 +45,280 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * file where statistics of html compression is stored
      *
-     * @parameter expression="${htmlcompressor.htmlCompressionStatistics}" default-value="${project.build.directory}/htmlcompressor/html-compression-statistics.txt"
+     * @parameter property="htmlcompressor.htmlCompressionStatistics" default-value="${project.build.directory}/htmlcompressor/html-compression-statistics.txt"
      */
     private String htmlCompressionStatistics = "target/htmlcompressor/html-compression-statistics.txt";
 
     /**
      * file types to be processed
      *
-     * @parameter expression="${htmlcompressor.fileExt}"
+     * @parameter property="htmlcompressor.fileExt"
      */
     private String[] fileExt;
     
     /**
      * if false all compression is off (default is true)
      *
-     * @parameter expression="${htmlcompressor.enabled}" default-value="true"
+     * @parameter property="htmlcompressor.enabled" default-value="true"
      */
     private Boolean enabled = true;
 
     /**
      * if false keeps HTML comments (default is true)
      *
-     * @parameter expression="${htmlcompressor.removeComments}" default-value="true"
+     * @parameter property="htmlcompressor.removeComments" default-value="true"
      */
     private Boolean removeComments = true;
 
     /**
      * if false keeps multiple whitespace characters (default is true)
      *
-     * @parameter expression="${htmlcompressor.removeMultiSpaces}" default-value="true"
+     * @parameter property="htmlcompressor.removeMultiSpaces" default-value="true"
      */
     private Boolean removeMultiSpaces = true;
 
     /**
      * removes iter-tag whitespace characters
      *
-     * @parameter expression="${htmlcompressor.removeIntertagSpaces}" default-value="false"
+     * @parameter property="htmlcompressor.removeIntertagSpaces" default-value="false"
      */
     private Boolean removeIntertagSpaces = false;
 
     /**
      * removes unnecessary tag attribute quotes
      *
-     * @parameter expression="${htmlcompressor.removeQuotes}" default-value="false"
+     * @parameter property="htmlcompressor.removeQuotes" default-value="false"
      */
     private Boolean removeQuotes = false;
 
     /**
      * simplify existing doctype
      *
-     * @parameter expression="${htmlcompressor.simpleDoctype}" default-value="false"
+     * @parameter property="htmlcompressor.simpleDoctype" default-value="false"
      */
     private Boolean simpleDoctype = false;
 
     /**
      * remove optional attributes from script tags
      *
-     * @parameter expression="${htmlcompressor.removeScriptAttributes}" default-value="false"
+     * @parameter property="htmlcompressor.removeScriptAttributes" default-value="false"
      */
     private Boolean removeScriptAttributes = false;
 
     /**
      * remove optional attributes from style tags
      *
-     * @parameter expression="${htmlcompressor.removeStyleAttributes}" default-value="false"
+     * @parameter property="htmlcompressor.removeStyleAttributes" default-value="false"
      */
     private Boolean removeStyleAttributes = false;
 
     /**
      * remove optional attributes from link tags
      *
-     * @parameter expression="${htmlcompressor.removeLinkAttributes}" default-value="false"
+     * @parameter property="htmlcompressor.removeLinkAttributes" default-value="false"
      */
     private Boolean removeLinkAttributes = false;
 
     /**
      * remove optional attributes from form tags
      *
-     * @parameter expression="${htmlcompressor.removeFormAttributes}" default-value="false"
+     * @parameter property="htmlcompressor.removeFormAttributes" default-value="false"
      */
     private Boolean removeFormAttributes = false;
 
     /**
      * remove optional attributes from input tags
      *
-     * @parameter expression="${htmlcompressor.removeInputAttributes}" default-value="false"
+     * @parameter property="htmlcompressor.removeInputAttributes" default-value="false"
      */
     private Boolean removeInputAttributes = false;
 
     /**
      * remove values from boolean tag attributes
      *
-     * @parameter expression="${htmlcompressor.simpleBooleanAttributes}" default-value="false"
+     * @parameter property="htmlcompressor.simpleBooleanAttributes" default-value="false"
      */
     private Boolean simpleBooleanAttributes = false;
 
     /**
      * remove "javascript:" from inline event handlers
      *
-     * @parameter expression="${htmlcompressor.removeJavaScriptProtocol}" default-value="false"
+     * @parameter property="htmlcompressor.removeJavaScriptProtocol" default-value="false"
      */
     private Boolean removeJavaScriptProtocol = false;
 
     /**
      * replace "http://" with "//" inside tag attributes
      *
-     * @parameter expression="${htmlcompressor.removeHttpProtocol}" default-value="false"
+     * @parameter property="htmlcompressor.removeHttpProtocol" default-value="false"
      */
     private Boolean removeHttpProtocol = false;
 
     /**
      * replace "https://" with "//" inside tag attributes
      *
-     * @parameter expression="${htmlcompressor.removeHttpsProtocol}" default-value="false"
+     * @parameter property="htmlcompressor.removeHttpsProtocol" default-value="false"
      */
     private Boolean removeHttpsProtocol = false;
 
     /**
      * compress inline css
      *
-     * @parameter expression="${htmlcompressor.compressCss}" default-value="false"
+     * @parameter property="htmlcompressor.compressCss" default-value="false"
      */
     private Boolean compressCss = false;
 
     /**
      * --line-break param for Yahoo YUI Compressor
      *
-     * @parameter expression="${htmlcompressor.yuiCssLineBreak}" default-value="-1"
+     * @parameter property="htmlcompressor.yuiCssLineBreak" default-value="-1"
      */
     private Integer yuiCssLineBreak = -1;
 
     /**
      * css compressor
      *
-     * @parameter expression="${htmlcompressor.cssCompressor}" default-value=""
+     * @parameter property="htmlcompressor.cssCompressor" default-value=""
      */
     //private Compressor cssCompressor;
 
     /**
      * compress inline javascript
      *
-     * @parameter expression="${htmlcompressor.compressJavaScript}" default-value="false"
+     * @parameter property="htmlcompressor.compressJavaScript" default-value="false"
      */
     private Boolean compressJavaScript = false;
 
     /**
      * javascript compression: "yui" or "closure"
      *
-     * @parameter expression="${htmlcompressor.jsCompressor}" default-value="yui"
+     * @parameter property="htmlcompressor.jsCompressor" default-value="yui"
      */
     private String jsCompressor = "yui";
 
     /**
      * javascript compression
      *
-     * @parameter expression="${htmlcompressor.javaScriptCompressor}" default-value=""
+     * @parameter property="htmlcompressor.javaScriptCompressor" default-value=""
      */
     //private Compressor javaScriptCompressor; // TODO: provide ability to specify class for javaScriptCompressor param
 
     /**
      * --nomunge param for Yahoo YUI Compressor
      *
-     * @parameter expression="${htmlcompressor.yuiJsNoMunge}" default-value="false"
+     * @parameter property="htmlcompressor.yuiJsNoMunge" default-value="false"
      */
     private Boolean yuiJsNoMunge = false;
 
     /**
      * --preserve-semi param for Yahoo YUI Compressor
      *
-     * @parameter expression="${htmlcompressor.yuiJsPreserveAllSemiColons}" default-value="false"
+     * @parameter property="htmlcompressor.yuiJsPreserveAllSemiColons" default-value="false"
      */
     private Boolean yuiJsPreserveAllSemiColons = false;
 
     /**
      * --line-break param for Yahoo YUI Compressor
      *
-     * @parameter expression="${htmlcompressor.yuiJsLineBreak}" default-value="-1"
+     * @parameter property="htmlcompressor.yuiJsLineBreak" default-value="-1"
      */
     private Integer yuiJsLineBreak = -1;
 
     /**
      * closureOptLevel = "simple", "advanced" or "whitespace"
      *
-     * @parameter expression="${htmlcompressor.closureOptLevel}" default-value="simple"
+     * @parameter property="htmlcompressor.closureOptLevel" default-value="simple"
      */
     private String closureOptLevel = "simple";
 
     /**
      * --disable-optimizations param for Yahoo YUI Compressor
      *
-     * @parameter expression="${htmlcompressor.yuiJsDisableOptimizations}" default-value="false"
+     * @parameter property="htmlcompressor.yuiJsDisableOptimizations" default-value="false"
      */
     private Boolean yuiJsDisableOptimizations = false;
 
     /**
      * predefined patterns for most often used custom preservation rules: PHP_TAG_PATTERN and SERVER_SCRIPT_TAG_PATTERN.
      *
-     * @parameter expression="${htmlcompressor.predefinedPreservePatterns}"
+     * @parameter property="htmlcompressor.predefinedPreservePatterns"
      */
     private String[] predefinedPreservePatterns;
 
     /**
      * preserve patterns
      *
-     * @parameter expression="${htmlcompressor.preservePatterns}"
+     * @parameter property="htmlcompressor.preservePatterns"
      */
     private String[] preservePatterns;
 
     /**
      * list of files containing preserve patterns
      *
-     * @parameter expression="${htmlcompressor.preservePatternFiles}"
+     * @parameter property="htmlcompressor.preservePatternFiles"
      */
     private File[] preservePatternFiles;
 
     /**
      * HTML compression statistics
      *
-     * @parameter expression="${htmlcompressor.generateStatistics}" default-value="true"
+     * @parameter property="htmlcompressor.generateStatistics" default-value="true"
      */
     private Boolean generateStatistics = true;
 
     /**
      * source folder where html files are located.
      *
-     * @parameter expression="${htmlcompressor.srcFolder}" default-value="${basedir}/src/main/resources/html"
+     * @parameter property="htmlcompressor.srcFolder" default-value="${basedir}/src/main/resources"
      */
-    private String srcFolder = "src/main/resources/html";
+    private String srcFolder = "src/main/resources";
 
     /**
      * target folder where compressed html files will be placed.
      *
-     * @parameter expression="${htmlcompressor.targetFolder}" default-value="${project.build.directory}/htmlcompressor/html"
+     * @parameter property="htmlcompressor.targetFolder" default-value="${project.build.directory}/classes"
      */
-    private String targetFolder = "target/htmlcompressor/html";
+    private String targetFolder = "target/classes";
 
     /**
      * Create javascript file which includes all compressed html files as json object. If set to true then javascriptHtmlSpriteIntegrationFile param is required, otherwise it will throw exception.
      *
-     * @parameter expression="${htmlcompressor.javascriptHtmlSprite}" default-value="true"
+     * @parameter property="htmlcompressor.javascriptHtmlSprite" default-value="true"
      */
     private Boolean javascriptHtmlSprite = true;
 
     /**
      * JavaScript sprite integration file (first occurrence of "%s" will be substituted by json with all compressed html strings)
      *
-     * @parameter expression="${htmlcompressor.javascriptHtmlSpriteIntegrationFile}" default-value="${basedir}/src/main/resources/html/integration.js"
+     * @parameter property="htmlcompressor.javascriptHtmlSpriteIntegrationFile" default-value="${basedir}/src/main/resources/html/integration.js"
      */
     private String javascriptHtmlSpriteIntegrationFile = "src/main/resources/html/integration.js";
 
     /**
      * The target JavaScript sprite file with compressed html files as json object.
      *
-     * @parameter expression="${htmlcompressor.javascriptHtmlSpriteTargetFile}" default-value="${project.build.directory}/htmlcompressor/html/integration.js"
+     * @parameter property="{htmlcompressor.javascriptHtmlSpriteTargetFile" default-value="${project.build.directory}/htmlcompressor/html/integration.js"
      */
     private String javascriptHtmlSpriteTargetFile = "target/htmlcompressor/html/integration.js";
 
     /**
      * Charset encoding for files to read and create
      *
-     * @parameter expression="${htmlcompressor.encoding}" default-value="utf-8"
+     * @parameter property="htmlcompressor.encoding" default-value="utf-8"
      */
     private String encoding = "utf-8";
 
     /**
      * Disable default built-in closure externs.
      *
-     * @parameter expression="${htmlcompressor.closureCustomExternsOnly}" default-value="false"
+     * @parameter property="htmlcompressor.closureCustomExternsOnly" default-value="false"
      */
     private Boolean closureCustomExternsOnly = false;
 
     /**
      * Sets custom closure externs file list.
      *
-     * @parameter expression="${htmlcompressor.closureExterns}"
+     * @parameter property="htmlcompressor.closureExterns"
      */
     private String[] closureExterns;
 

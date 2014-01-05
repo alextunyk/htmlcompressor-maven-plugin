@@ -34,7 +34,6 @@ public class XmlCompressorMojoTest {
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(XmlCompressorMojoTest.class);
 
-
     @BeforeClass
     public static void setUpClass() {
         LOG.info("Setting up class...");
@@ -55,7 +54,8 @@ public class XmlCompressorMojoTest {
         LOG.info("Testing mojo execution...");
 
         XmlCompressorMojo xmlCompressorMojo = new XmlCompressorMojo();
-		xmlCompressorMojo.setSrcFolder("src/test/resources/xml");
+        xmlCompressorMojo.setSrcFolder("src/test/resources/xml");
+        xmlCompressorMojo.setTargetFolder("target/htmlcompressor/xml");
         xmlCompressorMojo.execute();
 
         // TODO: test results
