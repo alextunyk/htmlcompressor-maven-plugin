@@ -30,7 +30,6 @@ public class HtmlCompressorTest {
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(HtmlCompressorTest.class);
 
-
     @BeforeClass
     public static void setUpClass() {
         LOG.info("Setting up class...");

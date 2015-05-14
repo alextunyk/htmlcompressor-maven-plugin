@@ -34,7 +34,6 @@ public class HtmlCompressorMojoTest {
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(HtmlCompressorMojoTest.class);
 
-
     @BeforeClass
     public static void setUpClass() {
         LOG.info("Setting up class...");
@@ -57,6 +56,7 @@ public class HtmlCompressorMojoTest {
         HtmlCompressorMojo htmlCompressorMojo = new HtmlCompressorMojo();
         htmlCompressorMojo.setSrcFolder("src/test/resources/html");
         htmlCompressorMojo.setJavascriptHtmlSpriteIntegrationFile("src/test/resources/html/integration.js");
+        htmlCompressorMojo.setTargetFolder("target/htmlcompressor/html");
         htmlCompressorMojo.execute();
 
         // TODO: test results

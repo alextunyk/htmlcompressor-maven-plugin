@@ -33,7 +33,6 @@ public class XmlCompressorTest {
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(XmlCompressorTest.class);
 
-
     @BeforeClass
     public static void setUpClass() {
         LOG.info("Setting up class...");

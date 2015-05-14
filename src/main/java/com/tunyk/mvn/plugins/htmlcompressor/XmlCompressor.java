@@ -18,9 +18,6 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.util.Map;
 
 /**
@@ -45,7 +42,7 @@ public class XmlCompressor {
         if (fileExt == null || fileExt.length == 0) {
             fileExt = FILE_EXT;
         }
-        
+
         FileTool fileTool = new FileTool(srcDirPath, fileExt, true);
         fileTool.setFileEncoding(fileEncoding);
         Map<String, String> map = fileTool.getFiles();

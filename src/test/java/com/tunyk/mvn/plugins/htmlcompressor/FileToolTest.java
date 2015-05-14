@@ -34,7 +34,6 @@ public class FileToolTest {
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(FileToolTest.class);
 
-
     @BeforeClass
     public static void setUpClass() {
         LOG.info("Setting up class...");
