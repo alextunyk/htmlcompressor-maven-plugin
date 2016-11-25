@@ -169,6 +169,13 @@ public class HtmlCompressorMojo extends AbstractMojo {
     private Boolean compressCss = false;
 
     /**
+     * preserves original line breaks
+     *
+     * @parameter property="htmlcompressor.preserveLineBreaks" default-value="false"
+     */
+    private Boolean preserveLineBreaks = false;
+
+    /**
      * --line-break param for Yahoo YUI Compressor
      *
      * @parameter property="htmlcompressor.yuiCssLineBreak" default-value="-1"
@@ -354,6 +361,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
         htmlCompressorHandler.setRemoveHttpProtocol(removeHttpProtocol);
         htmlCompressorHandler.setRemoveHttpsProtocol(removeHttpsProtocol);
         htmlCompressorHandler.setCompressCss(compressCss);
+        htmlCompressorHandler.setPreserveLineBreaks(preserveLineBreaks);
         htmlCompressorHandler.setYuiCssLineBreak(yuiCssLineBreak);
         htmlCompressorHandler.setCompressJavaScript(compressJavaScript);
         htmlCompressorHandler.setYuiJsNoMunge(yuiJsNoMunge);
@@ -629,6 +637,14 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
     public void setCompressCss(Boolean compressCss) {
         this.compressCss = compressCss;
+    }
+
+    public Boolean getPreserveLineBreaks() {
+        return preserveLineBreaks;
+    }
+
+    public void setPreserveLineBreaks(Boolean preserveLineBreaks) {
+        this.preserveLineBreaks = preserveLineBreaks;
     }
 
     public Integer getYuiCssLineBreak() {
