@@ -21,6 +21,7 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.nio.charset.Charset;
 import java.util.Map;
 
 /**
@@ -71,7 +72,7 @@ public class HtmlCompressor {
 
         fileTool.writeFiles(map, targetDirPath);
         if (createJsonFile) {
-            String jsonIntegrationCode = FileUtils.readFileToString(new File(jsonIntegrationFilePath));
+            String jsonIntegrationCode = FileUtils.readFileToString(new File(jsonIntegrationFilePath), Charset.defaultCharset());
             fileTool.writeToJsonFile(map, targetJsonFilePath, jsonIntegrationCode);
         }
     }

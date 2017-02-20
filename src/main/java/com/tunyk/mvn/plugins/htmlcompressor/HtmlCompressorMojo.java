@@ -329,6 +329,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
      */
     private String[] closureExterns;
 
+    @Override
     public void execute() throws MojoExecutionException {
         if (!enabled) {
             getLog().info("HTML compression was turned off.");
