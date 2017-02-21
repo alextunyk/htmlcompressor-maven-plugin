@@ -78,6 +78,7 @@ public class XmlCompressorMojo extends AbstractMojo {
      */
     private String encoding = "utf-8";
 
+    @Override
     public void execute() throws MojoExecutionException {
         if (!enabled) {
             getLog().info("XML compression was turned off.");
