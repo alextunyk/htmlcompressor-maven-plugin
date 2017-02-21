@@ -19,7 +19,7 @@
 package com.tunyk.mvn.plugins.htmlcompressor;
 
 import com.google.javascript.jscomp.CompilationLevel;
-import com.google.javascript.jscomp.JSSourceFile;
+import com.google.javascript.jscomp.SourceFile;
 import com.googlecode.htmlcompressor.compressor.ClosureJavaScriptCompressor;
 import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.AbstractMojo;
@@ -377,9 +377,9 @@ public class HtmlCompressorMojo extends AbstractMojo {
                 closureCompressor.setCompilationLevel(CompilationLevel.ADVANCED_OPTIMIZATIONS);
                 closureCompressor.setCustomExternsOnly(closureCustomExternsOnly != null);
                 if(closureExterns.length  > 0) {
-                    List<JSSourceFile> externs = new ArrayList<JSSourceFile>();
+                    List<SourceFile> externs = new ArrayList<SourceFile>();
                     for(String externFile : closureExterns) {
-                        externs.add(JSSourceFile.fromFile(externFile));
+                        externs.add(SourceFile.fromFile(externFile));
                     }
                     closureCompressor.setExterns(externs);
                 }
