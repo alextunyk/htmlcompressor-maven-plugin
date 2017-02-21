@@ -1,8 +1,8 @@
 Maven HTMLCompressor Plugin
 ===========================
 
-[![BuildStatus](<https://travis-ci.org/alextunyk/htmlcompressor-maven-plugin.svg?branch=master>)](<https://travis-ci.org/alextunyk/htmlcompressor-maven-plugin>)
-[![Mavencentral](<https://maven-badges.herokuapp.com/maven-central/alextunyk/htmlcompressor/badge.svg>)](<https://maven-badges.herokuapp.com/maven-central/alextunyk/httmlcompressor>)
+[![BuildStatus](<https://travis-ci.org/hazendaz/htmlcompressor-maven-plugin.svg?branch=master>)](<https://travis-ci.org/hazendaz/htmlcompressor-maven-plugin>)
+[![Mavencentral](<https://maven-badges.herokuapp.com/maven-central/com.tunyk.mvn.plugins.htmlcompressor/htmlcompressor-maven-plugin/badge.svg>)](<https://maven-badges.herokuapp.com/maven-central/com.tunyk.mvn.plugins.htmlcompressor/htmlcompressor-maven-plugin>)
 [![Apache2](<http://img.shields.io/badge/license-Apache%202-blue.svg>)](<http://www.apache.org/licenses/LICENSE-2.0>)
 
 [![endorse](http://api.coderwall.com/alextunyk/endorsecount.png)](http://coderwall.com/alextunyk)
