@@ -28,7 +28,7 @@
     <dependency>
       <groupId>com.google.javascript</groupId>
       <artifactId>closure-compiler</artifactId>
-      <version>v20131014</version>
+      <version>v20170124</version>
       <!-- this is optional due to issue when starting selenium server which is using 1.7.1 and with this dependency it is trying to use 1.8.1 that causes error -->
       <optional>true</optional>
     </dependency>
