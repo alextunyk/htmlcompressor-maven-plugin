@@ -5,21 +5,14 @@ Maven HTMLCompressor Plugin
 [![Mavencentral](<https://maven-badges.herokuapp.com/maven-central/com.tunyk.mvn.plugins.htmlcompressor/htmlcompressor-maven-plugin/badge.svg>)](<https://maven-badges.herokuapp.com/maven-central/com.tunyk.mvn.plugins.htmlcompressor/htmlcompressor-maven-plugin>)
 [![Apache2](<http://img.shields.io/badge/license-Apache%202-blue.svg>)](<http://www.apache.org/licenses/LICENSE-2.0>)
 
-[![endorse](http://api.coderwall.com/alextunyk/endorsecount.png)](http://coderwall.com/alextunyk)
-
-------------------------------------------------------------------------
-| Version   | 1.4-SNAPSHOT                                             |
-| --------- | -------------------------------------------------------- |
-| Keywords  | HTML/XML compression, htmlcompressor, Java, Maven plugin |
-| Copyright | Alex Tunyk <alex@tunyk.com>                              |
-| License   | Apache License version 2.0                               |
-------------------------------------------------------------------------
+Overview
+--------
 
 Maven HTMLCompressor Plugin allows to compress HTML/XML files by adding a few lines to the pom file.
 This plugin uses [htmlcompressor][] library.
 
-Usage
------
+Getting started
+---------------
 
 The simplest way to start using this plugin is:
 
@@ -68,14 +61,10 @@ Here is [demo you can download][]
 More information about HTML/XML compression plugin configuration at
 [wiki page][]:
 
-Source
-------
+License
+-------
 
-The source code is available on GitHub [htmlcompressor-maven-plugin][]
-
-```
-git clone https://github.com/TUNYK/htmlcompressor-maven-plugin.git
-```
+Apache License version 2.0
 
 Issues tracking
 ---------------
