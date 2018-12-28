@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.sonatype.oss</groupId>
-    <artifactId>oss-parent</artifactId>
-    <version>9</version>
+    <groupId>com.github.hazendaz</groupId>
+    <artifactId>base-parent</artifactId>
+    <version>20</version>
     <relativePath />
   </parent>
 
@@ -91,96 +92,23 @@
   <properties>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-    <maven.compiler.testSource>1.7</maven.compiler.testSource>
-    <maven.compiler.testTarget>1.7</maven.compiler.testTarget>
 
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <signature.artifact>java17</signature.artifact>
   </properties>
 
-  <!-- ====================================================================== -->
-  <!-- Build Settings                                                         -->
-  <!-- ====================================================================== -->
   <build>
-    <finalName>${project.artifactId}-${project.version}</finalName>
     <plugins>
-      <!-- Check Prerequisites -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.0.0-M2</version>
         <executions>
           <execution>
-            <id>enforce-versions</id>
             <goals>
-              <goal>enforce</goal>
             </goals>
-            <configuration>
-              <rules>
-                <requireMavenVersion>
-                  <version>3.2.5</version>
-                </requireMavenVersion>
-                <requireJavaVersion>
-                  <version>1.7</version>
-                </requireJavaVersion>
-              </rules>
-            </configuration>
           </execution>
         </executions>
       </plugin>
-      <!-- Configure Compiler -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.7.0</version>
-      </plugin>
-      <!-- Configure Install Plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-install-plugin</artifactId>
-        <version>2.5.2</version>
-        <configuration>
-          <createChecksum>true</createChecksum>
-        </configuration>
-      </plugin>
-      <!-- Configure Release Plugin -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-release-plugin</artifactId>
-        <configuration>
-          <mavenExecutorId>forked-path</mavenExecutorId>
-          <connectionUrl>scm:git:ssh://git@github.com/TUNYK/htmlcompressor-maven-plugin.git</connectionUrl>
-        </configuration>
-      </plugin>
     </plugins>
   </build>
-
-  <!-- ====================================================================== -->
-  <!-- Configure Reporting                                                    -->
-  <!-- ====================================================================== -->
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>3.0.0</version>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.1</version>
-        <configuration>
-            <failOnError>false</failOnError>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>versions-maven-plugin</artifactId>
-        <version>2.5</version>
-      </plugin>
-    </plugins>
-  </reporting>
 
   <!-- ====================================================================== -->
   <!-- More Information                                                       -->
@@ -230,36 +158,4 @@
     <url>https://github.com/TUNYK/htmlcompressor-maven-plugin</url>
   </scm>
 
-  <!-- ====================================================================== -->
-  <!-- Profile Settings                                                       -->
-  <!-- ====================================================================== -->
-  <profiles>
-    <profile>
-      <id>release-sign-artifacts</id>
-      <activation>
-        <property>
-          <name>performRelease</name>
-          <value>true</value>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
