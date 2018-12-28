@@ -30,9 +30,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Alex Tunyk <alex at tunyk.com>
- */
 public class FileToolTest {
 
     // logger

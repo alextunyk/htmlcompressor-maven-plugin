@@ -25,7 +25,6 @@ import org.apache.maven.plugin.MojoExecutionException;
  * Compress XML files
  *
  * @goal xml
- * @author Alex Tunyk <alex at tunyk.com>
  */
 public class XmlCompressorMojo extends AbstractMojo {
 

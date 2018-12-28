@@ -38,7 +38,6 @@ import java.util.regex.PatternSyntaxException;
  * Compress HTML files
  *
  * @goal html
- * @author Alex Tunyk <alex at tunyk.com>
  */
 public class HtmlCompressorMojo extends AbstractMojo {
 
