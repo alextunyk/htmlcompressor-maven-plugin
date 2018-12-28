@@ -419,8 +419,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
         if (preservePatternFiles != null) {
             for (File file : preservePatternFiles) {
                 try {
-                    // TODO: fix unchecked warning
-                    List<String> fileLines = FileUtils.readLines(file, encoding);
+                    List<String> fileLines = Files.readAllLines(file.toPath(), Charset.forName(encoding));
                     for (String line : fileLines) {
                         if (!line.isEmpty()) {
                             preservePatternList.add(Pattern.compile(line));
