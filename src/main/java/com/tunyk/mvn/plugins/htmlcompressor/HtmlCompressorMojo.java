@@ -460,8 +460,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
         String elapsedTime = FileTool.getElapsedHMSTime(htmlCompressor.getHtmlCompressor().getStatistics().getTime());
         String preservedSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getPreservedSize(), si);
-        Float compressionRatio = new Float(compFilesizeBytes) / new Float(origFilesizeBytes);
-        Float spaceSavings = new Float(1) - compressionRatio;
+        Float compressionRatio = Float.valueOf(compFilesizeBytes) / Float.valueOf(origFilesizeBytes);
+        Float spaceSavings = Float.valueOf(1) - compressionRatio;
 
         String format = "%-30s%-30s%-30s%-2s";
         NumberFormat formatter = new DecimalFormat("#0.00");
