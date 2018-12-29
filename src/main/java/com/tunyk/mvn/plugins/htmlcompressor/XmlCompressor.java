@@ -20,9 +20,6 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 
 import java.util.Map;
 
-/**
- * @author Alex Tunyk <alex at tunyk.com>
- */
 public class XmlCompressor {
 
     private static final String[] FILE_EXT = {"xml"};

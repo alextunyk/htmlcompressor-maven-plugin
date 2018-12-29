@@ -24,9 +24,6 @@ import java.io.File;
 import java.nio.charset.Charset;
 import java.util.Map;
 
-/**
- * @author Alex Tunyk <alex at tunyk.com>
- */
 public class HtmlCompressor {
 
     private static final String[] FILE_EXT = {"htm", "html"};

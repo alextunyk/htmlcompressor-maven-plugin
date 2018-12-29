@@ -29,9 +29,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 
-/**
- * @author Alex Tunyk <alex at tunyk.com>
- */
 public class FileTool {
 
     private String rootDirPath;

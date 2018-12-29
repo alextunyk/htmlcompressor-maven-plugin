@@ -19,32 +19,33 @@
 package com.tunyk.mvn.plugins.htmlcompressor;
 
 import org.json.JSONException;
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author Alex Tunyk <alex at tunyk.com>
- */
 public class FileToolTest {
 
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(FileToolTest.class);
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         LOG.info("Setting up class...");
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
         LOG.info("Test finished.");
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         LOG.info("Setting up data for testing...");
     }
@@ -56,9 +57,9 @@ public class FileToolTest {
         FileTool fileTool = new FileTool("src/test/resources/html", new String[] {"htm", "html"}, true);
         Map<String, String> map = fileTool.getFiles();
 
-        Assert.assertTrue(map.containsKey("templates/Template1.html"));
-        Assert.assertTrue(map.containsKey("templates/Template2.html"));
-        Assert.assertTrue(map.containsKey("templates/recursive/Template.html"));
+        Assertions.assertTrue(map.containsKey("templates/Template1.html"));
+        Assertions.assertTrue(map.containsKey("templates/Template2.html"));
+        Assertions.assertTrue(map.containsKey("templates/recursive/Template.html"));
 
         // TODO: check if any other files aren't included
         // TODO: check if file ext filter works
@@ -84,12 +85,12 @@ public class FileToolTest {
         fileTool.writeFiles(map, targetDir);
 
         Map<String, String> files = fileTool.getFiles();
-        Assert.assertTrue(files.containsKey("file.html"));
-        Assert.assertTrue(files.containsKey("file2.html"));
-        Assert.assertTrue(files.containsKey("file3.html"));
-        Assert.assertTrue(files.containsKey("template/file.html"));
-        Assert.assertTrue(files.containsKey("template/file01.html"));
-        Assert.assertTrue(files.containsKey("template/subfolder/file.html"));
+        Assertions.assertTrue(files.containsKey("file.html"));
+        Assertions.assertTrue(files.containsKey("file2.html"));
+        Assertions.assertTrue(files.containsKey("file3.html"));
+        Assertions.assertTrue(files.containsKey("template/file.html"));
+        Assertions.assertTrue(files.containsKey("template/file01.html"));
+        Assertions.assertTrue(files.containsKey("template/subfolder/file.html"));
 
         // TODO: check file exists and its contents is written correctly
 

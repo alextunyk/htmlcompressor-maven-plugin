@@ -20,62 +20,56 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
 
 /**
  * Compress XML files
- *
- * @goal xml
- * @author Alex Tunyk <alex at tunyk.com>
  */
+@Mojo(name = "xml", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false)
 public class XmlCompressorMojo extends AbstractMojo {
 
     /**
      * file types to be processed
-     *
-     * @parameter property="htmlcompressor.fileExt"
      */
+    @Parameter(property="htmlcompressor.fileExt")
     private String[] fileExt;
 
     /**
      * if false all compression is off (default is true)
-     *
-     * @parameter property="htmlcompressor.enabled" default-value="true"
      */
+    @Parameter(property="htmlcompressor.enabled", defaultValue="true")
     private Boolean enabled = true;
 
     /**
      * if false keeps XML comments (default is true)
-     *
-     * @parameter property="htmlcompressor.removeComments" default-value="true"
      */
+    @Parameter(property="htmlcompressor.removeComments", defaultValue="true")
     private Boolean removeComments = true;
 
     /**
      * removes iter-tag whitespace characters  (default is true)
-     *
-     * @parameter property="htmlcompressor.removeIntertagSpaces" default-value="true"
      */
+    @Parameter(property="htmlcompressor.removeIntertagSpaces", defaultValue="true")
     private Boolean removeIntertagSpaces = true;
 
     /**
      * source folder where xml files are located.
-     *
-     * @parameter property="htmlcompressor.srcFolder" default-value="${basedir}/src/main/resources"
      */
+    @Parameter(property="htmlcompressor.srcFolder", defaultValue="${project.basedir}/src/main/resources")
     private String srcFolder = "src/main/resources";
 
     /**
      * target folder where compressed xml files will be placed.
-     *
-     * @parameter property="htmlcompressor.targetFolder" default-value="${project.build.directory}/classes"
      */
+    @Parameter(property="htmlcompressor.targetFolder", defaultValue="${project.build.directory}/classes")
     private String targetFolder = "target/classes";
 
     /**
      * Charset encoding for files to read and create
-     *
-     * @parameter property="htmlcompressor.encoding" default-value="utf-8"
      */
+    @Parameter(property="htmlcompressor.encoding", defaultValue="utf-8")
     private String encoding = "utf-8";
 
     @Override

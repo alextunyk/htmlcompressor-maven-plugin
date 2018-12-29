@@ -18,29 +18,29 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import org.junit.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * @author Alex Tunyk <alex at tunyk.com>
- */
 public class HtmlCompressorTest {
 
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(HtmlCompressorTest.class);
 
-    @BeforeClass
+    @BeforeAll
     public static void setUpClass() {
         LOG.info("Setting up class...");
     }
 
-    @AfterClass
+    @AfterAll
     public static void tearDownClass() {
         LOG.info("Test finished.");
     }
 
-    @Before
+    @BeforeEach
     public void setUp() {
         LOG.info("Setting up data for testing...");
     }
