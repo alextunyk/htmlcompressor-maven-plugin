@@ -9,10 +9,7 @@
     <relativePath />
   </parent>
 
-  <!-- ====================================================================== -->
-  <!-- Basic Information                                                      -->
-  <!-- ====================================================================== -->
-  <groupId>com.tunyk.mvn.plugins.htmlcompressor</groupId>
+  <groupId>com.github.hazendaz.maven</groupId>
   <artifactId>htmlcompressor-maven-plugin</artifactId>
   <version>1.4.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
