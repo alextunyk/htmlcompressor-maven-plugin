@@ -1,7 +1,9 @@
-.classpath
+/.settings
+/.classpath
+/.project
+/target
+.mvn/wrapper/maven-wrapper.jar
+*.releaseBackup
+release.properties
 .factorypath
 .pmd
-.project
-.settings
-target
-.mvn/wrapper/maven-wrapper.jar
