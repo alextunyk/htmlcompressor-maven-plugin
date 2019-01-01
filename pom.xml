@@ -9,17 +9,74 @@
     <relativePath />
   </parent>
 
-  <!-- ====================================================================== -->
-  <!-- Basic Information                                                      -->
-  <!-- ====================================================================== -->
-  <groupId>com.tunyk.mvn.plugins.htmlcompressor</groupId>
+  <groupId>com.github.hazendaz.maven</groupId>
   <artifactId>htmlcompressor-maven-plugin</artifactId>
-  <version>1.4-SNAPSHOT</version>
+  <version>1.4.0-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
-  <!-- ====================================================================== -->
-  <!-- Dependencies                                                           -->
-  <!-- ====================================================================== -->
+  <name>Maven HTMLCompressor Plugin</name>
+  <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
+  <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
+  <inceptionYear>2011</inceptionYear>
+
+  <organization>
+    <name>alextunyk</name>
+    <url>https://github.com/alextunyk/</url>
+  </organization>
+  <licenses>
+    <license>
+      <name>Apache License 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+      <distribution>manual</distribution>
+      <comments>Maven HTMLCompressor Plugin is distributed under Apache License 2.0</comments>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <id>alextunyk</id>
+      <name>alextunyk</name>
+      <email>alex@tunyk.com</email>
+      <url>https://github.com/alextunyk/</url>
+      <organization>alextunyk</organization>
+      <organizationUrl>https://github.com/alextunyk/</organizationUrl>
+      <roles>
+        <role>owner</role>
+        <role>developer</role>
+      </roles>
+      <timezone>2</timezone>
+    </developer>
+  </developers>
+
+  <scm>
+    <connection>scm:git:https://github.com/alextunyk/htmlcompressor-maven-plugin.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/alextunyk/htmlcompressor-maven-plugin.git</developerConnection>
+    <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
+    <tag>HEAD</tag>
+  </scm>
+  <issueManagement>
+    <system>GitHub Issue Tracking</system>
+    <url>https://github.com/alextunyk/htmlcompressor-maven-plugin/issues</url>
+  </issueManagement>
+  <ciManagement>
+    <system>Travis CI</system>
+    <url>https://travis-ci.org/hazendaz/htmlcompressor-maven-plugin</url>
+  </ciManagement>
+  <distributionManagement>
+    <site>
+        <id>gh-pages</id>
+        <name>GitHub Pages</name>
+        <url>github:https://alextunyk.github.io/scriptable-dataset/</url>
+    </site>
+  </distributionManagement>
+
+  <properties>
+    <maven.compiler.source>1.7</maven.compiler.source>
+    <maven.compiler.target>1.7</maven.compiler.target>
+
+    <signature.artifact>java17</signature.artifact>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.github.hazendaz</groupId>
@@ -91,16 +148,6 @@
     </dependency>
   </dependencies>
 
-  <!-- ====================================================================== -->
-  <!-- Common Properties                                                      -->
-  <!-- ====================================================================== -->
-  <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
-
-    <signature.artifact>java17</signature.artifact>
-  </properties>
-
   <build>
     <plugins>
       <plugin>
@@ -124,53 +171,5 @@
       </plugin>
     </plugins>
   </build>
-
-  <!-- ====================================================================== -->
-  <!-- More Information                                                       -->
-  <!-- ====================================================================== -->
-  <name>Maven HTMLCompressor Plugin</name>
-  <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
-  <url>https://github.com/TUNYK/htmlcompressor-maven-plugin</url>
-  <inceptionYear>2011</inceptionYear>
-  <licenses>
-    <license>
-      <name>Apache License 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0</url>
-      <distribution>repo</distribution>
-      <comments>Maven HTMLCompressor Plugin is distributed under Apache License 2.0</comments>
-    </license>
-  </licenses>
-  <organization>
-    <name>TUNYK.COM</name>
-    <url>http://tunyk.com/</url>
-  </organization>
-  <developers>
-    <developer>
-      <id>alextunyk</id>
-      <name>alextunyk</name>
-      <email>alex@tunyk.com</email>
-      <url>http://alex.tunyk.com/</url>
-      <organization>TUNYK.COM</organization>
-      <organizationUrl>http://tunyk.com/</organizationUrl>
-      <roles>
-        <role>owner</role>
-        <role>developer</role>
-      </roles>
-      <timezone>2</timezone>
-    </developer>
-  </developers>
-
-  <!-- ====================================================================== -->
-  <!-- Environment Settings                                                   -->
-  <!-- ====================================================================== -->
-  <issueManagement>
-    <system>GitHub Issue Tracking</system>
-    <url>https://github.com/TUNYK/htmlcompressor-maven-plugin/issues</url>
-  </issueManagement>
-  <scm>
-    <connection>scm:git:https://github.com/TUNYK/htmlcompressor-maven-plugin.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/TUNYK/htmlcompressor-maven-plugin.git</developerConnection>
-    <url>https://github.com/TUNYK/htmlcompressor-maven-plugin</url>
-  </scm>
 
 </project>
