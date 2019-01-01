@@ -22,9 +22,9 @@ The simplest way to start using this plugin is:
 <build>
     <plugins>
         <plugin>
-            <groupId>com.tunyk.mvn.plugins.htmlcompressor</groupId>
+            <groupId>com.github.hazendaz.maven</groupId>
             <artifactId>htmlcompressor-maven-plugin</artifactId>
-            <version>1.4-SNAPSHOT</version>
+            <version>1.4.0</version>
             <configuration>
                 <goalPrefix>htmlcompressor</goalPrefix>
             </configuration>
