@@ -302,6 +302,11 @@ public class HtmlCompressorMojo extends AbstractMojo {
             return;
         }
 
+        if (!new File(srcFolder).exists()) {
+            getLog().warn("Compressor folder does not exist, skipping compression of " + srcFolder);
+            return;
+        }
+
         getLog().info("Compressing " + srcFolder);
         HtmlCompressor htmlCompressor = new HtmlCompressor(srcFolder, targetFolder);
 
@@ -404,7 +409,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
         try {
             htmlCompressor.compress();
-        } catch(Exception e) {
+        } catch(IOException e) {
             throw new MojoExecutionException(e.getMessage());
         }
 
