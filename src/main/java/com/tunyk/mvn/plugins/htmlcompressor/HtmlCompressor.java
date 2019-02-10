@@ -21,6 +21,7 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Map;
 
@@ -50,11 +51,11 @@ public class HtmlCompressor {
         this.jsonIntegrationFilePath = jsonIntegrationFilePath;
     }
 
-    public void compress()  throws Exception {
+    public void compress() throws IOException {
         if (fileExt == null || fileExt.length == 0) {
             fileExt = FILE_EXT;
         }
-        
+
         FileTool fileTool = new FileTool(srcDirPath, fileExt, true);
         fileTool.setFileEncoding(fileEncoding);
         Map<String, String> map = fileTool.getFiles();

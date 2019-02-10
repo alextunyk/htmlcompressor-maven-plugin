@@ -404,7 +404,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
         try {
             htmlCompressor.compress();
-        } catch(Exception e) {
+        } catch(IOException e) {
             throw new MojoExecutionException(e.getMessage());
         }
 
