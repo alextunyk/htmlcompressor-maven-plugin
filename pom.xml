@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.github.hazendaz</groupId>
     <artifactId>base-parent</artifactId>
-    <version>24</version>
+    <version>26</version>
     <relativePath />
   </parent>
 
@@ -74,18 +74,18 @@
     <dependency>
       <groupId>com.github.hazendaz</groupId>
       <artifactId>htmlcompressor</artifactId>
-      <version>1.7.0</version>
+      <version>1.7.1</version>
     </dependency>
     <dependency>
       <groupId>com.google.javascript</groupId>
       <artifactId>closure-compiler</artifactId>
-      <version>v20200204</version>
+      <version>v20200614</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.google.elemental2</groupId>
       <artifactId>elemental2-core</artifactId>
-      <version>1.0.0</version>
+      <version>1.1.0</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -106,12 +106,12 @@
     <dependency>
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
-      <version>2.6</version>
+      <version>2.7</version>
     </dependency>
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20190722</version>
+      <version>20200518</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
@@ -137,7 +137,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.6.0</version>
+      <version>5.6.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
