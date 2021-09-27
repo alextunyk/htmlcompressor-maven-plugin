@@ -27,7 +27,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 /**
  * Compress XML files
  */
-@Mojo(name = "xml", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false)
+@Mojo(name = "xml", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false, threadSafe = true)
 public class XmlCompressorMojo extends AbstractMojo {
 
     /**
