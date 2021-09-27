@@ -44,7 +44,7 @@ import java.util.regex.PatternSyntaxException;
 /**
  * Compress HTML files
  */
-@Mojo(name = "html", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false)
+@Mojo(name = "html", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false, threadSafe = true)
 public class HtmlCompressorMojo extends AbstractMojo {
 
     /**
