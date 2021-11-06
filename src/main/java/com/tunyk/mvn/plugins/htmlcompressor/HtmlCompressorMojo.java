@@ -423,8 +423,14 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
         boolean si = true;
 
-        // TODO: if no files matched pattern (*.htm or *.html) then this gives NullPointerException
-        int origFilesizeBytes = htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getFilesize();
+        int origFilesizeBytes = -1;
+        try {
+            htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getFilesize();
+        } catch (NullPointerException e) {
+            getLog().info("No files found to compress, HTML compression completed.");
+            return;
+        }
+
         String origFilesize = FileTool.humanReadableByteCount(origFilesizeBytes, si);
         String origEmptyChars = String.valueOf(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getEmptyChars());
         String origInlineEventSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineEventSize(), si);
