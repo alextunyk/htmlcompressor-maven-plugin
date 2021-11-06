@@ -65,6 +65,10 @@ public class HtmlCompressorMojo extends AbstractMojo {
     @Parameter(property="htmlcompressor.enabled", defaultValue="true")
     private Boolean enabled = true;
 
+    /** Skip run of plugin. */
+    @Parameter(defaultValue = "false", alias = "skip", property = "skip")
+    private boolean skip;
+
     /**
      * if false keeps HTML comments (default is true)
      */
@@ -297,6 +301,12 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
     @Override
     public void execute() throws MojoExecutionException {
+        // Check if plugin run should be skipped
+        if (this.skip) {
+            getLog().info("HtmlCompressor is skipped");
+            return;
+        }
+
         if (!enabled) {
             getLog().info("HTML compression was turned off.");
             return;
