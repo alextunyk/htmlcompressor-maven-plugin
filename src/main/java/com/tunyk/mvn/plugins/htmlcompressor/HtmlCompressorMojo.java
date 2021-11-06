@@ -407,9 +407,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
                             preservePatternList.add(Pattern.compile(line));
                         }
                     }
-                } catch (PatternSyntaxException e) {
-                    throw new MojoExecutionException(e.getMessage());
-                } catch (IOException e) {
+                } catch (IOException | PatternSyntaxException e) {
                     throw new MojoExecutionException(e.getMessage());
                 }
             }
