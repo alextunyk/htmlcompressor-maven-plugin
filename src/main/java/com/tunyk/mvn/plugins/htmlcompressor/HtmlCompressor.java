@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class HtmlCompressor {
 
@@ -64,8 +65,8 @@ public class HtmlCompressor {
             htmlCompressor = new com.googlecode.htmlcompressor.compressor.HtmlCompressor();
         }
 
-        for(String key : map.keySet()) {
-            map.put(key, htmlCompressor.compress(map.get(key)));
+        for (Entry<String, String> key : map.entrySet()) {
+            map.put(key.getKey(), htmlCompressor.compress(key.getValue()));
         }
 
         fileTool.writeFiles(map, targetDirPath);

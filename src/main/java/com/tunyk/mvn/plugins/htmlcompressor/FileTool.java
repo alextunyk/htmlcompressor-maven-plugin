@@ -28,6 +28,7 @@ import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.regex.Matcher;
 
 public class FileTool {
@@ -62,9 +63,9 @@ public class FileTool {
     }
 
     public void writeFiles(Map<String, String> map, String targetDir) throws IOException {
-        for(String key : map.keySet()) {
-            File file = new File(targetDir + "/" + key);
-            FileUtils.writeStringToFile(file, map.get(key), fileEncoding);
+        for (Entry<String, String> entry : map.entrySet()) {
+            File file = new File(targetDir + "/" + entry.getKey());
+            FileUtils.writeStringToFile(file, entry.getValue(), fileEncoding);
         }
     }
 
@@ -72,8 +73,8 @@ public class FileTool {
         String replacePattern = "%s";
         File file = new File(targetFile);
         JSONObject json = new JSONObject();
-        for(String key : map.keySet()) {
-            json.put(key, map.get(key));
+        for (Entry<String, String> entry : map.entrySet()) {
+            json.put(entry.getKey(), entry.getValue());
         }
         if (integrationCode == null) {
             integrationCode = replacePattern;

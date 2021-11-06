@@ -20,6 +20,7 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 
 import java.nio.charset.Charset;
 import java.util.Map;
+import java.util.Map.Entry;
 
 public class XmlCompressor {
 
@@ -49,8 +50,8 @@ public class XmlCompressor {
             xmlCompressor = new com.googlecode.htmlcompressor.compressor.XmlCompressor();
         }
 
-        for(String key : map.keySet()) {
-            map.put(key, xmlCompressor.compress(map.get(key)));
+        for (Entry<String, String> key : map.entrySet()) {
+            map.put(key.getKey(), xmlCompressor.compress(key.getValue()));
         }
 
         fileTool.writeFiles(map, targetDirPath);
