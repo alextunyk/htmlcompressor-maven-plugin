@@ -42,7 +42,7 @@ public class XmlCompressorMojo extends AbstractMojo {
      * if false all compression is off (default is true)
      */
     @Parameter(property="htmlcompressor.enabled", defaultValue="true")
-    private Boolean enabled = true;
+    private boolean enabled = true;
 
     /** Skip run of plugin. */
     @Parameter(defaultValue = "false", alias = "skip", property = "skip")
@@ -52,13 +52,13 @@ public class XmlCompressorMojo extends AbstractMojo {
      * if false keeps XML comments (default is true)
      */
     @Parameter(property="htmlcompressor.removeComments", defaultValue="true")
-    private Boolean removeComments = true;
+    private boolean removeComments = true;
 
     /**
      * removes iter-tag whitespace characters  (default is true)
      */
     @Parameter(property="htmlcompressor.removeIntertagSpaces", defaultValue="true")
-    private Boolean removeIntertagSpaces = true;
+    private boolean removeIntertagSpaces = true;
 
     /**
      * source folder where xml files are located.

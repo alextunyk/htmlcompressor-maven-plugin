@@ -63,7 +63,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * if false all compression is off (default is true)
      */
     @Parameter(property="htmlcompressor.enabled", defaultValue="true")
-    private Boolean enabled = true;
+    private boolean enabled = true;
 
     /** Skip run of plugin. */
     @Parameter(defaultValue = "false", alias = "skip", property = "skip")
@@ -73,103 +73,103 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * if false keeps HTML comments (default is true)
      */
     @Parameter(property="htmlcompressor.removeComments", defaultValue="true")
-    private Boolean removeComments = true;
+    private boolean removeComments = true;
 
     /**
      * if false keeps multiple whitespace characters (default is true)
      */
     @Parameter(property="htmlcompressor.removeMultiSpaces", defaultValue="true")
-    private Boolean removeMultiSpaces = true;
+    private boolean removeMultiSpaces = true;
 
     /**
      * removes iter-tag whitespace characters
      */
     @Parameter(property="htmlcompressor.removeIntertagSpaces", defaultValue="false")
-    private Boolean removeIntertagSpaces = false;
+    private boolean removeIntertagSpaces;
 
     /**
      * removes unnecessary tag attribute quotes
      */
     @Parameter(property="htmlcompressor.removeQuotes", defaultValue="false")
-    private Boolean removeQuotes = false;
+    private boolean removeQuotes;
 
     /**
      * simplify existing doctype
      */
     @Parameter(property="htmlcompressor.simpleDoctype", defaultValue="false")
-    private Boolean simpleDoctype = false;
+    private boolean simpleDoctype;
 
     /**
      * remove optional attributes from script tags
      */
     @Parameter(property="htmlcompressor.removeScriptAttributes", defaultValue="false")
-    private Boolean removeScriptAttributes = false;
+    private boolean removeScriptAttributes;
 
     /**
      * remove optional attributes from style tags
      */
     @Parameter(property="htmlcompressor.removeStyleAttributes", defaultValue="false")
-    private Boolean removeStyleAttributes = false;
+    private boolean removeStyleAttributes;
 
     /**
      * remove optional attributes from link tags
      */
     @Parameter(property="htmlcompressor.removeLinkAttributes", defaultValue="false")
-    private Boolean removeLinkAttributes = false;
+    private boolean removeLinkAttributes;
 
     /**
      * remove optional attributes from form tags
      */
     @Parameter(property="htmlcompressor.removeFormAttributes", defaultValue="false")
-    private Boolean removeFormAttributes = false;
+    private boolean removeFormAttributes;
 
     /**
      * remove optional attributes from input tags
      */
     @Parameter(property="htmlcompressor.removeInputAttributes", defaultValue="false")
-    private Boolean removeInputAttributes = false;
+    private boolean removeInputAttributes;
 
     /**
      * remove values from boolean tag attributes
      */
     @Parameter(property="htmlcompressor.simpleBooleanAttributes", defaultValue="false")
-    private Boolean simpleBooleanAttributes = false;
+    private boolean simpleBooleanAttributes;
 
     /**
      * remove "javascript:" from inline event handlers
      */
     @Parameter(property="htmlcompressor.removeJavaScriptProtocol", defaultValue="false")
-    private Boolean removeJavaScriptProtocol = false;
+    private boolean removeJavaScriptProtocol;
 
     /**
      * replace "http://" with "//" inside tag attributes
      */
     @Parameter(property="htmlcompressor.removeHttpProtocol", defaultValue="false")
-    private Boolean removeHttpProtocol = false;
+    private boolean removeHttpProtocol;
 
     /**
      * replace "https://" with "//" inside tag attributes
      */
     @Parameter(property="htmlcompressor.removeHttpsProtocol", defaultValue="false")
-    private Boolean removeHttpsProtocol = false;
+    private boolean removeHttpsProtocol;
 
     /**
      * compress inline css
      */
     @Parameter(property="htmlcompressor.compressCss", defaultValue="false")
-    private Boolean compressCss = false;
+    private boolean compressCss;
 
     /**
      * preserves original line breaks
      */
     @Parameter(property="htmlcompressor.preserveLineBreaks", defaultValue="false")
-    private Boolean preserveLineBreaks = false;
+    private boolean preserveLineBreaks;
 
     /**
      * --line-break param for Yahoo YUI Compressor
      */
     @Parameter(property="htmlcompressor.yuiCssLineBreak", defaultValue="-1")
-    private Integer yuiCssLineBreak = -1;
+    private int yuiCssLineBreak = -1;
 
     /**
      * css compressor
@@ -182,7 +182,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * compress inline javascript
      */
     @Parameter(property="htmlcompressor.compressJavaScript", defaultValue="false")
-    private Boolean compressJavaScript = false;
+    private boolean compressJavaScript;
 
     /**
      * javascript compression: "yui" or "closure"
@@ -201,19 +201,19 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * --nomunge param for Yahoo YUI Compressor
      */
     @Parameter(property="htmlcompressor.yuiJsNoMunge", defaultValue="false")
-    private Boolean yuiJsNoMunge = false;
+    private boolean yuiJsNoMunge;
 
     /**
      * --preserve-semi param for Yahoo YUI Compressor
      */
     @Parameter(property="htmlcompressor.yuiJsPreserveAllSemiColons", defaultValue="false")
-    private Boolean yuiJsPreserveAllSemiColons = false;
+    private boolean yuiJsPreserveAllSemiColons;
 
     /**
      * --line-break param for Yahoo YUI Compressor
      */
     @Parameter(property="htmlcompressor.yuiJsLineBreak", defaultValue="-1")
-    private Integer yuiJsLineBreak = -1;
+    private int yuiJsLineBreak = -1;
 
     /**
      * closureOptLevel = "simple", "advanced" or "whitespace"
@@ -225,7 +225,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * --disable-optimizations param for Yahoo YUI Compressor
      */
     @Parameter(property="htmlcompressor.yuiJsDisableOptimizations", defaultValue="false")
-    private Boolean yuiJsDisableOptimizations = false;
+    private boolean yuiJsDisableOptimizations;
 
     /**
      * predefined patterns for most often used custom preservation rules: PHP_TAG_PATTERN and SERVER_SCRIPT_TAG_PATTERN.
@@ -249,7 +249,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * HTML compression statistics
      */
     @Parameter(property="htmlcompressor.generateStatistics", defaultValue="true")
-    private Boolean generateStatistics = true;
+    private boolean generateStatistics = true;
 
     /**
      * source folder where html files are located.
@@ -267,7 +267,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * Create javascript file which includes all compressed html files as json object. If set to true then javascriptHtmlSpriteIntegrationFile param is required, otherwise it will throw exception.
      */
     @Parameter(property="htmlcompressor.javascriptHtmlSprite", defaultValue="true")
-    private Boolean javascriptHtmlSprite = true;
+    private boolean javascriptHtmlSprite = true;
 
     /**
      * JavaScript sprite integration file (first occurrence of "%s" will be substituted by json with all compressed html strings)
@@ -291,7 +291,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * Disable default built-in closure externs.
      */
     @Parameter(property="htmlcompressor.closureCustomExternsOnly", defaultValue="false")
-    private Boolean closureCustomExternsOnly = false;
+    private boolean closureCustomExternsOnly;
 
     /**
      * Sets custom closure externs file list.
