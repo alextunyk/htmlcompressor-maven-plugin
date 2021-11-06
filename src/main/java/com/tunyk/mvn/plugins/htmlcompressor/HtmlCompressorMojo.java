@@ -356,7 +356,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
             ClosureJavaScriptCompressor closureCompressor = new ClosureJavaScriptCompressor();
             if (closureOptLevel != null && closureOptLevel.equalsIgnoreCase(ClosureJavaScriptCompressor.COMPILATION_LEVEL_ADVANCED)) {
                 closureCompressor.setCompilationLevel(CompilationLevel.ADVANCED_OPTIMIZATIONS);
-                closureCompressor.setCustomExternsOnly(closureCustomExternsOnly != null);
+                closureCompressor.setCustomExternsOnly(closureCustomExternsOnly);
                 if(closureExterns.length  > 0) {
                     List<SourceFile> externs = new ArrayList<>();
                     for(String externFile : closureExterns) {
