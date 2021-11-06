@@ -321,7 +321,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
         HtmlCompressor htmlCompressor = new HtmlCompressor(srcFolder, targetFolder);
 
         htmlCompressor.setFileExt(fileExt);
-        htmlCompressor.setFileEncoding(encoding);
+        htmlCompressor.setFileEncoding(Charset.forName(encoding));
         htmlCompressor.setCreateJsonFile(javascriptHtmlSprite);
         htmlCompressor.setJsonIntegrationFilePath(javascriptHtmlSpriteIntegrationFile);
         htmlCompressor.setTargetJsonFilePath(javascriptHtmlSpriteTargetFile);

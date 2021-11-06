@@ -18,6 +18,8 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
+import java.nio.charset.Charset;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -92,7 +94,7 @@ public class XmlCompressorMojo extends AbstractMojo {
         getLog().info("Compressing " + srcFolder);
         XmlCompressor xmlCompressor = new XmlCompressor(srcFolder, targetFolder);
         xmlCompressor.setFileExt(fileExt);
-        xmlCompressor.setFileEncoding(encoding);
+        xmlCompressor.setFileEncoding(Charset.forName(encoding));
 
         com.googlecode.htmlcompressor.compressor.XmlCompressor xmlCompressorHandler = new com.googlecode.htmlcompressor.compressor.XmlCompressor();
         xmlCompressorHandler.setEnabled(enabled);

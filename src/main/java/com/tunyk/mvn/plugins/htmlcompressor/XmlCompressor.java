@@ -18,6 +18,7 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
+import java.nio.charset.Charset;
 import java.util.Map;
 
 public class XmlCompressor {
@@ -27,7 +28,7 @@ public class XmlCompressor {
     private String[] fileExt;
     private String srcDirPath;
     private String targetDirPath;
-    private String fileEncoding;
+    private Charset fileEncoding;
     private com.googlecode.htmlcompressor.compressor.XmlCompressor xmlCompressor;
 
     public XmlCompressor(String srcDirPath, String targetDirPath) {
@@ -79,11 +80,11 @@ public class XmlCompressor {
         this.targetDirPath = targetDirPath;
     }
 
-    public String getFileEncoding() {
+    public Charset getFileEncoding() {
         return fileEncoding;
     }
 
-    public void setFileEncoding(String fileEncoding) {
+    public void setFileEncoding(Charset fileEncoding) {
         this.fileEncoding = fileEncoding;
     }
 

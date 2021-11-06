@@ -24,6 +24,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class FileTool {
     private String rootDirPath;
     private String[] fileExt;
     private boolean recursive;
-    private String fileEncoding;
+    private Charset fileEncoding;
 
     public FileTool(String rootDir, String[] fileExt, boolean recursive) throws IOException {
         this.setRootDirPath(rootDir);
@@ -126,11 +127,11 @@ public class FileTool {
         this.recursive = recursive;
     }
 
-    public String getFileEncoding() {
+    public Charset getFileEncoding() {
         return fileEncoding;
     }
 
-    public void setFileEncoding(String fileEncoding) {
+    public void setFileEncoding(Charset fileEncoding) {
         this.fileEncoding = fileEncoding;
     }
 }

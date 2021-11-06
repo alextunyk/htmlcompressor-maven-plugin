@@ -32,7 +32,7 @@ public class HtmlCompressor {
     private String[] fileExt;
     private String srcDirPath;
     private String targetDirPath;
-    private String fileEncoding;
+    private Charset fileEncoding;
     private boolean createJsonFile;
     private String targetJsonFilePath;
     private String jsonIntegrationFilePath;
@@ -99,11 +99,11 @@ public class HtmlCompressor {
         this.targetDirPath = targetDirPath;
     }
 
-    public String getFileEncoding() {
+    public Charset getFileEncoding() {
         return fileEncoding;
     }
 
-    public void setFileEncoding(String fileEncoding) {
+    public void setFileEncoding(Charset fileEncoding) {
         this.fileEncoding = fileEncoding;
     }
 
