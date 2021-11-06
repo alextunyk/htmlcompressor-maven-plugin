@@ -45,7 +45,7 @@ public class FileTool {
     }
 
     public Map<String, String> getFiles() throws IOException {
-        Map<String, String> map = new HashMap<String, String>();
+        Map<String, String> map = new HashMap<>();
         File rootDir = new File(rootDirPath);
         // TODO: fix unchecked warning
         Collection<File> files = FileUtils.listFiles(rootDir, fileExt, recursive);

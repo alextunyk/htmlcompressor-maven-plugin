@@ -358,7 +358,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
                 closureCompressor.setCompilationLevel(CompilationLevel.ADVANCED_OPTIMIZATIONS);
                 closureCompressor.setCustomExternsOnly(closureCustomExternsOnly != null);
                 if(closureExterns.length  > 0) {
-                    List<SourceFile> externs = new ArrayList<SourceFile>();
+                    List<SourceFile> externs = new ArrayList<>();
                     for(String externFile : closureExterns) {
                         externs.add(SourceFile.fromFile(externFile));
                     }
@@ -373,7 +373,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
             htmlCompressorHandler.setJavaScriptCompressor(closureCompressor);
         }
 
-        List<Pattern> preservePatternList = new ArrayList<Pattern>();
+        List<Pattern> preservePatternList = new ArrayList<>();
         boolean phpTagPatternAdded = false;
         boolean serverScriptTagPatternAdded = false;
         if (predefinedPreservePatterns != null) {
