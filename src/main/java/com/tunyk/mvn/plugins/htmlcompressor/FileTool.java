@@ -50,7 +50,7 @@ public class FileTool {
         Collection<File> files = FileUtils.listFiles(rootDir, fileExt, recursive);
         int truncationIndex = 0;
         for (File file : files) {
-            String normalizedFilePath = file.getCanonicalPath().replaceAll("\\\\", "/");
+            String normalizedFilePath = file.getCanonicalPath().replace("\\", "/");
             if (truncationIndex == 0) {
                 truncationIndex = normalizedFilePath.indexOf(rootDirPath) + rootDirPath.length() + 1;
             }
@@ -108,7 +108,7 @@ public class FileTool {
 
     public void setRootDirPath(String rootDirPath) throws IOException {
         File file = new File(rootDirPath);
-        this.rootDirPath = file.getCanonicalPath().replaceAll("\\\\", "/").replaceAll("/$", "");
+        this.rootDirPath = file.getCanonicalPath().replace("\\", "/").replaceAll("/$", "");
     }
 
     public String[] getFileExt() {
