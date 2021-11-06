@@ -30,28 +30,28 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FileToolTest {
+class FileToolTest {
 
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(FileToolTest.class);
 
     @BeforeAll
-    public static void setUpClass() {
+    static void setUpClass() {
         LOG.info("Setting up class...");
     }
 
     @AfterAll
-    public static void tearDownClass() {
+    static void tearDownClass() {
         LOG.info("Test finished.");
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         LOG.info("Setting up data for testing...");
     }
 
     @Test
-    public void testGetFiles() throws IOException {
+    void testGetFiles() throws IOException {
         LOG.info("Testing getFiles method...");
 
         FileTool fileTool = new FileTool("src/test/resources/html", new String[] {"htm", "html"}, true);
@@ -70,7 +70,7 @@ public class FileToolTest {
     }
 
     @Test
-    public void testWriteFiles() throws IOException {
+    void testWriteFiles() throws IOException {
         LOG.info("Testing writeFiles method...");
 
         String targetDir = "target/test/filetool";
@@ -98,7 +98,7 @@ public class FileToolTest {
     }
 
     @Test
-    public void testWriteToJsonFile() throws IOException, JSONException {
+    void testWriteToJsonFile() throws IOException, JSONException {
         LOG.info("Testing writeToJsonFile method...");
 
         String targetDir = "target/test/filetool/";

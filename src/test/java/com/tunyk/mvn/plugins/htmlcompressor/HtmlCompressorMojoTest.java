@@ -26,28 +26,28 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class HtmlCompressorMojoTest {
+class HtmlCompressorMojoTest {
 
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(HtmlCompressorMojoTest.class);
 
     @BeforeAll
-    public static void setUpClass() {
+    static void setUpClass() {
         LOG.info("Setting up class...");
     }
 
     @AfterAll
-    public static void tearDownClass() {
+    static void tearDownClass() {
         LOG.info("Mojo test finished.");
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         LOG.info("Setting up data for testing...");
     }
 
     @Test
-    public void testExecute() throws MojoExecutionException {
+    void testExecute() throws MojoExecutionException {
         LOG.info("Testing mojo execution...");
 
         HtmlCompressorMojo htmlCompressorMojo = new HtmlCompressorMojo();

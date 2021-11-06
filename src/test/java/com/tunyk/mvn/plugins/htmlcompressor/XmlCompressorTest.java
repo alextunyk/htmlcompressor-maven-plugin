@@ -25,28 +25,28 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class XmlCompressorTest {
+class XmlCompressorTest {
 
     // logger
     private static final Logger LOG = LoggerFactory.getLogger(XmlCompressorTest.class);
 
     @BeforeAll
-    public static void setUpClass() {
+    static void setUpClass() {
         LOG.info("Setting up class...");
     }
 
     @AfterAll
-    public static void tearDownClass() {
+    static void tearDownClass() {
         LOG.info("Test finished.");
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         LOG.info("Setting up data for testing...");
     }
 
     @Test
-    public void testCompress() throws Exception {
+    void testCompress() throws Exception {
         LOG.info("Testing compress method...");
 
         XmlCompressor xmlCompressor = new XmlCompressor("src/test/resources/xml", "target/test/xmlcompressor/0");
