@@ -70,6 +70,12 @@
     </site>
   </distributionManagement>
 
+  <properties>
+    <!-- Maven compiler options -->
+    <java.version>11</java.version>
+    <java.release.version>11</java.release.version>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.github.hazendaz</groupId>
