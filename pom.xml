@@ -5,7 +5,7 @@
   <parent>
     <groupId>com.github.hazendaz</groupId>
     <artifactId>base-parent</artifactId>
-    <version>37</version>
+    <version>39</version>
     <relativePath />
   </parent>
 
@@ -85,7 +85,7 @@
     <dependency>
       <groupId>com.google.javascript</groupId>
       <artifactId>closure-compiler</artifactId>
-      <version>v20230103</version>
+      <version>v20230411</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -122,24 +122,24 @@
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>3.8.7</version>
+      <version>3.9.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.maven.plugin-tools</groupId>
       <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.7.1</version>
+      <version>3.8.1</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>2.0.6</version>
+      <version>2.0.7</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.6</version>
+      <version>2.0.7</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -152,7 +152,7 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>3.5.0</version>
+      <version>3.5.1</version>
     </dependency>
   </dependencies>
 
@@ -172,7 +172,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.7.1</version>
+        <version>3.8.1</version>
         <executions>
           <execution>
             <id>default-descriptor</id>
