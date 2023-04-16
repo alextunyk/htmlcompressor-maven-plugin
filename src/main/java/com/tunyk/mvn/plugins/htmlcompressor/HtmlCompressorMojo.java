@@ -216,8 +216,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     private String javascriptHtmlSpriteTargetFile = "target/htmlcompressor/html/integration.js";
 
     /** Charset encoding for files to read and create. */
-    @Parameter(property="htmlcompressor.encoding", defaultValue="utf-8")
-    private String encoding = "utf-8";
+    @Parameter(property="htmlcompressor.encoding", defaultValue="UTF-8")
+    private String encoding = "UTF-8";
 
     /**
      * Disable default built-in closure externs.

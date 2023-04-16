@@ -65,8 +65,8 @@ public class XmlCompressorMojo extends AbstractMojo {
     private String targetFolder = "target/classes";
 
     /** Charset encoding for files to read and create. */
-    @Parameter(property="htmlcompressor.encoding", defaultValue="utf-8")
-    private String encoding = "utf-8";
+    @Parameter(property="htmlcompressor.encoding", defaultValue="UTF-8")
+    private String encoding = "UTF-8";
 
     @Override
     public void execute() throws MojoExecutionException {
