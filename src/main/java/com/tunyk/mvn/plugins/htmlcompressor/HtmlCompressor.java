@@ -184,7 +184,7 @@ public class HtmlCompressor {
      * @param fileEncoding the new file encoding
      */
     public void setFileEncoding(Charset fileEncoding) {
-        this.fileEncoding = fileEncoding;
+        this.fileEncoding = fileEncoding == null ? Charset.defaultCharset() : fileEncoding;
     }
 
     /**
