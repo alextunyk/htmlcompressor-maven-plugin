@@ -75,6 +75,9 @@
     <java.version>11</java.version>
     <java.release.version>11</java.release.version>
 
+    <!-- Automatic Module Name -->
+    <module.name>com.github.hazendaz.htmlcompressor.maven.plugin</module.name>
+
     <!-- Reproducible Builds -->
     <project.build.outputTimestamp>1681596927</project.build.outputTimestamp>
 
