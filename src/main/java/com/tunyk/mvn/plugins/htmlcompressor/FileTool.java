@@ -25,11 +25,16 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Collection;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * The Class FileTool.
@@ -70,16 +75,19 @@ public class FileTool {
      */
     public Map<String, String> getFiles() throws IOException {
         Map<String, String> map = new HashMap<>();
-        File rootDir = new File(rootDirPath);
-        Collection<File> files = FileUtils.listFiles(rootDir, fileExt, recursive);
+        Path rootDir = Path.of(rootDirPath);
+        List<Path> paths;
+        try (Stream<Path> walk = Files.walk(rootDir)) {
+            paths = walk.map(Path::normalize).filter(Files::isRegularFile).filter(path -> Arrays.stream(fileExt).anyMatch(path.getFileName().toString()::endsWith)).collect(Collectors.toList());
+        }
         int truncationIndex = 0;
-        for (File file : files) {
-            String normalizedFilePath = file.getCanonicalPath().replace("\\", "/");
+        for (Path path : paths) {
+            String normalizedFilePath = path.toFile().getCanonicalPath().replace("\\", "/");
             if (truncationIndex == 0) {
                 truncationIndex = normalizedFilePath.indexOf(rootDirPath) + rootDirPath.length() + 1;
             }
             String key = normalizedFilePath.substring(truncationIndex);
-            String value = FileUtils.readFileToString(file, fileEncoding);
+            String value = FileUtils.readFileToString(path.toFile(), fileEncoding);
             map.put(key, value);
         }
         return map;
