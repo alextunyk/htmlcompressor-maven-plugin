@@ -94,7 +94,7 @@ public class FileTool {
      */
     public void writeFiles(Map<String, String> map, String targetDir) throws IOException {
         for (Entry<String, String> entry : map.entrySet()) {
-            File file = new File(targetDir + "/" + entry.getKey());
+            File file = new File(targetDir + '/' + entry.getKey());
             FileUtils.writeStringToFile(file, entry.getValue(), fileEncoding);
         }
     }
