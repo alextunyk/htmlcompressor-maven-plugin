@@ -25,26 +25,43 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * The Class HtmlCompressorTest.
+ */
 class HtmlCompressorTest {
 
-    // logger
+    /** The Constant LOG. */
     private static final Logger LOG = LoggerFactory.getLogger(HtmlCompressorTest.class);
 
+    /**
+     * Sets the up class.
+     */
     @BeforeAll
     static void setUpClass() {
         LOG.info("Setting up class...");
     }
 
+    /**
+     * Tear down class.
+     */
     @AfterAll
     static void tearDownClass() {
         LOG.info("Test finished.");
     }
 
+    /**
+     * Sets the up.
+     */
     @BeforeEach
     void setUp() {
         LOG.info("Setting up data for testing...");
     }
 
+    /**
+     * Test compress.
+     *
+     * @throws Exception the exception
+     */
     @Test
     void testCompress() throws Exception {
         LOG.info("Testing compress method...");

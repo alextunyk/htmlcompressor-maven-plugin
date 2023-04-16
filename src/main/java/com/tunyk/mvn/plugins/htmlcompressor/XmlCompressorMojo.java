@@ -27,20 +27,16 @@ import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
 /**
- * Compress XML files
+ * Compress XML files.
  */
 @Mojo(name = "xml", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false, threadSafe = true)
 public class XmlCompressorMojo extends AbstractMojo {
 
-    /**
-     * file types to be processed
-     */
+    /** file types to be processed. */
     @Parameter(property="htmlcompressor.fileExt")
     private String[] fileExt;
 
-    /**
-     * if false all compression is off (default is true)
-     */
+    /** if false all compression is off (default is true). */
     @Parameter(property="htmlcompressor.enabled", defaultValue="true")
     private boolean enabled = true;
 
@@ -48,15 +44,11 @@ public class XmlCompressorMojo extends AbstractMojo {
     @Parameter(defaultValue = "false", alias = "skip", property = "skip")
     private boolean skip;
 
-    /**
-     * if false keeps XML comments (default is true)
-     */
+    /** if false keeps XML comments (default is true). */
     @Parameter(property="htmlcompressor.removeComments", defaultValue="true")
     private boolean removeComments = true;
 
-    /**
-     * removes iter-tag whitespace characters  (default is true)
-     */
+    /** removes iter-tag whitespace characters  (default is true). */
     @Parameter(property="htmlcompressor.removeIntertagSpaces", defaultValue="true")
     private boolean removeIntertagSpaces = true;
 
@@ -72,9 +64,7 @@ public class XmlCompressorMojo extends AbstractMojo {
     @Parameter(property="htmlcompressor.targetFolder", defaultValue="${project.build.directory}/classes")
     private String targetFolder = "target/classes";
 
-    /**
-     * Charset encoding for files to read and create
-     */
+    /** Charset encoding for files to read and create. */
     @Parameter(property="htmlcompressor.encoding", defaultValue="utf-8")
     private String encoding = "utf-8";
 
@@ -111,50 +101,110 @@ public class XmlCompressorMojo extends AbstractMojo {
         getLog().info("XML compression completed.");
     }
 
+    /**
+     * Gets the file ext.
+     *
+     * @return the file ext
+     */
     public String[] getFileExt() {
         return fileExt;
     }
 
+    /**
+     * Sets the file ext.
+     *
+     * @param fileExt the new file ext
+     */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
     
+    /**
+     * Gets the enabled.
+     *
+     * @return the enabled
+     */
     public Boolean getEnabled() {
         return enabled;
     }
 
+    /**
+     * Sets the enabled.
+     *
+     * @param enabled the new enabled
+     */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
+    /**
+     * Gets the removes the comments.
+     *
+     * @return the removes the comments
+     */
     public Boolean getRemoveComments() {
         return removeComments;
     }
 
+    /**
+     * Sets the removes the comments.
+     *
+     * @param removeComments the new removes the comments
+     */
     public void setRemoveComments(Boolean removeComments) {
         this.removeComments = removeComments;
     }
 
+    /**
+     * Gets the removes the intertag spaces.
+     *
+     * @return the removes the intertag spaces
+     */
     public Boolean getRemoveIntertagSpaces() {
         return removeIntertagSpaces;
     }
 
+    /**
+     * Sets the removes the intertag spaces.
+     *
+     * @param removeIntertagSpaces the new removes the intertag spaces
+     */
     public void setRemoveIntertagSpaces(Boolean removeIntertagSpaces) {
         this.removeIntertagSpaces = removeIntertagSpaces;
     }
 
+    /**
+     * Gets the src folder.
+     *
+     * @return the src folder
+     */
     public String getSrcFolder() {
         return srcFolder;
     }
 
+    /**
+     * Sets the src folder.
+     *
+     * @param srcFolder the new src folder
+     */
     public void setSrcFolder(String srcFolder) {
         this.srcFolder = srcFolder;
     }
 
+    /**
+     * Gets the target folder.
+     *
+     * @return the target folder
+     */
     public String getTargetFolder() {
         return targetFolder;
     }
 
+    /**
+     * Sets the target folder.
+     *
+     * @param targetFolder the new target folder
+     */
     public void setTargetFolder(String targetFolder) {
         this.targetFolder = targetFolder;
     }
