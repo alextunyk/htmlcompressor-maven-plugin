@@ -5,6 +5,7 @@
       <pluginExecutionFilter>
         <goals>
           <goal>html</goal>
+          <goal>xml</goal>
         </goals>
       </pluginExecutionFilter>
       <action>

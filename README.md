@@ -1,8 +1,8 @@
 Maven HTMLCompressor Plugin
 ===========================
 
-[![BuildStatus](<https://travis-ci.org/hazendaz/htmlcompressor-maven-plugin.svg?branch=master>)](<https://travis-ci.org/hazendaz/htmlcompressor-maven-plugin>)
-[![Mavencentral](<https://maven-badges.herokuapp.com/maven-central/com.tunyk.mvn.plugins.htmlcompressor/htmlcompressor-maven-plugin/badge.svg>)](<https://maven-badges.herokuapp.com/maven-central/com.tunyk.mvn.plugins.htmlcompressor/htmlcompressor-maven-plugin>)
+[![Java CI](https://github.com/alextunyk/htmlcompressor-maven-plugin/workflows/Java%20CI/badge.svg)](https://github.com/alextunyk/htmlcompressor-maven-plugin/actions?query=workflow%3A%22Java+CI%22)
+[![Maven central](https://maven-badges.herokuapp.com/maven-central/com.github.hazendaz.maven/htmlcompressor-maven-plugin/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.hazendaz.maven/htmlcompressor-maven-plugin)
 [![Apache2](<http://img.shields.io/badge/license-Apache%202-blue.svg>)](<http://www.apache.org/licenses/LICENSE-2.0>)
 
 Overview
@@ -24,7 +24,7 @@ The simplest way to start using this plugin is:
         <plugin>
             <groupId>com.github.hazendaz.maven</groupId>
             <artifactId>htmlcompressor-maven-plugin</artifactId>
-            <version>1.7.2</version>
+            <version>1.8.0</version>
             <configuration>
                 <goalPrefix>htmlcompressor</goalPrefix>
             </configuration>
