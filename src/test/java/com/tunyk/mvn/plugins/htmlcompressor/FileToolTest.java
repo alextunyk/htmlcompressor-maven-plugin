@@ -30,26 +30,43 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * The Class FileToolTest.
+ */
 class FileToolTest {
 
-    // logger
+    /** The Constant LOG. */
     private static final Logger LOG = LoggerFactory.getLogger(FileToolTest.class);
 
+    /**
+     * Sets the up class.
+     */
     @BeforeAll
     static void setUpClass() {
         LOG.info("Setting up class...");
     }
 
+    /**
+     * Tear down class.
+     */
     @AfterAll
     static void tearDownClass() {
         LOG.info("Test finished.");
     }
 
+    /**
+     * Sets the up.
+     */
     @BeforeEach
     void setUp() {
         LOG.info("Setting up data for testing...");
     }
 
+    /**
+     * Test get files.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @Test
     void testGetFiles() throws IOException {
         LOG.info("Testing getFiles method...");
@@ -69,6 +86,11 @@ class FileToolTest {
         LOG.info("Passed");
     }
 
+    /**
+     * Test write files.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     @Test
     void testWriteFiles() throws IOException {
         LOG.info("Testing writeFiles method...");
@@ -97,6 +119,12 @@ class FileToolTest {
         LOG.info("Passed");
     }
 
+    /**
+     * Test write to json file.
+     *
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws JSONException the JSON exception
+     */
     @Test
     void testWriteToJsonFile() throws IOException, JSONException {
         LOG.info("Testing writeToJsonFile method...");

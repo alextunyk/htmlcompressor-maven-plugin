@@ -31,19 +31,43 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
 
+/**
+ * The Class FileTool.
+ */
 public class FileTool {
 
+    /** The root dir path. */
     private String rootDirPath;
+    
+    /** The file ext. */
     private String[] fileExt;
+    
+    /** The recursive. */
     private boolean recursive;
+    
+    /** The file encoding. */
     private Charset fileEncoding;
 
+    /**
+     * Instantiates a new file tool.
+     *
+     * @param rootDir the root dir
+     * @param fileExt the file ext
+     * @param recursive the recursive
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public FileTool(String rootDir, String[] fileExt, boolean recursive) throws IOException {
         this.setRootDirPath(rootDir);
         this.fileExt = fileExt;
         this.recursive = recursive;
     }
 
+    /**
+     * Gets the files.
+     *
+     * @return the files
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public Map<String, String> getFiles() throws IOException {
         Map<String, String> map = new HashMap<>();
         File rootDir = new File(rootDirPath);
@@ -61,13 +85,29 @@ public class FileTool {
         return map;
     }
 
+    /**
+     * Write files.
+     *
+     * @param map the map
+     * @param targetDir the target dir
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public void writeFiles(Map<String, String> map, String targetDir) throws IOException {
         for (Entry<String, String> entry : map.entrySet()) {
-            File file = new File(targetDir + "/" + entry.getKey());
+            File file = new File(targetDir + '/' + entry.getKey());
             FileUtils.writeStringToFile(file, entry.getValue(), fileEncoding);
         }
     }
 
+    /**
+     * Write to json file.
+     *
+     * @param map the map
+     * @param targetFile the target file
+     * @param integrationCode the integration code
+     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws JSONException the JSON exception
+     */
     public void writeToJsonFile(Map<String, String> map, String targetFile, String integrationCode) throws IOException, JSONException {
         String replacePattern = "%s";
         File file = new File(targetFile);
@@ -85,6 +125,13 @@ public class FileTool {
         FileUtils.writeStringToFile(file, contents, fileEncoding);
     }
 
+    /**
+     * Human readable byte count.
+     *
+     * @param bytes the bytes
+     * @param si the si
+     * @return the string
+     */
     public static String humanReadableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
         if (bytes < unit) return bytes + " B";
@@ -93,6 +140,12 @@ public class FileTool {
         return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
     }
 
+    /**
+     * Gets the elapsed HMS time.
+     *
+     * @param elapsedTime the elapsed time
+     * @return the elapsed HMS time
+     */
     public static String getElapsedHMSTime(long elapsedTime) {
         String format = String.format("%%0%dd", 2);
         elapsedTime = elapsedTime / 1000;
@@ -102,36 +155,77 @@ public class FileTool {
         return hours + ":" + minutes + ":" + seconds;
     }
 
+    /**
+     * Gets the root dir path.
+     *
+     * @return the root dir path
+     */
     public String getRootDirPath() {
         return rootDirPath;
     }
 
+    /**
+     * Sets the root dir path.
+     *
+     * @param rootDirPath the new root dir path
+     * @throws IOException Signals that an I/O exception has occurred.
+     */
     public void setRootDirPath(String rootDirPath) throws IOException {
         File file = new File(rootDirPath);
         this.rootDirPath = file.getCanonicalPath().replace("\\", "/").replaceAll("/$", "");
     }
 
+    /**
+     * Gets the file ext.
+     *
+     * @return the file ext
+     */
     public String[] getFileExt() {
         return fileExt;
     }
 
+    /**
+     * Sets the file ext.
+     *
+     * @param fileExt the new file ext
+     */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
 
+    /**
+     * Checks if is recursive.
+     *
+     * @return true, if is recursive
+     */
     public boolean isRecursive() {
         return recursive;
     }
 
+    /**
+     * Sets the recursive.
+     *
+     * @param recursive the new recursive
+     */
     public void setRecursive(boolean recursive) {
         this.recursive = recursive;
     }
 
+    /**
+     * Gets the file encoding.
+     *
+     * @return the file encoding
+     */
     public Charset getFileEncoding() {
         return fileEncoding;
     }
 
+    /**
+     * Sets the file encoding.
+     *
+     * @param fileEncoding the new file encoding
+     */
     public void setFileEncoding(Charset fileEncoding) {
-        this.fileEncoding = fileEncoding;
+        this.fileEncoding = fileEncoding == null ? Charset.defaultCharset() : fileEncoding;
     }
 }

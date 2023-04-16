@@ -64,9 +64,9 @@
   </ciManagement>
   <distributionManagement>
     <site>
-        <id>gh-pages-scm</id>
-        <name>GitHub Pages</name>
-        <url>scm:git:ssh://git@github.com/hazendaz/htmlcompressor-maven-plugin.git</url>
+      <id>gh-pages-scm</id>
+      <name>GitHub Pages</name>
+      <url>scm:git:ssh://git@github.com/hazendaz/htmlcompressor-maven-plugin.git</url>
     </site>
   </distributionManagement>
 
@@ -74,6 +74,19 @@
     <!-- Maven compiler options -->
     <java.version>11</java.version>
     <java.release.version>11</java.release.version>
+    <!-- Future need for javadocs, we are at 8 now but org.jspecify export issue haven't figured out.
+    <javadoc.java.release.version>11</javadoc.java.release.version>
+    -->
+
+    <!-- Automatic Module Name -->
+    <module.name>com.github.hazendaz.htmlcompressor.maven.plugin</module.name>
+
+    <!-- Reproducible Builds -->
+    <project.build.outputTimestamp>1681596927</project.build.outputTimestamp>
+
+    <!-- External Modules -->
+    <maven-plugin.version>3.8.1</maven-plugin.version>
+    <slf4j.version>2.0.7</slf4j.version>
   </properties>
 
   <dependencies>
@@ -134,12 +147,12 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
-      <version>2.0.7</version>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
-      <version>2.0.7</version>
+      <version>${slf4j.version}</version>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
@@ -153,6 +166,7 @@
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
       <version>3.5.1</version>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -172,7 +186,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-plugin-plugin</artifactId>
-        <version>3.8.1</version>
+        <version>${maven-plugin.version}</version>
         <executions>
           <execution>
             <id>default-descriptor</id>
@@ -190,5 +204,15 @@
       </plugin>
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-plugin-report-plugin</artifactId>
+        <version>${maven-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </reporting>
 
 </project>

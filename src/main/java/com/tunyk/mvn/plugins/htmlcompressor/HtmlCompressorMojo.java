@@ -42,26 +42,20 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 /**
- * Compress HTML files
+ * Compress HTML files.
  */
 @Mojo(name = "html", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false, threadSafe = true)
 public class HtmlCompressorMojo extends AbstractMojo {
 
-    /**
-     * file where statistics of html compression is stored
-     */
+    /** file where statistics of html compression is stored. */
     @Parameter(property="htmlcompressor.htmlCompressionStatistics", defaultValue="${project.build.directory}/htmlcompressor/html-compression-statistics.txt")
     private String htmlCompressionStatistics = "target/htmlcompressor/html-compression-statistics.txt";
 
-    /**
-     * file types to be processed
-     */
+    /** file types to be processed. */
     @Parameter(property="htmlcompressor.fileExt")
     private String[] fileExt;
 
-    /**
-     * if false all compression is off (default is true)
-     */
+    /** if false all compression is off (default is true). */
     @Parameter(property="htmlcompressor.enabled", defaultValue="true")
     private boolean enabled = true;
 
@@ -69,161 +63,109 @@ public class HtmlCompressorMojo extends AbstractMojo {
     @Parameter(defaultValue = "false", alias = "skip", property = "skip")
     private boolean skip;
 
-    /**
-     * if false keeps HTML comments (default is true)
-     */
+    /** if false keeps HTML comments (default is true). */
     @Parameter(property="htmlcompressor.removeComments", defaultValue="true")
     private boolean removeComments = true;
 
-    /**
-     * if false keeps multiple whitespace characters (default is true)
-     */
+    /** if false keeps multiple whitespace characters (default is true). */
     @Parameter(property="htmlcompressor.removeMultiSpaces", defaultValue="true")
     private boolean removeMultiSpaces = true;
 
-    /**
-     * removes iter-tag whitespace characters
-     */
+    /** removes iter-tag whitespace characters. */
     @Parameter(property="htmlcompressor.removeIntertagSpaces", defaultValue="false")
     private boolean removeIntertagSpaces;
 
-    /**
-     * removes unnecessary tag attribute quotes
-     */
+    /** removes unnecessary tag attribute quotes. */
     @Parameter(property="htmlcompressor.removeQuotes", defaultValue="false")
     private boolean removeQuotes;
 
-    /**
-     * simplify existing doctype
-     */
+    /** simplify existing doctype. */
     @Parameter(property="htmlcompressor.simpleDoctype", defaultValue="false")
     private boolean simpleDoctype;
 
-    /**
-     * remove optional attributes from script tags
-     */
+    /** remove optional attributes from script tags. */
     @Parameter(property="htmlcompressor.removeScriptAttributes", defaultValue="false")
     private boolean removeScriptAttributes;
 
-    /**
-     * remove optional attributes from style tags
-     */
+    /** remove optional attributes from style tags. */
     @Parameter(property="htmlcompressor.removeStyleAttributes", defaultValue="false")
     private boolean removeStyleAttributes;
 
-    /**
-     * remove optional attributes from link tags
-     */
+    /** remove optional attributes from link tags. */
     @Parameter(property="htmlcompressor.removeLinkAttributes", defaultValue="false")
     private boolean removeLinkAttributes;
 
-    /**
-     * remove optional attributes from form tags
-     */
+    /** remove optional attributes from form tags. */
     @Parameter(property="htmlcompressor.removeFormAttributes", defaultValue="false")
     private boolean removeFormAttributes;
 
-    /**
-     * remove optional attributes from input tags
-     */
+    /** remove optional attributes from input tags. */
     @Parameter(property="htmlcompressor.removeInputAttributes", defaultValue="false")
     private boolean removeInputAttributes;
 
-    /**
-     * remove values from boolean tag attributes
-     */
+    /** remove values from boolean tag attributes. */
     @Parameter(property="htmlcompressor.simpleBooleanAttributes", defaultValue="false")
     private boolean simpleBooleanAttributes;
 
-    /**
-     * remove "javascript:" from inline event handlers
-     */
+    /** remove "javascript:" from inline event handlers. */
     @Parameter(property="htmlcompressor.removeJavaScriptProtocol", defaultValue="false")
     private boolean removeJavaScriptProtocol;
 
-    /**
-     * replace "http://" with "//" inside tag attributes
-     */
+    /** replace "http://" with "//" inside tag attributes. */
     @Parameter(property="htmlcompressor.removeHttpProtocol", defaultValue="false")
     private boolean removeHttpProtocol;
 
-    /**
-     * replace "https://" with "//" inside tag attributes
-     */
+    /** replace "https://" with "//" inside tag attributes. */
     @Parameter(property="htmlcompressor.removeHttpsProtocol", defaultValue="false")
     private boolean removeHttpsProtocol;
 
-    /**
-     * compress inline css
-     */
+    /** compress inline css. */
     @Parameter(property="htmlcompressor.compressCss", defaultValue="false")
     private boolean compressCss;
 
-    /**
-     * preserves original line breaks
-     */
+    /** preserves original line breaks. */
     @Parameter(property="htmlcompressor.preserveLineBreaks", defaultValue="false")
     private boolean preserveLineBreaks;
 
-    /**
-     * --line-break param for Yahoo YUI Compressor
-     */
+    /** --line-break param for Yahoo YUI Compressor. */
     @Parameter(property="htmlcompressor.yuiCssLineBreak", defaultValue="-1")
     private int yuiCssLineBreak = -1;
 
-    /**
-     * css compressor
-     */
+    /** css compressor. */
     // TODO Unsupported
     @Parameter(property="htmlcompressor.cssCompressor", defaultValue="")
     private Compressor cssCompressor;
 
-    /**
-     * compress inline javascript
-     */
+    /** compress inline javascript. */
     @Parameter(property="htmlcompressor.compressJavaScript", defaultValue="false")
     private boolean compressJavaScript;
 
-    /**
-     * javascript compression: "yui" or "closure"
-     */
+    /** javascript compression: "yui" or "closure". */
     @Parameter(property="htmlcompressor.jsCompressor", defaultValue="yui")
     private String jsCompressor = "yui";
 
-    /**
-     * javascript compression
-     */
+    /** javascript compression. */
     // TODO Unsupported
     @Parameter(property="htmlcompressor.javaScriptCompressor", defaultValue="")
     private Compressor javaScriptCompressor;
 
-    /**
-     * --nomunge param for Yahoo YUI Compressor
-     */
+    /** --nomunge param for Yahoo YUI Compressor. */
     @Parameter(property="htmlcompressor.yuiJsNoMunge", defaultValue="false")
     private boolean yuiJsNoMunge;
 
-    /**
-     * --preserve-semi param for Yahoo YUI Compressor
-     */
+    /** --preserve-semi param for Yahoo YUI Compressor. */
     @Parameter(property="htmlcompressor.yuiJsPreserveAllSemiColons", defaultValue="false")
     private boolean yuiJsPreserveAllSemiColons;
 
-    /**
-     * --line-break param for Yahoo YUI Compressor
-     */
+    /** --line-break param for Yahoo YUI Compressor. */
     @Parameter(property="htmlcompressor.yuiJsLineBreak", defaultValue="-1")
     private int yuiJsLineBreak = -1;
 
-    /**
-     * closureOptLevel = "simple", "advanced" or "whitespace"
-     */
+    /** closureOptLevel = "simple", "advanced" or "whitespace". */
     @Parameter(property="htmlcompressor.closureOptLevel", defaultValue="simple")
     private String closureOptLevel = "simple";
 
-    /**
-     * --disable-optimizations param for Yahoo YUI Compressor
-     */
+    /** --disable-optimizations param for Yahoo YUI Compressor. */
     @Parameter(property="htmlcompressor.yuiJsDisableOptimizations", defaultValue="false")
     private boolean yuiJsDisableOptimizations;
 
@@ -233,21 +175,15 @@ public class HtmlCompressorMojo extends AbstractMojo {
     @Parameter(property="htmlcompressor.predefinedPreservePatterns")
     private String[] predefinedPreservePatterns;
 
-    /**
-     * preserve patterns
-     */
+    /** preserve patterns. */
     @Parameter(property="htmlcompressor.preservePatterns")
     private String[] preservePatterns;
 
-    /**
-     * list of files containing preserve patterns
-     */
+    /** list of files containing preserve patterns. */
     @Parameter(property="htmlcompressor.preservePatternFiles")
     private File[] preservePatternFiles;
 
-    /**
-     * HTML compression statistics
-     */
+    /** HTML compression statistics. */
     @Parameter(property="htmlcompressor.generateStatistics", defaultValue="true")
     private boolean generateStatistics = true;
 
@@ -269,9 +205,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
     @Parameter(property="htmlcompressor.javascriptHtmlSprite", defaultValue="true")
     private boolean javascriptHtmlSprite = true;
 
-    /**
-     * JavaScript sprite integration file (first occurrence of "%s" will be substituted by json with all compressed html strings)
-     */
+    /** JavaScript sprite integration file (first occurrence of "%s" will be substituted by json with all compressed html strings). */
     @Parameter(property="htmlcompressor.javascriptHtmlSpriteIntegrationFile", defaultValue="${basedir}/src/main/resources/html/integration.js")
     private String javascriptHtmlSpriteIntegrationFile = "src/main/resources/html/integration.js";
 
@@ -281,11 +215,9 @@ public class HtmlCompressorMojo extends AbstractMojo {
     @Parameter(property="htmlcompressor.javascriptHtmlSpriteTargetFile", defaultValue="${project.build.directory}/htmlcompressor/html/integration.js")
     private String javascriptHtmlSpriteTargetFile = "target/htmlcompressor/html/integration.js";
 
-    /**
-     * Charset encoding for files to read and create
-     */
-    @Parameter(property="htmlcompressor.encoding", defaultValue="utf-8")
-    private String encoding = "utf-8";
+    /** Charset encoding for files to read and create. */
+    @Parameter(property="htmlcompressor.encoding", defaultValue="UTF-8")
+    private String encoding = "UTF-8";
 
     /**
      * Disable default built-in closure externs.
@@ -480,314 +412,704 @@ public class HtmlCompressorMojo extends AbstractMojo {
         getLog().info("HTML compression completed.");
     }
 
+    /**
+     * Gets the html compression statistics.
+     *
+     * @return the html compression statistics
+     */
     public String getHtmlCompressionStatistics() {
         return htmlCompressionStatistics;
     }
 
+    /**
+     * Sets the html compression statistics.
+     *
+     * @param htmlCompressionStatistics the new html compression statistics
+     */
     public void setHtmlCompressionStatistics(String htmlCompressionStatistics) {
         this.htmlCompressionStatistics = htmlCompressionStatistics;
     }
 
+    /**
+     * Gets the file ext.
+     *
+     * @return the file ext
+     */
     public String[] getFileExt() {
         return fileExt;
     }
 
+    /**
+     * Sets the file ext.
+     *
+     * @param fileExt the new file ext
+     */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
     
+    /**
+     * Gets the enabled.
+     *
+     * @return the enabled
+     */
     public Boolean getEnabled() {
         return enabled;
     }
 
+    /**
+     * Sets the enabled.
+     *
+     * @param enabled the new enabled
+     */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
     }
 
+    /**
+     * Gets the removes the comments.
+     *
+     * @return the removes the comments
+     */
     public Boolean getRemoveComments() {
         return removeComments;
     }
 
+    /**
+     * Sets the removes the comments.
+     *
+     * @param removeComments the new removes the comments
+     */
     public void setRemoveComments(Boolean removeComments) {
         this.removeComments = removeComments;
     }
 
+    /**
+     * Gets the removes the multi spaces.
+     *
+     * @return the removes the multi spaces
+     */
     public Boolean getRemoveMultiSpaces() {
         return removeMultiSpaces;
     }
 
+    /**
+     * Sets the removes the multi spaces.
+     *
+     * @param removeMultiSpaces the new removes the multi spaces
+     */
     public void setRemoveMultiSpaces(Boolean removeMultiSpaces) {
         this.removeMultiSpaces = removeMultiSpaces;
     }
 
+    /**
+     * Gets the removes the intertag spaces.
+     *
+     * @return the removes the intertag spaces
+     */
     public Boolean getRemoveIntertagSpaces() {
         return removeIntertagSpaces;
     }
 
+    /**
+     * Sets the removes the intertag spaces.
+     *
+     * @param removeIntertagSpaces the new removes the intertag spaces
+     */
     public void setRemoveIntertagSpaces(Boolean removeIntertagSpaces) {
         this.removeIntertagSpaces = removeIntertagSpaces;
     }
 
+    /**
+     * Gets the removes the quotes.
+     *
+     * @return the removes the quotes
+     */
     public Boolean getRemoveQuotes() {
         return removeQuotes;
     }
 
+    /**
+     * Sets the removes the quotes.
+     *
+     * @param removeQuotes the new removes the quotes
+     */
     public void setRemoveQuotes(Boolean removeQuotes) {
         this.removeQuotes = removeQuotes;
     }
 
+    /**
+     * Gets the simple doctype.
+     *
+     * @return the simple doctype
+     */
     public Boolean getSimpleDoctype() {
         return simpleDoctype;
     }
 
+    /**
+     * Sets the simple doctype.
+     *
+     * @param simpleDoctype the new simple doctype
+     */
     public void setSimpleDoctype(Boolean simpleDoctype) {
         this.simpleDoctype = simpleDoctype;
     }
 
+    /**
+     * Gets the removes the script attributes.
+     *
+     * @return the removes the script attributes
+     */
     public Boolean getRemoveScriptAttributes() {
         return removeScriptAttributes;
     }
 
+    /**
+     * Sets the removes the script attributes.
+     *
+     * @param removeScriptAttributes the new removes the script attributes
+     */
     public void setRemoveScriptAttributes(Boolean removeScriptAttributes) {
         this.removeScriptAttributes = removeScriptAttributes;
     }
 
+    /**
+     * Gets the removes the style attributes.
+     *
+     * @return the removes the style attributes
+     */
     public Boolean getRemoveStyleAttributes() {
         return removeStyleAttributes;
     }
 
+    /**
+     * Sets the removes the style attributes.
+     *
+     * @param removeStyleAttributes the new removes the style attributes
+     */
     public void setRemoveStyleAttributes(Boolean removeStyleAttributes) {
         this.removeStyleAttributes = removeStyleAttributes;
     }
 
+    /**
+     * Gets the removes the link attributes.
+     *
+     * @return the removes the link attributes
+     */
     public Boolean getRemoveLinkAttributes() {
         return removeLinkAttributes;
     }
 
+    /**
+     * Sets the removes the link attributes.
+     *
+     * @param removeLinkAttributes the new removes the link attributes
+     */
     public void setRemoveLinkAttributes(Boolean removeLinkAttributes) {
         this.removeLinkAttributes = removeLinkAttributes;
     }
 
+    /**
+     * Gets the removes the form attributes.
+     *
+     * @return the removes the form attributes
+     */
     public Boolean getRemoveFormAttributes() {
         return removeFormAttributes;
     }
 
+    /**
+     * Sets the removes the form attributes.
+     *
+     * @param removeFormAttributes the new removes the form attributes
+     */
     public void setRemoveFormAttributes(Boolean removeFormAttributes) {
         this.removeFormAttributes = removeFormAttributes;
     }
 
+    /**
+     * Gets the removes the input attributes.
+     *
+     * @return the removes the input attributes
+     */
     public Boolean getRemoveInputAttributes() {
         return removeInputAttributes;
     }
 
+    /**
+     * Sets the removes the input attributes.
+     *
+     * @param removeInputAttributes the new removes the input attributes
+     */
     public void setRemoveInputAttributes(Boolean removeInputAttributes) {
         this.removeInputAttributes = removeInputAttributes;
     }
 
+    /**
+     * Gets the simple boolean attributes.
+     *
+     * @return the simple boolean attributes
+     */
     public Boolean getSimpleBooleanAttributes() {
         return simpleBooleanAttributes;
     }
 
+    /**
+     * Sets the simple boolean attributes.
+     *
+     * @param simpleBooleanAttributes the new simple boolean attributes
+     */
     public void setSimpleBooleanAttributes(Boolean simpleBooleanAttributes) {
         this.simpleBooleanAttributes = simpleBooleanAttributes;
     }
 
+    /**
+     * Gets the removes the java script protocol.
+     *
+     * @return the removes the java script protocol
+     */
     public Boolean getRemoveJavaScriptProtocol() {
         return removeJavaScriptProtocol;
     }
 
+    /**
+     * Sets the removes the java script protocol.
+     *
+     * @param removeJavaScriptProtocol the new removes the java script protocol
+     */
     public void setRemoveJavaScriptProtocol(Boolean removeJavaScriptProtocol) {
         this.removeJavaScriptProtocol = removeJavaScriptProtocol;
     }
 
+    /**
+     * Gets the removes the http protocol.
+     *
+     * @return the removes the http protocol
+     */
     public Boolean getRemoveHttpProtocol() {
         return removeHttpProtocol;
     }
 
+    /**
+     * Sets the removes the http protocol.
+     *
+     * @param removeHttpProtocol the new removes the http protocol
+     */
     public void setRemoveHttpProtocol(Boolean removeHttpProtocol) {
         this.removeHttpProtocol = removeHttpProtocol;
     }
 
+    /**
+     * Gets the removes the https protocol.
+     *
+     * @return the removes the https protocol
+     */
     public Boolean getRemoveHttpsProtocol() {
         return removeHttpsProtocol;
     }
 
+    /**
+     * Sets the removes the https protocol.
+     *
+     * @param removeHttpsProtocol the new removes the https protocol
+     */
     public void setRemoveHttpsProtocol(Boolean removeHttpsProtocol) {
         this.removeHttpsProtocol = removeHttpsProtocol;
     }
 
+    /**
+     * Gets the compress css.
+     *
+     * @return the compress css
+     */
     public Boolean getCompressCss() {
         return compressCss;
     }
 
+    /**
+     * Sets the compress css.
+     *
+     * @param compressCss the new compress css
+     */
     public void setCompressCss(Boolean compressCss) {
         this.compressCss = compressCss;
     }
 
+    /**
+     * Gets the preserve line breaks.
+     *
+     * @return the preserve line breaks
+     */
     public Boolean getPreserveLineBreaks() {
         return preserveLineBreaks;
     }
 
+    /**
+     * Sets the preserve line breaks.
+     *
+     * @param preserveLineBreaks the new preserve line breaks
+     */
     public void setPreserveLineBreaks(Boolean preserveLineBreaks) {
         this.preserveLineBreaks = preserveLineBreaks;
     }
 
+    /**
+     * Gets the yui css line break.
+     *
+     * @return the yui css line break
+     */
     public Integer getYuiCssLineBreak() {
         return yuiCssLineBreak;
     }
 
+    /**
+     * Sets the yui css line break.
+     *
+     * @param yuiCssLineBreak the new yui css line break
+     */
     public void setYuiCssLineBreak(Integer yuiCssLineBreak) {
         this.yuiCssLineBreak = yuiCssLineBreak;
     }
 
+    /**
+     * Gets the compress java script.
+     *
+     * @return the compress java script
+     */
     public Boolean getCompressJavaScript() {
         return compressJavaScript;
     }
 
+    /**
+     * Sets the compress java script.
+     *
+     * @param compressJavaScript the new compress java script
+     */
     public void setCompressJavaScript(Boolean compressJavaScript) {
         this.compressJavaScript = compressJavaScript;
     }
 
+    /**
+     * Gets the js compressor.
+     *
+     * @return the js compressor
+     */
     public String getJsCompressor() {
         return jsCompressor;
     }
 
+    /**
+     * Sets the js compressor.
+     *
+     * @param jsCompressor the new js compressor
+     */
     public void setJsCompressor(String jsCompressor) {
         this.jsCompressor = jsCompressor;
     }
 
+    /**
+     * Gets the yui js no munge.
+     *
+     * @return the yui js no munge
+     */
     public Boolean getYuiJsNoMunge() {
         return yuiJsNoMunge;
     }
 
+    /**
+     * Sets the yui js no munge.
+     *
+     * @param yuiJsNoMunge the new yui js no munge
+     */
     public void setYuiJsNoMunge(Boolean yuiJsNoMunge) {
         this.yuiJsNoMunge = yuiJsNoMunge;
     }
 
+    /**
+     * Gets the yui js preserve all semi colons.
+     *
+     * @return the yui js preserve all semi colons
+     */
     public Boolean getYuiJsPreserveAllSemiColons() {
         return yuiJsPreserveAllSemiColons;
     }
 
+    /**
+     * Sets the yui js preserve all semi colons.
+     *
+     * @param yuiJsPreserveAllSemiColons the new yui js preserve all semi colons
+     */
     public void setYuiJsPreserveAllSemiColons(Boolean yuiJsPreserveAllSemiColons) {
         this.yuiJsPreserveAllSemiColons = yuiJsPreserveAllSemiColons;
     }
 
+    /**
+     * Gets the yui js line break.
+     *
+     * @return the yui js line break
+     */
     public Integer getYuiJsLineBreak() {
         return yuiJsLineBreak;
     }
 
+    /**
+     * Sets the yui js line break.
+     *
+     * @param yuiJsLineBreak the new yui js line break
+     */
     public void setYuiJsLineBreak(Integer yuiJsLineBreak) {
         this.yuiJsLineBreak = yuiJsLineBreak;
     }
 
+    /**
+     * Gets the closure opt level.
+     *
+     * @return the closure opt level
+     */
     public String getClosureOptLevel() {
         return closureOptLevel;
     }
 
+    /**
+     * Sets the closure opt level.
+     *
+     * @param closureOptLevel the new closure opt level
+     */
     public void setClosureOptLevel(String closureOptLevel) {
         this.closureOptLevel = closureOptLevel;
     }
 
+    /**
+     * Gets the yui js disable optimizations.
+     *
+     * @return the yui js disable optimizations
+     */
     public Boolean getYuiJsDisableOptimizations() {
         return yuiJsDisableOptimizations;
     }
 
+    /**
+     * Sets the yui js disable optimizations.
+     *
+     * @param yuiJsDisableOptimizations the new yui js disable optimizations
+     */
     public void setYuiJsDisableOptimizations(Boolean yuiJsDisableOptimizations) {
         this.yuiJsDisableOptimizations = yuiJsDisableOptimizations;
     }
 
+    /**
+     * Gets the predefined preserve patterns.
+     *
+     * @return the predefined preserve patterns
+     */
     public String[] getPredefinedPreservePatterns() {
         return predefinedPreservePatterns;
     }
 
+    /**
+     * Sets the predefined preserve patterns.
+     *
+     * @param predefinedPreservePatterns the new predefined preserve patterns
+     */
     public void setPredefinedPreservePatterns(String[] predefinedPreservePatterns) {
         this.predefinedPreservePatterns = predefinedPreservePatterns;
     }
 
+    /**
+     * Gets the preserve patterns.
+     *
+     * @return the preserve patterns
+     */
     public String[] getPreservePatterns() {
         return preservePatterns;
     }
 
+    /**
+     * Sets the preserve patterns.
+     *
+     * @param preservePatterns the new preserve patterns
+     */
     public void setPreservePatterns(String[] preservePatterns) {
         this.preservePatterns = preservePatterns;
     }
 
+    /**
+     * Gets the preserve pattern files.
+     *
+     * @return the preserve pattern files
+     */
     public File[] getPreservePatternFiles() {
         return preservePatternFiles;
     }
 
+    /**
+     * Sets the preserve pattern files.
+     *
+     * @param preservePatternFiles the new preserve pattern files
+     */
     public void setPreservePatternFiles(File[] preservePatternFiles) {
         this.preservePatternFiles = preservePatternFiles;
     }
 
+    /**
+     * Gets the generate statistics.
+     *
+     * @return the generate statistics
+     */
     public Boolean getGenerateStatistics() {
         return generateStatistics;
     }
 
+    /**
+     * Sets the generate statistics.
+     *
+     * @param generateStatistics the new generate statistics
+     */
     public void setGenerateStatistics(Boolean generateStatistics) {
         this.generateStatistics = generateStatistics;
     }
 
+    /**
+     * Gets the src folder.
+     *
+     * @return the src folder
+     */
     public String getSrcFolder() {
         return srcFolder;
     }
 
+    /**
+     * Sets the src folder.
+     *
+     * @param srcFolder the new src folder
+     */
     public void setSrcFolder(String srcFolder) {
         this.srcFolder = srcFolder;
     }
 
+    /**
+     * Gets the target folder.
+     *
+     * @return the target folder
+     */
     public String getTargetFolder() {
         return targetFolder;
     }
 
+    /**
+     * Sets the target folder.
+     *
+     * @param targetFolder the new target folder
+     */
     public void setTargetFolder(String targetFolder) {
         this.targetFolder = targetFolder;
     }
 
+    /**
+     * Gets the javascript html sprite.
+     *
+     * @return the javascript html sprite
+     */
     public Boolean getJavascriptHtmlSprite() {
         return javascriptHtmlSprite;
     }
 
+    /**
+     * Sets the javascript html sprite.
+     *
+     * @param javascriptHtmlSprite the new javascript html sprite
+     */
     public void setJavascriptHtmlSprite(Boolean javascriptHtmlSprite) {
         this.javascriptHtmlSprite = javascriptHtmlSprite;
     }
 
+    /**
+     * Gets the javascript html sprite integration file.
+     *
+     * @return the javascript html sprite integration file
+     */
     public String getJavascriptHtmlSpriteIntegrationFile() {
         return javascriptHtmlSpriteIntegrationFile;
     }
 
+    /**
+     * Sets the javascript html sprite integration file.
+     *
+     * @param javascriptHtmlSpriteIntegrationFile the new javascript html sprite integration file
+     */
     public void setJavascriptHtmlSpriteIntegrationFile(String javascriptHtmlSpriteIntegrationFile) {
         this.javascriptHtmlSpriteIntegrationFile = javascriptHtmlSpriteIntegrationFile;
     }
 
+    /**
+     * Gets the javascript html sprite target file.
+     *
+     * @return the javascript html sprite target file
+     */
     public String getJavascriptHtmlSpriteTargetFile() {
         return javascriptHtmlSpriteTargetFile;
     }
 
+    /**
+     * Sets the javascript html sprite target file.
+     *
+     * @param javascriptHtmlSpriteTargetFile the new javascript html sprite target file
+     */
     public void setJavascriptHtmlSpriteTargetFile(String javascriptHtmlSpriteTargetFile) {
         this.javascriptHtmlSpriteTargetFile = javascriptHtmlSpriteTargetFile;
     }
 
+    /**
+     * Gets the encoding.
+     *
+     * @return the encoding
+     */
     public String getEncoding() {
         return encoding;
     }
 
+    /**
+     * Sets the encoding.
+     *
+     * @param encoding the new encoding
+     */
     public void setEncoding(String encoding) {
         this.encoding = encoding;
     }
 
+    /**
+     * Gets the closure custom externs only.
+     *
+     * @return the closure custom externs only
+     */
     public Boolean getClosureCustomExternsOnly() {
         return closureCustomExternsOnly;
     }
 
+    /**
+     * Sets the closure custom externs only.
+     *
+     * @param closureCustomExternsOnly the new closure custom externs only
+     */
     public void setClosureCustomExternsOnly(Boolean closureCustomExternsOnly) {
         this.closureCustomExternsOnly = closureCustomExternsOnly;
     }
 
+    /**
+     * Gets the closure externs.
+     *
+     * @return the closure externs
+     */
     public String[] getClosureExterns() {
         return closureExterns;
     }
 
+    /**
+     * Sets the closure externs.
+     *
+     * @param closureExterns the new closure externs
+     */
     public void setClosureExterns(String[] closureExterns) {
         this.closureExterns = closureExterns;
     }
