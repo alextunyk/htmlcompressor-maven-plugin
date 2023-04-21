@@ -85,7 +85,7 @@
     <project.build.outputTimestamp>1681596927</project.build.outputTimestamp>
 
     <!-- External Modules -->
-    <maven-plugin.version>3.8.1</maven-plugin.version>
+    <maven-plugin.version>3.8.2</maven-plugin.version>
     <slf4j.version>2.0.7</slf4j.version>
   </properties>
 
