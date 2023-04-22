@@ -141,6 +141,8 @@ public class FileTool {
      * @param si the si
      * @return the string
      */
+    // TODO JWL 4/22/2023 Didn't see a good way to handle as it gets flagged to remove unnecessary cast if I fix this per error-prone, so ignoring it
+    @SuppressWarnings("LongDoubleConversion")
     public static String humanReadableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
         if (bytes < unit) return bytes + " B";
