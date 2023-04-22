@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2011 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,6 +18,10 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.json.JSONException;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -26,9 +30,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * The Class FileToolTest.
@@ -65,13 +66,14 @@ class FileToolTest {
     /**
      * Test get files.
      *
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     @Test
     void testGetFiles() throws IOException {
         LOG.info("Testing getFiles method...");
 
-        FileTool fileTool = new FileTool("src/test/resources/html", new String[] {"htm", "html"}, true);
+        FileTool fileTool = new FileTool("src/test/resources/html", new String[] { "htm", "html" }, true);
         Map<String, String> map = fileTool.getFiles();
 
         Assertions.assertTrue(map.containsKey("templates/Template1.html"));
@@ -89,14 +91,15 @@ class FileToolTest {
     /**
      * Test write files.
      *
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     @Test
     void testWriteFiles() throws IOException {
         LOG.info("Testing writeFiles method...");
 
         String targetDir = "target/test/filetool";
-        FileTool fileTool = new FileTool(targetDir, new String[] {"htm", "html"}, true);
+        FileTool fileTool = new FileTool(targetDir, new String[] { "htm", "html" }, true);
         Map<String, String> map = new HashMap<String, String>();
         map.put("file.html", "root file");
         map.put("/file2.html", "another root file");
@@ -122,8 +125,10 @@ class FileToolTest {
     /**
      * Test write to json file.
      *
-     * @throws IOException Signals that an I/O exception has occurred.
-     * @throws JSONException the JSON exception
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     * @throws JSONException
+     *             the JSON exception
      */
     @Test
     void testWriteToJsonFile() throws IOException, JSONException {
@@ -131,7 +136,7 @@ class FileToolTest {
 
         String targetDir = "target/test/filetool/";
         String targetFile = targetDir + "json.js";
-        FileTool fileTool = new FileTool(targetDir, new String[] {"htm", "html"}, true);
+        FileTool fileTool = new FileTool(targetDir, new String[] { "htm", "html" }, true);
         Map<String, String> map = new HashMap<String, String>();
         map.put("file.html", "root file");
         map.put("template/file.html", "template file");

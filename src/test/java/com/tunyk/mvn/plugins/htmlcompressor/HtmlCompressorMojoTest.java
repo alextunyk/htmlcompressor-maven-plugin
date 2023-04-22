@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2011 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,8 +20,8 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +61,8 @@ class HtmlCompressorMojoTest {
     /**
      * Test execute.
      *
-     * @throws MojoExecutionException the mojo execution exception
+     * @throws MojoExecutionException
+     *             the mojo execution exception
      */
     @Test
     void testExecute() throws MojoExecutionException {

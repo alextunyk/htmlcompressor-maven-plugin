@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
 
     Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
@@ -18,6 +19,7 @@
     regarding copyright ownership.
 
 -->
-<div style="divstyle">
-	some <b>html</b> template #1
-</div>
+<!DOCTYPE Format>
+<Format>
+ <!-- Dummy format file -->
+</Format>

@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2011 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,12 +23,6 @@ import com.google.javascript.jscomp.SourceFile;
 import com.googlecode.htmlcompressor.compressor.ClosureJavaScriptCompressor;
 import com.googlecode.htmlcompressor.compressor.Compressor;
 
-import org.apache.maven.plugin.AbstractMojo;
-import org.apache.maven.plugin.MojoExecutionException;
-import org.apache.maven.plugins.annotations.LifecyclePhase;
-import org.apache.maven.plugins.annotations.Mojo;
-import org.apache.maven.plugins.annotations.Parameter;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -41,6 +35,12 @@ import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
+import org.apache.maven.plugin.AbstractMojo;
+import org.apache.maven.plugin.MojoExecutionException;
+import org.apache.maven.plugins.annotations.LifecyclePhase;
+import org.apache.maven.plugins.annotations.Mojo;
+import org.apache.maven.plugins.annotations.Parameter;
+
 /**
  * Compress HTML files.
  */
@@ -48,15 +48,15 @@ import java.util.regex.PatternSyntaxException;
 public class HtmlCompressorMojo extends AbstractMojo {
 
     /** file where statistics of html compression is stored. */
-    @Parameter(property="htmlcompressor.htmlCompressionStatistics", defaultValue="${project.build.directory}/htmlcompressor/html-compression-statistics.txt")
+    @Parameter(property = "htmlcompressor.htmlCompressionStatistics", defaultValue = "${project.build.directory}/htmlcompressor/html-compression-statistics.txt")
     private String htmlCompressionStatistics = "target/htmlcompressor/html-compression-statistics.txt";
 
     /** file types to be processed. */
-    @Parameter(property="htmlcompressor.fileExt")
+    @Parameter(property = "htmlcompressor.fileExt")
     private String[] fileExt;
 
     /** if false all compression is off (default is true). */
-    @Parameter(property="htmlcompressor.enabled", defaultValue="true")
+    @Parameter(property = "htmlcompressor.enabled", defaultValue = "true")
     private boolean enabled = true;
 
     /** Skip run of plugin. */
@@ -64,173 +64,177 @@ public class HtmlCompressorMojo extends AbstractMojo {
     private boolean skip;
 
     /** if false keeps HTML comments (default is true). */
-    @Parameter(property="htmlcompressor.removeComments", defaultValue="true")
+    @Parameter(property = "htmlcompressor.removeComments", defaultValue = "true")
     private boolean removeComments = true;
 
     /** if false keeps multiple whitespace characters (default is true). */
-    @Parameter(property="htmlcompressor.removeMultiSpaces", defaultValue="true")
+    @Parameter(property = "htmlcompressor.removeMultiSpaces", defaultValue = "true")
     private boolean removeMultiSpaces = true;
 
     /** removes iter-tag whitespace characters. */
-    @Parameter(property="htmlcompressor.removeIntertagSpaces", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeIntertagSpaces", defaultValue = "false")
     private boolean removeIntertagSpaces;
 
     /** removes unnecessary tag attribute quotes. */
-    @Parameter(property="htmlcompressor.removeQuotes", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeQuotes", defaultValue = "false")
     private boolean removeQuotes;
 
     /** simplify existing doctype. */
-    @Parameter(property="htmlcompressor.simpleDoctype", defaultValue="false")
+    @Parameter(property = "htmlcompressor.simpleDoctype", defaultValue = "false")
     private boolean simpleDoctype;
 
     /** remove optional attributes from script tags. */
-    @Parameter(property="htmlcompressor.removeScriptAttributes", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeScriptAttributes", defaultValue = "false")
     private boolean removeScriptAttributes;
 
     /** remove optional attributes from style tags. */
-    @Parameter(property="htmlcompressor.removeStyleAttributes", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeStyleAttributes", defaultValue = "false")
     private boolean removeStyleAttributes;
 
     /** remove optional attributes from link tags. */
-    @Parameter(property="htmlcompressor.removeLinkAttributes", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeLinkAttributes", defaultValue = "false")
     private boolean removeLinkAttributes;
 
     /** remove optional attributes from form tags. */
-    @Parameter(property="htmlcompressor.removeFormAttributes", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeFormAttributes", defaultValue = "false")
     private boolean removeFormAttributes;
 
     /** remove optional attributes from input tags. */
-    @Parameter(property="htmlcompressor.removeInputAttributes", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeInputAttributes", defaultValue = "false")
     private boolean removeInputAttributes;
 
     /** remove values from boolean tag attributes. */
-    @Parameter(property="htmlcompressor.simpleBooleanAttributes", defaultValue="false")
+    @Parameter(property = "htmlcompressor.simpleBooleanAttributes", defaultValue = "false")
     private boolean simpleBooleanAttributes;
 
     /** remove "javascript:" from inline event handlers. */
-    @Parameter(property="htmlcompressor.removeJavaScriptProtocol", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeJavaScriptProtocol", defaultValue = "false")
     private boolean removeJavaScriptProtocol;
 
     /** replace "http://" with "//" inside tag attributes. */
-    @Parameter(property="htmlcompressor.removeHttpProtocol", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeHttpProtocol", defaultValue = "false")
     private boolean removeHttpProtocol;
 
     /** replace "https://" with "//" inside tag attributes. */
-    @Parameter(property="htmlcompressor.removeHttpsProtocol", defaultValue="false")
+    @Parameter(property = "htmlcompressor.removeHttpsProtocol", defaultValue = "false")
     private boolean removeHttpsProtocol;
 
     /** compress inline css. */
-    @Parameter(property="htmlcompressor.compressCss", defaultValue="false")
+    @Parameter(property = "htmlcompressor.compressCss", defaultValue = "false")
     private boolean compressCss;
 
     /** preserves original line breaks. */
-    @Parameter(property="htmlcompressor.preserveLineBreaks", defaultValue="false")
+    @Parameter(property = "htmlcompressor.preserveLineBreaks", defaultValue = "false")
     private boolean preserveLineBreaks;
 
     /** --line-break param for Yahoo YUI Compressor. */
-    @Parameter(property="htmlcompressor.yuiCssLineBreak", defaultValue="-1")
+    @Parameter(property = "htmlcompressor.yuiCssLineBreak", defaultValue = "-1")
     private int yuiCssLineBreak = -1;
 
     /** css compressor. */
     // TODO JWL 4/22/2023 Unsupported
     @SuppressWarnings("unused")
-    @Parameter(property="htmlcompressor.cssCompressor", defaultValue="")
+    @Parameter(property = "htmlcompressor.cssCompressor", defaultValue = "")
     private Compressor cssCompressor;
 
     /** compress inline javascript. */
-    @Parameter(property="htmlcompressor.compressJavaScript", defaultValue="false")
+    @Parameter(property = "htmlcompressor.compressJavaScript", defaultValue = "false")
     private boolean compressJavaScript;
 
     /** javascript compression: "yui" or "closure". */
-    @Parameter(property="htmlcompressor.jsCompressor", defaultValue="yui")
+    @Parameter(property = "htmlcompressor.jsCompressor", defaultValue = "yui")
     private String jsCompressor = "yui";
 
     /** javascript compression. */
     // TODO JWL 4/22/2023Unsupported
     @SuppressWarnings("unused")
-    @Parameter(property="htmlcompressor.javaScriptCompressor", defaultValue="")
+    @Parameter(property = "htmlcompressor.javaScriptCompressor", defaultValue = "")
     private Compressor javaScriptCompressor;
 
     /** --nomunge param for Yahoo YUI Compressor. */
-    @Parameter(property="htmlcompressor.yuiJsNoMunge", defaultValue="false")
+    @Parameter(property = "htmlcompressor.yuiJsNoMunge", defaultValue = "false")
     private boolean yuiJsNoMunge;
 
     /** --preserve-semi param for Yahoo YUI Compressor. */
-    @Parameter(property="htmlcompressor.yuiJsPreserveAllSemiColons", defaultValue="false")
+    @Parameter(property = "htmlcompressor.yuiJsPreserveAllSemiColons", defaultValue = "false")
     private boolean yuiJsPreserveAllSemiColons;
 
     /** --line-break param for Yahoo YUI Compressor. */
-    @Parameter(property="htmlcompressor.yuiJsLineBreak", defaultValue="-1")
+    @Parameter(property = "htmlcompressor.yuiJsLineBreak", defaultValue = "-1")
     private int yuiJsLineBreak = -1;
 
     /** closureOptLevel = "simple", "advanced" or "whitespace". */
-    @Parameter(property="htmlcompressor.closureOptLevel", defaultValue="simple")
+    @Parameter(property = "htmlcompressor.closureOptLevel", defaultValue = "simple")
     private String closureOptLevel = "simple";
 
     /** --disable-optimizations param for Yahoo YUI Compressor. */
-    @Parameter(property="htmlcompressor.yuiJsDisableOptimizations", defaultValue="false")
+    @Parameter(property = "htmlcompressor.yuiJsDisableOptimizations", defaultValue = "false")
     private boolean yuiJsDisableOptimizations;
 
     /**
      * predefined patterns for most often used custom preservation rules: PHP_TAG_PATTERN and SERVER_SCRIPT_TAG_PATTERN.
      */
-    @Parameter(property="htmlcompressor.predefinedPreservePatterns")
+    @Parameter(property = "htmlcompressor.predefinedPreservePatterns")
     private String[] predefinedPreservePatterns;
 
     /** preserve patterns. */
-    @Parameter(property="htmlcompressor.preservePatterns")
+    @Parameter(property = "htmlcompressor.preservePatterns")
     private String[] preservePatterns;
 
     /** list of files containing preserve patterns. */
-    @Parameter(property="htmlcompressor.preservePatternFiles")
+    @Parameter(property = "htmlcompressor.preservePatternFiles")
     private File[] preservePatternFiles;
 
     /** HTML compression statistics. */
-    @Parameter(property="htmlcompressor.generateStatistics", defaultValue="true")
+    @Parameter(property = "htmlcompressor.generateStatistics", defaultValue = "true")
     private boolean generateStatistics = true;
 
     /**
      * source folder where html files are located.
      */
-    @Parameter(property="htmlcompressor.srcFolder", defaultValue="${basedir}/src/main/resources")
+    @Parameter(property = "htmlcompressor.srcFolder", defaultValue = "${basedir}/src/main/resources")
     private String srcFolder = "src/main/resources";
 
     /**
      * target folder where compressed html files will be placed.
      */
-    @Parameter(property="htmlcompressor.targetFolder", defaultValue="${project.build.directory}/classes")
+    @Parameter(property = "htmlcompressor.targetFolder", defaultValue = "${project.build.directory}/classes")
     private String targetFolder = "target/classes";
 
     /**
-     * Create javascript file which includes all compressed html files as json object. If set to true then javascriptHtmlSpriteIntegrationFile param is required, otherwise it will throw exception.
+     * Create javascript file which includes all compressed html files as json object. If set to true then
+     * javascriptHtmlSpriteIntegrationFile param is required, otherwise it will throw exception.
      */
-    @Parameter(property="htmlcompressor.javascriptHtmlSprite", defaultValue="true")
+    @Parameter(property = "htmlcompressor.javascriptHtmlSprite", defaultValue = "true")
     private boolean javascriptHtmlSprite = true;
 
-    /** JavaScript sprite integration file (first occurrence of "%s" will be substituted by json with all compressed html strings). */
-    @Parameter(property="htmlcompressor.javascriptHtmlSpriteIntegrationFile", defaultValue="${basedir}/src/main/resources/html/integration.js")
+    /**
+     * JavaScript sprite integration file (first occurrence of "%s" will be substituted by json with all compressed html
+     * strings).
+     */
+    @Parameter(property = "htmlcompressor.javascriptHtmlSpriteIntegrationFile", defaultValue = "${basedir}/src/main/resources/html/integration.js")
     private String javascriptHtmlSpriteIntegrationFile = "src/main/resources/html/integration.js";
 
     /**
      * The target JavaScript sprite file with compressed html files as json object.
      */
-    @Parameter(property="htmlcompressor.javascriptHtmlSpriteTargetFile", defaultValue="${project.build.directory}/htmlcompressor/html/integration.js")
+    @Parameter(property = "htmlcompressor.javascriptHtmlSpriteTargetFile", defaultValue = "${project.build.directory}/htmlcompressor/html/integration.js")
     private String javascriptHtmlSpriteTargetFile = "target/htmlcompressor/html/integration.js";
 
     /** Charset encoding for files to read and create. */
-    @Parameter(property="htmlcompressor.encoding", defaultValue="UTF-8")
+    @Parameter(property = "htmlcompressor.encoding", defaultValue = "UTF-8")
     private String encoding = "UTF-8";
 
     /**
      * Disable default built-in closure externs.
      */
-    @Parameter(property="htmlcompressor.closureCustomExternsOnly", defaultValue="false")
+    @Parameter(property = "htmlcompressor.closureCustomExternsOnly", defaultValue = "false")
     private boolean closureCustomExternsOnly;
 
     /**
      * Sets custom closure externs file list.
      */
-    @Parameter(property="htmlcompressor.closureExterns")
+    @Parameter(property = "htmlcompressor.closureExterns")
     private String[] closureExterns;
 
     @Override
@@ -288,17 +292,19 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
         if (jsCompressor.equalsIgnoreCase("closure")) {
             ClosureJavaScriptCompressor closureCompressor = new ClosureJavaScriptCompressor();
-            if (closureOptLevel != null && closureOptLevel.equalsIgnoreCase(ClosureJavaScriptCompressor.COMPILATION_LEVEL_ADVANCED)) {
+            if (closureOptLevel != null
+                    && closureOptLevel.equalsIgnoreCase(ClosureJavaScriptCompressor.COMPILATION_LEVEL_ADVANCED)) {
                 closureCompressor.setCompilationLevel(CompilationLevel.ADVANCED_OPTIMIZATIONS);
                 closureCompressor.setCustomExternsOnly(closureCustomExternsOnly);
-                if(closureExterns.length  > 0) {
+                if (closureExterns.length > 0) {
                     List<SourceFile> externs = new ArrayList<>();
-                    for(String externFile : closureExterns) {
+                    for (String externFile : closureExterns) {
                         externs.add(SourceFile.fromFile(externFile));
                     }
                     closureCompressor.setExterns(externs);
                 }
-            } else if (closureOptLevel != null && closureOptLevel.equalsIgnoreCase(ClosureJavaScriptCompressor.COMPILATION_LEVEL_WHITESPACE)) {
+            } else if (closureOptLevel != null
+                    && closureOptLevel.equalsIgnoreCase(ClosureJavaScriptCompressor.COMPILATION_LEVEL_WHITESPACE)) {
                 closureCompressor.setCompilationLevel(CompilationLevel.WHITESPACE_ONLY);
             } else {
                 closureCompressor.setCompilationLevel(CompilationLevel.SIMPLE_OPTIMIZATIONS);
@@ -316,7 +322,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
                     preservePatternList.add(com.googlecode.htmlcompressor.compressor.HtmlCompressor.PHP_TAG_PATTERN);
                     phpTagPatternAdded = true;
                 } else if (!serverScriptTagPatternAdded && pattern.equalsIgnoreCase("SERVER_SCRIPT_TAG_PATTERN")) {
-                    preservePatternList.add(com.googlecode.htmlcompressor.compressor.HtmlCompressor.SERVER_SCRIPT_TAG_PATTERN);
+                    preservePatternList
+                            .add(com.googlecode.htmlcompressor.compressor.HtmlCompressor.SERVER_SCRIPT_TAG_PATTERN);
                     serverScriptTagPatternAdded = true;
                 }
             }
@@ -351,7 +358,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
         try {
             htmlCompressor.compress();
-        } catch(IOException e) {
+        } catch (IOException e) {
             throw new MojoExecutionException(e.getMessage());
         }
 
@@ -366,20 +373,29 @@ public class HtmlCompressorMojo extends AbstractMojo {
         }
 
         String origFilesize = FileTool.humanReadableByteCount(origFilesizeBytes, si);
-        String origEmptyChars = String.valueOf(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getEmptyChars());
-        String origInlineEventSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineEventSize(), si);
-        String origInlineScriptSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineScriptSize(), si);
-        String origInlineStyleSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineStyleSize(), si);
+        String origEmptyChars = String
+                .valueOf(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getEmptyChars());
+        String origInlineEventSize = FileTool.humanReadableByteCount(
+                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineEventSize(), si);
+        String origInlineScriptSize = FileTool.humanReadableByteCount(
+                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineScriptSize(), si);
+        String origInlineStyleSize = FileTool.humanReadableByteCount(
+                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineStyleSize(), si);
 
         int compFilesizeBytes = htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getFilesize();
         String compFilesize = FileTool.humanReadableByteCount(compFilesizeBytes, si);
-        String compEmptyChars = String.valueOf(htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getEmptyChars());
-        String compInlineEventSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineEventSize(), si);
-        String compInlineScriptSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineScriptSize(), si);
-        String compInlineStyleSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineStyleSize(), si);
+        String compEmptyChars = String
+                .valueOf(htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getEmptyChars());
+        String compInlineEventSize = FileTool.humanReadableByteCount(
+                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineEventSize(), si);
+        String compInlineScriptSize = FileTool.humanReadableByteCount(
+                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineScriptSize(), si);
+        String compInlineStyleSize = FileTool.humanReadableByteCount(
+                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineStyleSize(), si);
 
         String elapsedTime = FileTool.getElapsedHMSTime(htmlCompressor.getHtmlCompressor().getStatistics().getTime());
-        String preservedSize = FileTool.humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getPreservedSize(), si);
+        String preservedSize = FileTool
+                .humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getPreservedSize(), si);
         Float compressionRatio = Float.valueOf(compFilesizeBytes) / Float.valueOf(origFilesizeBytes);
         Float spaceSavings = Float.valueOf(1) - compressionRatio;
 
@@ -392,14 +408,18 @@ public class HtmlCompressorMojo extends AbstractMojo {
         sb.append(String.format(format, "| Category", "| Original", "| Compressed", "|")).append(eol);
         sb.append(hr).append(eol);
         sb.append(String.format(format, "| Filesize", "| " + origFilesize, "| " + compFilesize, "|")).append(eol);
-        sb.append(String.format(format, "| Empty Chars", "| " + origEmptyChars, "| " + compEmptyChars, "|")).append(eol);
-        sb.append(String.format(format, "| Script Size", "| " + origInlineScriptSize, "| " + compInlineScriptSize, "|")).append(eol);
-        sb.append(String.format(format, "| Style Size", "| " + origInlineStyleSize, "| " + compInlineStyleSize, "|")).append(eol);
-        sb.append(String.format(format, "| Event Handler Size", "| " + origInlineEventSize, "| " + compInlineEventSize, "|")).append(eol);
+        sb.append(String.format(format, "| Empty Chars", "| " + origEmptyChars, "| " + compEmptyChars, "|"))
+                .append(eol);
+        sb.append(String.format(format, "| Script Size", "| " + origInlineScriptSize, "| " + compInlineScriptSize, "|"))
+                .append(eol);
+        sb.append(String.format(format, "| Style Size", "| " + origInlineStyleSize, "| " + compInlineStyleSize, "|"))
+                .append(eol);
+        sb.append(String.format(format, "| Event Handler Size", "| " + origInlineEventSize, "| " + compInlineEventSize,
+                "|")).append(eol);
         sb.append(hr).append(eol);
         sb.append(String.format("%-90s%-2s",
-                String.format("| Time: %s, Preserved: %s, Compression Ratio: %s, Savings: %s%%",
-                        elapsedTime, preservedSize, formatter.format(compressionRatio), formatter.format(spaceSavings*100)),
+                String.format("| Time: %s, Preserved: %s, Compression Ratio: %s, Savings: %s%%", elapsedTime,
+                        preservedSize, formatter.format(compressionRatio), formatter.format(spaceSavings * 100)),
                 "|")).append(eol);
         sb.append(hr).append(eol);
 
@@ -426,7 +446,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the html compression statistics.
      *
-     * @param htmlCompressionStatistics the new html compression statistics
+     * @param htmlCompressionStatistics
+     *            the new html compression statistics
      */
     public void setHtmlCompressionStatistics(String htmlCompressionStatistics) {
         this.htmlCompressionStatistics = htmlCompressionStatistics;
@@ -444,12 +465,13 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the file ext.
      *
-     * @param fileExt the new file ext
+     * @param fileExt
+     *            the new file ext
      */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
-    
+
     /**
      * Gets the enabled.
      *
@@ -462,7 +484,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the enabled.
      *
-     * @param enabled the new enabled
+     * @param enabled
+     *            the new enabled
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -480,7 +503,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the comments.
      *
-     * @param removeComments the new removes the comments
+     * @param removeComments
+     *            the new removes the comments
      */
     public void setRemoveComments(Boolean removeComments) {
         this.removeComments = removeComments;
@@ -498,7 +522,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the multi spaces.
      *
-     * @param removeMultiSpaces the new removes the multi spaces
+     * @param removeMultiSpaces
+     *            the new removes the multi spaces
      */
     public void setRemoveMultiSpaces(Boolean removeMultiSpaces) {
         this.removeMultiSpaces = removeMultiSpaces;
@@ -516,7 +541,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the intertag spaces.
      *
-     * @param removeIntertagSpaces the new removes the intertag spaces
+     * @param removeIntertagSpaces
+     *            the new removes the intertag spaces
      */
     public void setRemoveIntertagSpaces(Boolean removeIntertagSpaces) {
         this.removeIntertagSpaces = removeIntertagSpaces;
@@ -534,7 +560,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the quotes.
      *
-     * @param removeQuotes the new removes the quotes
+     * @param removeQuotes
+     *            the new removes the quotes
      */
     public void setRemoveQuotes(Boolean removeQuotes) {
         this.removeQuotes = removeQuotes;
@@ -552,7 +579,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the simple doctype.
      *
-     * @param simpleDoctype the new simple doctype
+     * @param simpleDoctype
+     *            the new simple doctype
      */
     public void setSimpleDoctype(Boolean simpleDoctype) {
         this.simpleDoctype = simpleDoctype;
@@ -570,7 +598,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the script attributes.
      *
-     * @param removeScriptAttributes the new removes the script attributes
+     * @param removeScriptAttributes
+     *            the new removes the script attributes
      */
     public void setRemoveScriptAttributes(Boolean removeScriptAttributes) {
         this.removeScriptAttributes = removeScriptAttributes;
@@ -588,7 +617,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the style attributes.
      *
-     * @param removeStyleAttributes the new removes the style attributes
+     * @param removeStyleAttributes
+     *            the new removes the style attributes
      */
     public void setRemoveStyleAttributes(Boolean removeStyleAttributes) {
         this.removeStyleAttributes = removeStyleAttributes;
@@ -606,7 +636,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the link attributes.
      *
-     * @param removeLinkAttributes the new removes the link attributes
+     * @param removeLinkAttributes
+     *            the new removes the link attributes
      */
     public void setRemoveLinkAttributes(Boolean removeLinkAttributes) {
         this.removeLinkAttributes = removeLinkAttributes;
@@ -624,7 +655,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the form attributes.
      *
-     * @param removeFormAttributes the new removes the form attributes
+     * @param removeFormAttributes
+     *            the new removes the form attributes
      */
     public void setRemoveFormAttributes(Boolean removeFormAttributes) {
         this.removeFormAttributes = removeFormAttributes;
@@ -642,7 +674,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the input attributes.
      *
-     * @param removeInputAttributes the new removes the input attributes
+     * @param removeInputAttributes
+     *            the new removes the input attributes
      */
     public void setRemoveInputAttributes(Boolean removeInputAttributes) {
         this.removeInputAttributes = removeInputAttributes;
@@ -660,7 +693,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the simple boolean attributes.
      *
-     * @param simpleBooleanAttributes the new simple boolean attributes
+     * @param simpleBooleanAttributes
+     *            the new simple boolean attributes
      */
     public void setSimpleBooleanAttributes(Boolean simpleBooleanAttributes) {
         this.simpleBooleanAttributes = simpleBooleanAttributes;
@@ -678,7 +712,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the java script protocol.
      *
-     * @param removeJavaScriptProtocol the new removes the java script protocol
+     * @param removeJavaScriptProtocol
+     *            the new removes the java script protocol
      */
     public void setRemoveJavaScriptProtocol(Boolean removeJavaScriptProtocol) {
         this.removeJavaScriptProtocol = removeJavaScriptProtocol;
@@ -696,7 +731,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the http protocol.
      *
-     * @param removeHttpProtocol the new removes the http protocol
+     * @param removeHttpProtocol
+     *            the new removes the http protocol
      */
     public void setRemoveHttpProtocol(Boolean removeHttpProtocol) {
         this.removeHttpProtocol = removeHttpProtocol;
@@ -714,7 +750,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the https protocol.
      *
-     * @param removeHttpsProtocol the new removes the https protocol
+     * @param removeHttpsProtocol
+     *            the new removes the https protocol
      */
     public void setRemoveHttpsProtocol(Boolean removeHttpsProtocol) {
         this.removeHttpsProtocol = removeHttpsProtocol;
@@ -732,7 +769,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the compress css.
      *
-     * @param compressCss the new compress css
+     * @param compressCss
+     *            the new compress css
      */
     public void setCompressCss(Boolean compressCss) {
         this.compressCss = compressCss;
@@ -750,7 +788,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the preserve line breaks.
      *
-     * @param preserveLineBreaks the new preserve line breaks
+     * @param preserveLineBreaks
+     *            the new preserve line breaks
      */
     public void setPreserveLineBreaks(Boolean preserveLineBreaks) {
         this.preserveLineBreaks = preserveLineBreaks;
@@ -768,7 +807,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the yui css line break.
      *
-     * @param yuiCssLineBreak the new yui css line break
+     * @param yuiCssLineBreak
+     *            the new yui css line break
      */
     public void setYuiCssLineBreak(Integer yuiCssLineBreak) {
         this.yuiCssLineBreak = yuiCssLineBreak;
@@ -786,7 +826,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the compress java script.
      *
-     * @param compressJavaScript the new compress java script
+     * @param compressJavaScript
+     *            the new compress java script
      */
     public void setCompressJavaScript(Boolean compressJavaScript) {
         this.compressJavaScript = compressJavaScript;
@@ -804,7 +845,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the js compressor.
      *
-     * @param jsCompressor the new js compressor
+     * @param jsCompressor
+     *            the new js compressor
      */
     public void setJsCompressor(String jsCompressor) {
         this.jsCompressor = jsCompressor;
@@ -822,7 +864,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the yui js no munge.
      *
-     * @param yuiJsNoMunge the new yui js no munge
+     * @param yuiJsNoMunge
+     *            the new yui js no munge
      */
     public void setYuiJsNoMunge(Boolean yuiJsNoMunge) {
         this.yuiJsNoMunge = yuiJsNoMunge;
@@ -840,7 +883,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the yui js preserve all semi colons.
      *
-     * @param yuiJsPreserveAllSemiColons the new yui js preserve all semi colons
+     * @param yuiJsPreserveAllSemiColons
+     *            the new yui js preserve all semi colons
      */
     public void setYuiJsPreserveAllSemiColons(Boolean yuiJsPreserveAllSemiColons) {
         this.yuiJsPreserveAllSemiColons = yuiJsPreserveAllSemiColons;
@@ -858,7 +902,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the yui js line break.
      *
-     * @param yuiJsLineBreak the new yui js line break
+     * @param yuiJsLineBreak
+     *            the new yui js line break
      */
     public void setYuiJsLineBreak(Integer yuiJsLineBreak) {
         this.yuiJsLineBreak = yuiJsLineBreak;
@@ -876,7 +921,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the closure opt level.
      *
-     * @param closureOptLevel the new closure opt level
+     * @param closureOptLevel
+     *            the new closure opt level
      */
     public void setClosureOptLevel(String closureOptLevel) {
         this.closureOptLevel = closureOptLevel;
@@ -894,7 +940,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the yui js disable optimizations.
      *
-     * @param yuiJsDisableOptimizations the new yui js disable optimizations
+     * @param yuiJsDisableOptimizations
+     *            the new yui js disable optimizations
      */
     public void setYuiJsDisableOptimizations(Boolean yuiJsDisableOptimizations) {
         this.yuiJsDisableOptimizations = yuiJsDisableOptimizations;
@@ -912,7 +959,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the predefined preserve patterns.
      *
-     * @param predefinedPreservePatterns the new predefined preserve patterns
+     * @param predefinedPreservePatterns
+     *            the new predefined preserve patterns
      */
     public void setPredefinedPreservePatterns(String[] predefinedPreservePatterns) {
         this.predefinedPreservePatterns = predefinedPreservePatterns;
@@ -930,7 +978,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the preserve patterns.
      *
-     * @param preservePatterns the new preserve patterns
+     * @param preservePatterns
+     *            the new preserve patterns
      */
     public void setPreservePatterns(String[] preservePatterns) {
         this.preservePatterns = preservePatterns;
@@ -948,7 +997,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the preserve pattern files.
      *
-     * @param preservePatternFiles the new preserve pattern files
+     * @param preservePatternFiles
+     *            the new preserve pattern files
      */
     public void setPreservePatternFiles(File[] preservePatternFiles) {
         this.preservePatternFiles = preservePatternFiles;
@@ -966,7 +1016,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the generate statistics.
      *
-     * @param generateStatistics the new generate statistics
+     * @param generateStatistics
+     *            the new generate statistics
      */
     public void setGenerateStatistics(Boolean generateStatistics) {
         this.generateStatistics = generateStatistics;
@@ -984,7 +1035,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the src folder.
      *
-     * @param srcFolder the new src folder
+     * @param srcFolder
+     *            the new src folder
      */
     public void setSrcFolder(String srcFolder) {
         this.srcFolder = srcFolder;
@@ -1002,7 +1054,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the target folder.
      *
-     * @param targetFolder the new target folder
+     * @param targetFolder
+     *            the new target folder
      */
     public void setTargetFolder(String targetFolder) {
         this.targetFolder = targetFolder;
@@ -1020,7 +1073,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the javascript html sprite.
      *
-     * @param javascriptHtmlSprite the new javascript html sprite
+     * @param javascriptHtmlSprite
+     *            the new javascript html sprite
      */
     public void setJavascriptHtmlSprite(Boolean javascriptHtmlSprite) {
         this.javascriptHtmlSprite = javascriptHtmlSprite;
@@ -1038,7 +1092,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the javascript html sprite integration file.
      *
-     * @param javascriptHtmlSpriteIntegrationFile the new javascript html sprite integration file
+     * @param javascriptHtmlSpriteIntegrationFile
+     *            the new javascript html sprite integration file
      */
     public void setJavascriptHtmlSpriteIntegrationFile(String javascriptHtmlSpriteIntegrationFile) {
         this.javascriptHtmlSpriteIntegrationFile = javascriptHtmlSpriteIntegrationFile;
@@ -1056,7 +1111,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the javascript html sprite target file.
      *
-     * @param javascriptHtmlSpriteTargetFile the new javascript html sprite target file
+     * @param javascriptHtmlSpriteTargetFile
+     *            the new javascript html sprite target file
      */
     public void setJavascriptHtmlSpriteTargetFile(String javascriptHtmlSpriteTargetFile) {
         this.javascriptHtmlSpriteTargetFile = javascriptHtmlSpriteTargetFile;
@@ -1074,7 +1130,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the encoding.
      *
-     * @param encoding the new encoding
+     * @param encoding
+     *            the new encoding
      */
     public void setEncoding(String encoding) {
         this.encoding = encoding;
@@ -1092,7 +1149,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the closure custom externs only.
      *
-     * @param closureCustomExternsOnly the new closure custom externs only
+     * @param closureCustomExternsOnly
+     *            the new closure custom externs only
      */
     public void setClosureCustomExternsOnly(Boolean closureCustomExternsOnly) {
         this.closureCustomExternsOnly = closureCustomExternsOnly;
@@ -1110,7 +1168,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the closure externs.
      *
-     * @param closureExterns the new closure externs
+     * @param closureExterns
+     *            the new closure externs
      */
     public void setClosureExterns(String[] closureExterns) {
         this.closureExterns = closureExterns;

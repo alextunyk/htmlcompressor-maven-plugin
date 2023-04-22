@@ -11,6 +11,11 @@ Overview
 Maven HTMLCompressor Plugin allows to compress HTML/XML files by adding a few lines to the pom file.
 This plugin uses [htmlcompressor][] library.
 
+Notice
+------
+
+Project is currently built and release from following [fork](https://github.com/hazendaz/htmlcompressor-maven-plugin)
+
 Getting started
 ---------------
 
@@ -24,7 +29,7 @@ The simplest way to start using this plugin is:
         <plugin>
             <groupId>com.github.hazendaz.maven</groupId>
             <artifactId>htmlcompressor-maven-plugin</artifactId>
-            <version>1.8.0</version>
+            <version>1.9.1</version>
             <configuration>
                 <goalPrefix>htmlcompressor</goalPrefix>
             </configuration>

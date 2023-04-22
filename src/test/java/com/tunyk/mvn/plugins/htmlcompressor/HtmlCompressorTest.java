@@ -1,11 +1,11 @@
 /*
- * Copyright (c) 2011 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *   http://www.apache.org/licenses/LICENSE-2.0
+ *   https://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -60,7 +60,8 @@ class HtmlCompressorTest {
     /**
      * Test compress.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
     @Test
     void testCompress() throws Exception {
@@ -70,8 +71,8 @@ class HtmlCompressorTest {
         htmlCompressor.compress();
         // TODO: test files where created and every one has the right contents
 
-        htmlCompressor = new HtmlCompressor("src/test/resources/html", "target/test/htmlcompressor/1",
-                true, "target/test/htmlcompressor/1/integration.js", "src/test/resources/html/integration.js");
+        htmlCompressor = new HtmlCompressor("src/test/resources/html", "target/test/htmlcompressor/1", true,
+                "target/test/htmlcompressor/1/integration.js", "src/test/resources/html/integration.js");
         htmlCompressor.compress();
         // TODO: test json file was created and it has right contents
 
