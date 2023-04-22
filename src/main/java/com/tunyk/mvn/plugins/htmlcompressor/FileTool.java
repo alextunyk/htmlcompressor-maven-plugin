@@ -88,7 +88,7 @@ public class FileTool {
                 truncationIndex = normalizedFilePath.indexOf(rootDirPath) + rootDirPath.length() + 1;
             }
             String key = normalizedFilePath.substring(truncationIndex);
-            String value = FileUtils.readFileToString(path.toFile(), getFileEncoding));
+            String value = Files.readString(path, getFileEncoding());
             map.put(key, value);
         }
         return map;
