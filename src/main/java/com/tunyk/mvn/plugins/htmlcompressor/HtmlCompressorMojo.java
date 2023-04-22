@@ -132,7 +132,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     private int yuiCssLineBreak = -1;
 
     /** css compressor. */
-    // TODO Unsupported
+    // TODO JWL 4/22/2023 Unsupported
+    @SuppressWarnings("unused")
     @Parameter(property="htmlcompressor.cssCompressor", defaultValue="")
     private Compressor cssCompressor;
 
@@ -145,7 +146,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     private String jsCompressor = "yui";
 
     /** javascript compression. */
-    // TODO Unsupported
+    // TODO JWL 4/22/2023Unsupported
+    @SuppressWarnings("unused")
     @Parameter(property="htmlcompressor.javaScriptCompressor", defaultValue="")
     private Compressor javaScriptCompressor;
 
