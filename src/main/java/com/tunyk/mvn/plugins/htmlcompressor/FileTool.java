@@ -28,7 +28,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -73,8 +74,8 @@ public class FileTool {
      * @return the files
      * @throws IOException Signals that an I/O exception has occurred.
      */
-    public Map<String, String> getFiles() throws IOException {
-        Map<String, String> map = new HashMap<>();
+    public ConcurrentMap<String, String> getFiles() throws IOException {
+        ConcurrentMap<String, String> map = new ConcurrentHashMap<>();
         Path rootDir = Path.of(rootDirPath);
         List<Path> paths;
         try (Stream<Path> walk = Files.walk(rootDir)) {

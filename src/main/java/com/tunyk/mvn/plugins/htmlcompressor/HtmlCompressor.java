@@ -23,7 +23,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 import java.util.Map.Entry;
 
 /**
@@ -98,7 +98,7 @@ public class HtmlCompressor {
 
         FileTool fileTool = new FileTool(srcDirPath, fileExt, true);
         fileTool.setFileEncoding(fileEncoding);
-        Map<String, String> map = fileTool.getFiles();
+        ConcurrentMap<String, String> map = fileTool.getFiles();
 
         if (htmlCompressor == null) {
             htmlCompressor = new com.googlecode.htmlcompressor.compressor.HtmlCompressor();

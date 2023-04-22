@@ -19,7 +19,7 @@
 package com.tunyk.mvn.plugins.htmlcompressor;
 
 import java.nio.charset.Charset;
-import java.util.Map;
+import java.util.concurrent.ConcurrentMap;
 import java.util.Map.Entry;
 
 /**
@@ -68,7 +68,7 @@ public class XmlCompressor {
 
         FileTool fileTool = new FileTool(srcDirPath, fileExt, true);
         fileTool.setFileEncoding(fileEncoding);
-        Map<String, String> map = fileTool.getFiles();
+        ConcurrentMap<String, String> map = fileTool.getFiles();
 
         if (xmlCompressor == null) {
             xmlCompressor = new com.googlecode.htmlcompressor.compressor.XmlCompressor();
