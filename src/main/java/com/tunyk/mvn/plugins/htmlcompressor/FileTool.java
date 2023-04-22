@@ -18,18 +18,23 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Collection;
-import java.util.HashMap;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Arrays;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * The Class FileTool.
@@ -68,18 +73,21 @@ public class FileTool {
      * @return the files
      * @throws IOException Signals that an I/O exception has occurred.
      */
-    public Map<String, String> getFiles() throws IOException {
-        Map<String, String> map = new HashMap<>();
-        File rootDir = new File(rootDirPath);
-        Collection<File> files = FileUtils.listFiles(rootDir, fileExt, recursive);
+    public ConcurrentMap<String, String> getFiles() throws IOException {
+        ConcurrentMap<String, String> map = new ConcurrentHashMap<>();
+        Path rootDir = Path.of(rootDirPath);
+        List<Path> paths;
+        try (Stream<Path> walk = Files.walk(rootDir)) {
+            paths = walk.map(Path::normalize).filter(Files::isRegularFile).filter(path -> Arrays.stream(fileExt).anyMatch(path.getFileName().toString()::endsWith)).collect(Collectors.toList());
+        }
         int truncationIndex = 0;
-        for (File file : files) {
-            String normalizedFilePath = file.getCanonicalPath().replace("\\", "/");
+        for (Path path : paths) {
+            String normalizedFilePath = path.toFile().getCanonicalPath().replace("\\", "/");
             if (truncationIndex == 0) {
                 truncationIndex = normalizedFilePath.indexOf(rootDirPath) + rootDirPath.length() + 1;
             }
             String key = normalizedFilePath.substring(truncationIndex);
-            String value = FileUtils.readFileToString(file, fileEncoding);
+            String value = Files.readString(path, getFileEncoding());
             map.put(key, value);
         }
         return map;
@@ -94,8 +102,9 @@ public class FileTool {
      */
     public void writeFiles(Map<String, String> map, String targetDir) throws IOException {
         for (Entry<String, String> entry : map.entrySet()) {
-            File file = new File(targetDir + '/' + entry.getKey());
-            FileUtils.writeStringToFile(file, entry.getValue(), fileEncoding);
+            Path path = Path.of(targetDir + '/' + entry.getKey());
+            Files.createDirectories(path.getParent());
+            Files.writeString(path, entry.getValue(), getFileEncoding());
         }
     }
 
@@ -110,7 +119,7 @@ public class FileTool {
      */
     public void writeToJsonFile(Map<String, String> map, String targetFile, String integrationCode) throws IOException, JSONException {
         String replacePattern = "%s";
-        File file = new File(targetFile);
+        Path path = Path.of(targetFile);
         JSONObject json = new JSONObject();
         for (Entry<String, String> entry : map.entrySet()) {
             json.put(entry.getKey(), entry.getValue());
@@ -122,7 +131,8 @@ public class FileTool {
             integrationCode += replacePattern;
         }
         String contents = integrationCode.replaceFirst(replacePattern, Matcher.quoteReplacement(json.toString()));
-        FileUtils.writeStringToFile(file, contents, fileEncoding);
+        Files.createDirectories(path.getParent());
+        Files.writeString(path, contents, getFileEncoding());
     }
 
     /**
@@ -132,6 +142,8 @@ public class FileTool {
      * @param si the si
      * @return the string
      */
+    // TODO JWL 4/22/2023 Didn't see a good way to handle as it gets flagged to remove unnecessary cast if I fix this per error-prone, so ignoring it
+    @SuppressWarnings("LongDoubleConversion")
     public static String humanReadableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
         if (bytes < unit) return bytes + " B";
@@ -217,7 +229,7 @@ public class FileTool {
      * @return the file encoding
      */
     public Charset getFileEncoding() {
-        return fileEncoding;
+        return fileEncoding == null ? Charset.defaultCharset() : fileEncoding;
     }
 
     /**

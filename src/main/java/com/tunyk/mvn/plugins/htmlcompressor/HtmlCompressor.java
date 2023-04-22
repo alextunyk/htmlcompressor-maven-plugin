@@ -18,12 +18,11 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Map;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.concurrent.ConcurrentMap;
 import java.util.Map.Entry;
 
 /**
@@ -98,7 +97,7 @@ public class HtmlCompressor {
 
         FileTool fileTool = new FileTool(srcDirPath, fileExt, true);
         fileTool.setFileEncoding(fileEncoding);
-        Map<String, String> map = fileTool.getFiles();
+        ConcurrentMap<String, String> map = fileTool.getFiles();
 
         if (htmlCompressor == null) {
             htmlCompressor = new com.googlecode.htmlcompressor.compressor.HtmlCompressor();
@@ -110,7 +109,7 @@ public class HtmlCompressor {
 
         fileTool.writeFiles(map, targetDirPath);
         if (createJsonFile) {
-            String jsonIntegrationCode = FileUtils.readFileToString(new File(jsonIntegrationFilePath), fileEncoding);
+            String jsonIntegrationCode = Files.readString(Path.of(jsonIntegrationFilePath), fileEncoding == null ? Charset.defaultCharset() : fileEncoding);
             fileTool.writeToJsonFile(map, targetJsonFilePath, jsonIntegrationCode);
         }
     }

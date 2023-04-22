@@ -23,7 +23,6 @@ import com.google.javascript.jscomp.SourceFile;
 import com.googlecode.htmlcompressor.compressor.ClosureJavaScriptCompressor;
 import com.googlecode.htmlcompressor.compressor.Compressor;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.LifecyclePhase;
@@ -34,6 +33,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -132,7 +132,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     private int yuiCssLineBreak = -1;
 
     /** css compressor. */
-    // TODO Unsupported
+    // TODO JWL 4/22/2023 Unsupported
+    @SuppressWarnings("unused")
     @Parameter(property="htmlcompressor.cssCompressor", defaultValue="")
     private Compressor cssCompressor;
 
@@ -145,7 +146,8 @@ public class HtmlCompressorMojo extends AbstractMojo {
     private String jsCompressor = "yui";
 
     /** javascript compression. */
-    // TODO Unsupported
+    // TODO JWL 4/22/2023Unsupported
+    @SuppressWarnings("unused")
     @Parameter(property="htmlcompressor.javaScriptCompressor", defaultValue="")
     private Compressor javaScriptCompressor;
 
@@ -404,7 +406,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
         String statistics = sb.toString();
         getLog().info(statistics);
         try {
-            FileUtils.writeStringToFile(new File(htmlCompressionStatistics), statistics, encoding);
+            Files.writeString(Path.of(htmlCompressionStatistics), statistics, Charset.forName(encoding));
         } catch (IOException e) {
             throw new MojoExecutionException(e.getMessage());
         }
