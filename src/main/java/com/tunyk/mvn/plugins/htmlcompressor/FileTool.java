@@ -88,7 +88,7 @@ public class FileTool {
                 truncationIndex = normalizedFilePath.indexOf(rootDirPath) + rootDirPath.length() + 1;
             }
             String key = normalizedFilePath.substring(truncationIndex);
-            String value = FileUtils.readFileToString(path.toFile(), fileEncoding);
+            String value = FileUtils.readFileToString(path.toFile(), getFileEncoding));
             map.put(key, value);
         }
         return map;
@@ -104,7 +104,7 @@ public class FileTool {
     public void writeFiles(Map<String, String> map, String targetDir) throws IOException {
         for (Entry<String, String> entry : map.entrySet()) {
             File file = new File(targetDir + '/' + entry.getKey());
-            FileUtils.writeStringToFile(file, entry.getValue(), fileEncoding);
+            FileUtils.writeStringToFile(file, entry.getValue(), getFileEncoding());
         }
     }
 
@@ -131,7 +131,7 @@ public class FileTool {
             integrationCode += replacePattern;
         }
         String contents = integrationCode.replaceFirst(replacePattern, Matcher.quoteReplacement(json.toString()));
-        FileUtils.writeStringToFile(file, contents, fileEncoding);
+        FileUtils.writeStringToFile(file, contents, getFileEncoding());
     }
 
     /**
@@ -228,7 +228,7 @@ public class FileTool {
      * @return the file encoding
      */
     public Charset getFileEncoding() {
-        return fileEncoding;
+        return fileEncoding == null ? Charset.defaultCharset() : fileEncoding;
     }
 
     /**
