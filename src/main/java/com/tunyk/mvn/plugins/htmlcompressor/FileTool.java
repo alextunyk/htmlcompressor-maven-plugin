@@ -18,23 +18,23 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.regex.Matcher;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * The Class FileTool.
@@ -43,23 +43,28 @@ public class FileTool {
 
     /** The root dir path. */
     private String rootDirPath;
-    
+
     /** The file ext. */
     private String[] fileExt;
-    
+
     /** The recursive. */
     private boolean recursive;
-    
+
     /** The file encoding. */
     private Charset fileEncoding;
 
     /**
      * Instantiates a new file tool.
      *
-     * @param rootDir the root dir
-     * @param fileExt the file ext
-     * @param recursive the recursive
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @param rootDir
+     *            the root dir
+     * @param fileExt
+     *            the file ext
+     * @param recursive
+     *            the recursive
+     *
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public FileTool(String rootDir, String[] fileExt, boolean recursive) throws IOException {
         this.setRootDirPath(rootDir);
@@ -71,14 +76,18 @@ public class FileTool {
      * Gets the files.
      *
      * @return the files
-     * @throws IOException Signals that an I/O exception has occurred.
+     *
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public ConcurrentMap<String, String> getFiles() throws IOException {
         ConcurrentMap<String, String> map = new ConcurrentHashMap<>();
         Path rootDir = Path.of(rootDirPath);
         List<Path> paths;
         try (Stream<Path> walk = Files.walk(rootDir)) {
-            paths = walk.map(Path::normalize).filter(Files::isRegularFile).filter(path -> Arrays.stream(fileExt).anyMatch(path.getFileName().toString()::endsWith)).collect(Collectors.toList());
+            paths = walk.map(Path::normalize).filter(Files::isRegularFile)
+                    .filter(path -> Arrays.stream(fileExt).anyMatch(path.getFileName().toString()::endsWith))
+                    .collect(Collectors.toList());
         }
         int truncationIndex = 0;
         for (Path path : paths) {
@@ -96,9 +105,13 @@ public class FileTool {
     /**
      * Write files.
      *
-     * @param map the map
-     * @param targetDir the target dir
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @param map
+     *            the map
+     * @param targetDir
+     *            the target dir
+     *
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public void writeFiles(Map<String, String> map, String targetDir) throws IOException {
         for (Entry<String, String> entry : map.entrySet()) {
@@ -111,13 +124,20 @@ public class FileTool {
     /**
      * Write to json file.
      *
-     * @param map the map
-     * @param targetFile the target file
-     * @param integrationCode the integration code
-     * @throws IOException Signals that an I/O exception has occurred.
-     * @throws JSONException the JSON exception
+     * @param map
+     *            the map
+     * @param targetFile
+     *            the target file
+     * @param integrationCode
+     *            the integration code
+     *
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
+     * @throws JSONException
+     *             the JSON exception
      */
-    public void writeToJsonFile(Map<String, String> map, String targetFile, String integrationCode) throws IOException, JSONException {
+    public void writeToJsonFile(Map<String, String> map, String targetFile, String integrationCode)
+            throws IOException, JSONException {
         String replacePattern = "%s";
         Path path = Path.of(targetFile);
         JSONObject json = new JSONObject();
@@ -138,15 +158,20 @@ public class FileTool {
     /**
      * Human readable byte count.
      *
-     * @param bytes the bytes
-     * @param si the si
+     * @param bytes
+     *            the bytes
+     * @param si
+     *            the si
+     *
      * @return the string
      */
-    // TODO JWL 4/22/2023 Didn't see a good way to handle as it gets flagged to remove unnecessary cast if I fix this per error-prone, so ignoring it
+    // TODO JWL 4/22/2023 Didn't see a good way to handle as it gets flagged to remove unnecessary cast if I fix this
+    // per error-prone, so ignoring it
     @SuppressWarnings("LongDoubleConversion")
     public static String humanReadableByteCount(long bytes, boolean si) {
         int unit = si ? 1000 : 1024;
-        if (bytes < unit) return bytes + " B";
+        if (bytes < unit)
+            return bytes + " B";
         int exp = (int) (Math.log(bytes) / Math.log(unit));
         String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
         return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
@@ -155,7 +180,9 @@ public class FileTool {
     /**
      * Gets the elapsed HMS time.
      *
-     * @param elapsedTime the elapsed time
+     * @param elapsedTime
+     *            the elapsed time
+     *
      * @return the elapsed HMS time
      */
     public static String getElapsedHMSTime(long elapsedTime) {
@@ -179,8 +206,11 @@ public class FileTool {
     /**
      * Sets the root dir path.
      *
-     * @param rootDirPath the new root dir path
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @param rootDirPath
+     *            the new root dir path
+     *
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public void setRootDirPath(String rootDirPath) throws IOException {
         File file = new File(rootDirPath);
@@ -199,7 +229,8 @@ public class FileTool {
     /**
      * Sets the file ext.
      *
-     * @param fileExt the new file ext
+     * @param fileExt
+     *            the new file ext
      */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
@@ -217,7 +248,8 @@ public class FileTool {
     /**
      * Sets the recursive.
      *
-     * @param recursive the new recursive
+     * @param recursive
+     *            the new recursive
      */
     public void setRecursive(boolean recursive) {
         this.recursive = recursive;
@@ -235,7 +267,8 @@ public class FileTool {
     /**
      * Sets the file encoding.
      *
-     * @param fileEncoding the new file encoding
+     * @param fileEncoding
+     *            the new file encoding
      */
     public void setFileEncoding(Charset fileEncoding) {
         this.fileEncoding = fileEncoding == null ? Charset.defaultCharset() : fileEncoding;

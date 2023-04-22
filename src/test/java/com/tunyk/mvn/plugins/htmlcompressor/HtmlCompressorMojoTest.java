@@ -20,8 +20,8 @@ package com.tunyk.mvn.plugins.htmlcompressor;
 
 import org.apache.maven.plugin.MojoExecutionException;
 import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,7 +61,8 @@ class HtmlCompressorMojoTest {
     /**
      * Test execute.
      *
-     * @throws MojoExecutionException the mojo execution exception
+     * @throws MojoExecutionException
+     *             the mojo execution exception
      */
     @Test
     void testExecute() throws MojoExecutionException {

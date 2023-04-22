@@ -33,11 +33,11 @@ import org.apache.maven.plugins.annotations.Parameter;
 public class XmlCompressorMojo extends AbstractMojo {
 
     /** file types to be processed. */
-    @Parameter(property="htmlcompressor.fileExt")
+    @Parameter(property = "htmlcompressor.fileExt")
     private String[] fileExt;
 
     /** if false all compression is off (default is true). */
-    @Parameter(property="htmlcompressor.enabled", defaultValue="true")
+    @Parameter(property = "htmlcompressor.enabled", defaultValue = "true")
     private boolean enabled = true;
 
     /** Skip run of plugin. */
@@ -45,27 +45,27 @@ public class XmlCompressorMojo extends AbstractMojo {
     private boolean skip;
 
     /** if false keeps XML comments (default is true). */
-    @Parameter(property="htmlcompressor.removeComments", defaultValue="true")
+    @Parameter(property = "htmlcompressor.removeComments", defaultValue = "true")
     private boolean removeComments = true;
 
-    /** removes iter-tag whitespace characters  (default is true). */
-    @Parameter(property="htmlcompressor.removeIntertagSpaces", defaultValue="true")
+    /** removes iter-tag whitespace characters (default is true). */
+    @Parameter(property = "htmlcompressor.removeIntertagSpaces", defaultValue = "true")
     private boolean removeIntertagSpaces = true;
 
     /**
      * source folder where xml files are located.
      */
-    @Parameter(property="htmlcompressor.srcFolder", defaultValue="${project.basedir}/src/main/resources")
+    @Parameter(property = "htmlcompressor.srcFolder", defaultValue = "${project.basedir}/src/main/resources")
     private String srcFolder = "src/main/resources";
 
     /**
      * target folder where compressed xml files will be placed.
      */
-    @Parameter(property="htmlcompressor.targetFolder", defaultValue="${project.build.directory}/classes")
+    @Parameter(property = "htmlcompressor.targetFolder", defaultValue = "${project.build.directory}/classes")
     private String targetFolder = "target/classes";
 
     /** Charset encoding for files to read and create. */
-    @Parameter(property="htmlcompressor.encoding", defaultValue="UTF-8")
+    @Parameter(property = "htmlcompressor.encoding", defaultValue = "UTF-8")
     private String encoding = "UTF-8";
 
     @Override
@@ -94,7 +94,7 @@ public class XmlCompressorMojo extends AbstractMojo {
 
         try {
             xmlCompressor.compress();
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new MojoExecutionException(e.getMessage());
         }
 
@@ -113,12 +113,13 @@ public class XmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the file ext.
      *
-     * @param fileExt the new file ext
+     * @param fileExt
+     *            the new file ext
      */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
-    
+
     /**
      * Gets the enabled.
      *
@@ -131,7 +132,8 @@ public class XmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the enabled.
      *
-     * @param enabled the new enabled
+     * @param enabled
+     *            the new enabled
      */
     public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
@@ -149,7 +151,8 @@ public class XmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the comments.
      *
-     * @param removeComments the new removes the comments
+     * @param removeComments
+     *            the new removes the comments
      */
     public void setRemoveComments(Boolean removeComments) {
         this.removeComments = removeComments;
@@ -167,7 +170,8 @@ public class XmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the removes the intertag spaces.
      *
-     * @param removeIntertagSpaces the new removes the intertag spaces
+     * @param removeIntertagSpaces
+     *            the new removes the intertag spaces
      */
     public void setRemoveIntertagSpaces(Boolean removeIntertagSpaces) {
         this.removeIntertagSpaces = removeIntertagSpaces;
@@ -185,7 +189,8 @@ public class XmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the src folder.
      *
-     * @param srcFolder the new src folder
+     * @param srcFolder
+     *            the new src folder
      */
     public void setSrcFolder(String srcFolder) {
         this.srcFolder = srcFolder;
@@ -203,7 +208,8 @@ public class XmlCompressorMojo extends AbstractMojo {
     /**
      * Sets the target folder.
      *
-     * @param targetFolder the new target folder
+     * @param targetFolder
+     *            the new target folder
      */
     public void setTargetFolder(String targetFolder) {
         this.targetFolder = targetFolder;

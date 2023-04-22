@@ -22,8 +22,8 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.concurrent.ConcurrentMap;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * The Class HtmlCompressor.
@@ -31,37 +31,39 @@ import java.util.Map.Entry;
 public class HtmlCompressor {
 
     /** The Constant FILE_EXT. */
-    private static final String[] FILE_EXT = {"htm", "html"};
+    private static final String[] FILE_EXT = { "htm", "html" };
 
     /** The file ext. */
     private String[] fileExt;
-    
+
     /** The src dir path. */
     private String srcDirPath;
-    
+
     /** The target dir path. */
     private String targetDirPath;
-    
+
     /** The file encoding. */
     private Charset fileEncoding;
-    
+
     /** The create json file. */
     private boolean createJsonFile;
-    
+
     /** The target json file path. */
     private String targetJsonFilePath;
-    
+
     /** The json integration file path. */
     private String jsonIntegrationFilePath;
-    
+
     /** The html compressor. */
     private com.googlecode.htmlcompressor.compressor.HtmlCompressor htmlCompressor;
 
     /**
      * Instantiates a new html compressor.
      *
-     * @param srcDirPath the src dir path
-     * @param targetDirPath the target dir path
+     * @param srcDirPath
+     *            the src dir path
+     * @param targetDirPath
+     *            the target dir path
      */
     public HtmlCompressor(String srcDirPath, String targetDirPath) {
         this.srcDirPath = srcDirPath;
@@ -71,13 +73,19 @@ public class HtmlCompressor {
     /**
      * Instantiates a new html compressor.
      *
-     * @param srcDirPath the src dir path
-     * @param targetDirPath the target dir path
-     * @param createJsonFile the create json file
-     * @param targetJsonFilePath the target json file path
-     * @param jsonIntegrationFilePath the json integration file path
+     * @param srcDirPath
+     *            the src dir path
+     * @param targetDirPath
+     *            the target dir path
+     * @param createJsonFile
+     *            the create json file
+     * @param targetJsonFilePath
+     *            the target json file path
+     * @param jsonIntegrationFilePath
+     *            the json integration file path
      */
-    public HtmlCompressor(String srcDirPath, String targetDirPath, boolean createJsonFile, String targetJsonFilePath, String jsonIntegrationFilePath) {
+    public HtmlCompressor(String srcDirPath, String targetDirPath, boolean createJsonFile, String targetJsonFilePath,
+            String jsonIntegrationFilePath) {
         this.srcDirPath = srcDirPath;
         this.targetDirPath = targetDirPath;
         this.createJsonFile = createJsonFile;
@@ -88,7 +96,8 @@ public class HtmlCompressor {
     /**
      * Compress.
      *
-     * @throws IOException Signals that an I/O exception has occurred.
+     * @throws IOException
+     *             Signals that an I/O exception has occurred.
      */
     public void compress() throws IOException {
         if (fileExt == null || fileExt.length == 0) {
@@ -109,7 +118,8 @@ public class HtmlCompressor {
 
         fileTool.writeFiles(map, targetDirPath);
         if (createJsonFile) {
-            String jsonIntegrationCode = Files.readString(Path.of(jsonIntegrationFilePath), fileEncoding == null ? Charset.defaultCharset() : fileEncoding);
+            String jsonIntegrationCode = Files.readString(Path.of(jsonIntegrationFilePath),
+                    fileEncoding == null ? Charset.defaultCharset() : fileEncoding);
             fileTool.writeToJsonFile(map, targetJsonFilePath, jsonIntegrationCode);
         }
     }
@@ -126,12 +136,13 @@ public class HtmlCompressor {
     /**
      * Sets the file ext.
      *
-     * @param fileExt the new file ext
+     * @param fileExt
+     *            the new file ext
      */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
-    
+
     /**
      * Gets the src dir path.
      *
@@ -144,7 +155,8 @@ public class HtmlCompressor {
     /**
      * Sets the src dir path.
      *
-     * @param srcDirPath the new src dir path
+     * @param srcDirPath
+     *            the new src dir path
      */
     public void setSrcDirPath(String srcDirPath) {
         this.srcDirPath = srcDirPath;
@@ -162,7 +174,8 @@ public class HtmlCompressor {
     /**
      * Sets the target dir path.
      *
-     * @param targetDirPath the new target dir path
+     * @param targetDirPath
+     *            the new target dir path
      */
     public void setTargetDirPath(String targetDirPath) {
         this.targetDirPath = targetDirPath;
@@ -180,7 +193,8 @@ public class HtmlCompressor {
     /**
      * Sets the file encoding.
      *
-     * @param fileEncoding the new file encoding
+     * @param fileEncoding
+     *            the new file encoding
      */
     public void setFileEncoding(Charset fileEncoding) {
         this.fileEncoding = fileEncoding == null ? Charset.defaultCharset() : fileEncoding;
@@ -198,7 +212,8 @@ public class HtmlCompressor {
     /**
      * Sets the creates the json file.
      *
-     * @param createJsonFile the new creates the json file
+     * @param createJsonFile
+     *            the new creates the json file
      */
     public void setCreateJsonFile(boolean createJsonFile) {
         this.createJsonFile = createJsonFile;
@@ -216,7 +231,8 @@ public class HtmlCompressor {
     /**
      * Sets the target json file path.
      *
-     * @param targetJsonFilePath the new target json file path
+     * @param targetJsonFilePath
+     *            the new target json file path
      */
     public void setTargetJsonFilePath(String targetJsonFilePath) {
         this.targetJsonFilePath = targetJsonFilePath;
@@ -234,7 +250,8 @@ public class HtmlCompressor {
     /**
      * Sets the json integration file path.
      *
-     * @param jsonIntegrationFilePath the new json integration file path
+     * @param jsonIntegrationFilePath
+     *            the new json integration file path
      */
     public void setJsonIntegrationFilePath(String jsonIntegrationFilePath) {
         this.jsonIntegrationFilePath = jsonIntegrationFilePath;
@@ -252,7 +269,8 @@ public class HtmlCompressor {
     /**
      * Sets the html compressor.
      *
-     * @param htmlCompressor the new html compressor
+     * @param htmlCompressor
+     *            the new html compressor
      */
     public void setHtmlCompressor(com.googlecode.htmlcompressor.compressor.HtmlCompressor htmlCompressor) {
         this.htmlCompressor = htmlCompressor;

@@ -60,7 +60,8 @@ class HtmlCompressorTest {
     /**
      * Test compress.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
     @Test
     void testCompress() throws Exception {
@@ -70,8 +71,8 @@ class HtmlCompressorTest {
         htmlCompressor.compress();
         // TODO: test files where created and every one has the right contents
 
-        htmlCompressor = new HtmlCompressor("src/test/resources/html", "target/test/htmlcompressor/1",
-                true, "target/test/htmlcompressor/1/integration.js", "src/test/resources/html/integration.js");
+        htmlCompressor = new HtmlCompressor("src/test/resources/html", "target/test/htmlcompressor/1", true,
+                "target/test/htmlcompressor/1/integration.js", "src/test/resources/html/integration.js");
         htmlCompressor.compress();
         // TODO: test json file was created and it has right contents
 

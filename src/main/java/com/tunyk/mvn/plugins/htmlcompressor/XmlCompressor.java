@@ -19,8 +19,8 @@
 package com.tunyk.mvn.plugins.htmlcompressor;
 
 import java.nio.charset.Charset;
-import java.util.concurrent.ConcurrentMap;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * The Class XmlCompressor.
@@ -28,28 +28,30 @@ import java.util.Map.Entry;
 public class XmlCompressor {
 
     /** The Constant FILE_EXT. */
-    private static final String[] FILE_EXT = {"xml"};
+    private static final String[] FILE_EXT = { "xml" };
 
     /** The file ext. */
     private String[] fileExt;
-    
+
     /** The src dir path. */
     private String srcDirPath;
-    
+
     /** The target dir path. */
     private String targetDirPath;
-    
+
     /** The file encoding. */
     private Charset fileEncoding;
-    
+
     /** The xml compressor. */
     private com.googlecode.htmlcompressor.compressor.XmlCompressor xmlCompressor;
 
     /**
      * Instantiates a new xml compressor.
      *
-     * @param srcDirPath the src dir path
-     * @param targetDirPath the target dir path
+     * @param srcDirPath
+     *            the src dir path
+     * @param targetDirPath
+     *            the target dir path
      */
     public XmlCompressor(String srcDirPath, String targetDirPath) {
         this.srcDirPath = srcDirPath;
@@ -59,9 +61,10 @@ public class XmlCompressor {
     /**
      * Compress.
      *
-     * @throws Exception the exception
+     * @throws Exception
+     *             the exception
      */
-    public void compress()  throws Exception {
+    public void compress() throws Exception {
         if (fileExt == null || fileExt.length == 0) {
             fileExt = FILE_EXT;
         }
@@ -93,12 +96,13 @@ public class XmlCompressor {
     /**
      * Sets the file ext.
      *
-     * @param fileExt the new file ext
+     * @param fileExt
+     *            the new file ext
      */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
-    
+
     /**
      * Gets the src dir path.
      *
@@ -111,7 +115,8 @@ public class XmlCompressor {
     /**
      * Sets the src dir path.
      *
-     * @param srcDirPath the new src dir path
+     * @param srcDirPath
+     *            the new src dir path
      */
     public void setSrcDirPath(String srcDirPath) {
         this.srcDirPath = srcDirPath;
@@ -129,7 +134,8 @@ public class XmlCompressor {
     /**
      * Sets the target dir path.
      *
-     * @param targetDirPath the new target dir path
+     * @param targetDirPath
+     *            the new target dir path
      */
     public void setTargetDirPath(String targetDirPath) {
         this.targetDirPath = targetDirPath;
@@ -147,7 +153,8 @@ public class XmlCompressor {
     /**
      * Sets the file encoding.
      *
-     * @param fileEncoding the new file encoding
+     * @param fileEncoding
+     *            the new file encoding
      */
     public void setFileEncoding(Charset fileEncoding) {
         this.fileEncoding = fileEncoding == null ? Charset.defaultCharset() : fileEncoding;
@@ -165,7 +172,8 @@ public class XmlCompressor {
     /**
      * Sets the xml compressor.
      *
-     * @param xmlCompressor the new xml compressor
+     * @param xmlCompressor
+     *            the new xml compressor
      */
     public void setXmlCompressor(com.googlecode.htmlcompressor.compressor.XmlCompressor xmlCompressor) {
         this.xmlCompressor = xmlCompressor;
