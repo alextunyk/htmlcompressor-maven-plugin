@@ -18,7 +18,6 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import org.apache.commons.io.FileUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -103,8 +102,9 @@ public class FileTool {
      */
     public void writeFiles(Map<String, String> map, String targetDir) throws IOException {
         for (Entry<String, String> entry : map.entrySet()) {
-            File file = new File(targetDir + '/' + entry.getKey());
-            FileUtils.writeStringToFile(file, entry.getValue(), getFileEncoding());
+            Path path = Path.of(targetDir + '/' + entry.getKey());
+            Files.createDirectories(path.getParent());
+            Files.writeString(path, entry.getValue(), getFileEncoding());
         }
     }
 
@@ -119,7 +119,7 @@ public class FileTool {
      */
     public void writeToJsonFile(Map<String, String> map, String targetFile, String integrationCode) throws IOException, JSONException {
         String replacePattern = "%s";
-        File file = new File(targetFile);
+        Path path = Path.of(targetFile);
         JSONObject json = new JSONObject();
         for (Entry<String, String> entry : map.entrySet()) {
             json.put(entry.getKey(), entry.getValue());
@@ -131,7 +131,8 @@ public class FileTool {
             integrationCode += replacePattern;
         }
         String contents = integrationCode.replaceFirst(replacePattern, Matcher.quoteReplacement(json.toString()));
-        FileUtils.writeStringToFile(file, contents, getFileEncoding());
+        Files.createDirectories(path.getParent());
+        Files.writeString(path, contents, getFileEncoding());
     }
 
     /**
