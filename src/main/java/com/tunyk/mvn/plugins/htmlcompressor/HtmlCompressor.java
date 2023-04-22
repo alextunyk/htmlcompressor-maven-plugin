@@ -18,11 +18,10 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import org.apache.commons.io.FileUtils;
-
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.concurrent.ConcurrentMap;
 import java.util.Map.Entry;
 
@@ -110,7 +109,7 @@ public class HtmlCompressor {
 
         fileTool.writeFiles(map, targetDirPath);
         if (createJsonFile) {
-            String jsonIntegrationCode = FileUtils.readFileToString(new File(jsonIntegrationFilePath), fileEncoding);
+            String jsonIntegrationCode = Files.readString(Path.of(jsonIntegrationFilePath), fileEncoding);
             fileTool.writeToJsonFile(map, targetJsonFilePath, jsonIntegrationCode);
         }
     }
