@@ -109,7 +109,7 @@ public class HtmlCompressor {
 
         fileTool.writeFiles(map, targetDirPath);
         if (createJsonFile) {
-            String jsonIntegrationCode = Files.readString(Path.of(jsonIntegrationFilePath), fileEncoding);
+            String jsonIntegrationCode = Files.readString(Path.of(jsonIntegrationFilePath), fileEncoding == null ? Charset.defaultCharset() : fileEncoding);
             fileTool.writeToJsonFile(map, targetJsonFilePath, jsonIntegrationCode);
         }
     }
