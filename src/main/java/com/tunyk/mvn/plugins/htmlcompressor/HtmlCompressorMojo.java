@@ -426,6 +426,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
         String statistics = sb.toString();
         getLog().info(statistics);
         try {
+            Files.createDirectories(Path.of(htmlCompressionStatistics).getParent());
             Files.writeString(Path.of(htmlCompressionStatistics), statistics, Charset.forName(encoding));
         } catch (IOException e) {
             throw new MojoExecutionException(e.getMessage());
