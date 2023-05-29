@@ -34,7 +34,7 @@
   <version>1.9.1.2-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
-  <name>Maven HTMLCompressor Plugin</name>
+  <name>htmlcompressor-maven-plugin</name>
   <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
   <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
   <inceptionYear>2011</inceptionYear>
