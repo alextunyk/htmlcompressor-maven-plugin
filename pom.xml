@@ -25,7 +25,7 @@
   <parent>
     <groupId>com.github.hazendaz</groupId>
     <artifactId>base-parent</artifactId>
-    <version>39</version>
+    <version>40</version>
     <relativePath />
   </parent>
 
@@ -34,7 +34,7 @@
   <version>1.9.1.2-SNAPSHOT</version>
   <packaging>maven-plugin</packaging>
 
-  <name>Maven HTMLCompressor Plugin</name>
+  <name>htmlcompressor-maven-plugin</name>
   <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
   <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
   <inceptionYear>2011</inceptionYear>
@@ -106,7 +106,7 @@
 
     <!-- External Modules -->
     <maven-plugin.version>3.9.0</maven-plugin.version>
-    <slf4j.version>2.0.7</slf4j.version>
+    <slf4j.version>2.0.9</slf4j.version>
   </properties>
 
   <dependencies>
@@ -118,13 +118,13 @@
     <dependency>
       <groupId>com.google.javascript</groupId>
       <artifactId>closure-compiler</artifactId>
-      <version>v20230502</version>
+      <version>v20230802</version>
       <optional>true</optional>
     </dependency>
     <dependency>
       <groupId>com.google.elemental2</groupId>
       <artifactId>elemental2-core</artifactId>
-      <version>1.1.0</version>
+      <version>1.2.1</version>
       <optional>true</optional>
     </dependency>
     <dependency>
@@ -145,12 +145,12 @@
     <dependency>
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
-      <version>20230227</version>
+      <version>20230618</version>
     </dependency>
     <dependency>
       <groupId>org.apache.maven</groupId>
       <artifactId>maven-plugin-api</artifactId>
-      <version>3.9.2</version>
+      <version>3.9.4</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
@@ -172,7 +172,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.9.3</version>
+      <version>5.10.0</version>
       <scope>test</scope>
     </dependency>
 
@@ -180,7 +180,7 @@
     <dependency>
       <groupId>org.codehaus.plexus</groupId>
       <artifactId>plexus-utils</artifactId>
-      <version>3.5.1</version>
+      <version>4.0.0</version>
       <scope>provided</scope>
     </dependency>
   </dependencies>
