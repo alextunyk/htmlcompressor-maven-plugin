@@ -25,6 +25,8 @@ The simplest way to start using this plugin is:
 
 1.Enable plugin in your pom.xml
 
+a. javax namespace jsp usage
+
 ``` xml
 <build>
     <plugins>
@@ -32,6 +34,23 @@ The simplest way to start using this plugin is:
             <groupId>com.github.hazendaz.maven</groupId>
             <artifactId>htmlcompressor-maven-plugin</artifactId>
             <version>1.9.2.1</version>
+            <configuration>
+                <goalPrefix>htmlcompressor</goalPrefix>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+```
+
+b. jakarta namespace jsp usage or any other usage if not using jsp's
+
+``` xml
+<build>
+    <plugins>
+        <plugin>
+            <groupId>com.github.hazendaz.maven</groupId>
+            <artifactId>htmlcompressor-maven-plugin</artifactId>
+            <version>2.0.0</version>
             <configuration>
                 <goalPrefix>htmlcompressor</goalPrefix>
             </configuration>
