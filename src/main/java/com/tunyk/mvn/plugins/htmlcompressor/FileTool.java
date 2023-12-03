@@ -160,20 +160,21 @@ public class FileTool {
      *
      * @param bytes
      *            the bytes
-     * @param si
-     *            the si
+     * @param systemOfUnits
+     *            the systemOfUnits
      *
      * @return the string
      */
     // TODO JWL 4/22/2023 Didn't see a good way to handle as it gets flagged to remove unnecessary cast if I fix this
     // per error-prone, so ignoring it
     @SuppressWarnings("LongDoubleConversion")
-    public static String humanReadableByteCount(long bytes, boolean si) {
-        int unit = si ? 1000 : 1024;
-        if (bytes < unit)
+    public static String humanReadableByteCount(long bytes, boolean systemOfUnits) {
+        int unit = systemOfUnits ? 1000 : 1024;
+        if (bytes < unit) {
             return bytes + " B";
+        }
         int exp = (int) (Math.log(bytes) / Math.log(unit));
-        String pre = (si ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (si ? "" : "i");
+        String pre = (systemOfUnits ? "kMGTPE" : "KMGTPE").charAt(exp - 1) + (systemOfUnits ? "" : "i");
         return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
     }
 
