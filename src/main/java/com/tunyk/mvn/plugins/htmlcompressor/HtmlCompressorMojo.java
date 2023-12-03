@@ -367,7 +367,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
 
         int origFilesizeBytes = -1;
         try {
-            htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getFilesize();
+            origFilesizeBytes = htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getFilesize();
         } catch (NullPointerException e) {
             getLog().info("No files found to compress, HTML compression completed.");
             return;
