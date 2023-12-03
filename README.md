@@ -31,7 +31,7 @@ The simplest way to start using this plugin is:
         <plugin>
             <groupId>com.github.hazendaz.maven</groupId>
             <artifactId>htmlcompressor-maven-plugin</artifactId>
-            <version>1.9.1</version>
+            <version>1.9.2</version>
             <configuration>
                 <goalPrefix>htmlcompressor</goalPrefix>
             </configuration>
