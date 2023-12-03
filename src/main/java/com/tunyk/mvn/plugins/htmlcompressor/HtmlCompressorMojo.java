@@ -377,26 +377,32 @@ public class HtmlCompressorMojo extends AbstractMojo {
         String origEmptyChars = String
                 .valueOf(htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getEmptyChars());
         String origInlineEventSize = FileTool.humanReadableByteCount(
-                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineEventSize(), systemOfUnits);
+                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineEventSize(),
+                systemOfUnits);
         String origInlineScriptSize = FileTool.humanReadableByteCount(
-                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineScriptSize(), systemOfUnits);
+                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineScriptSize(),
+                systemOfUnits);
         String origInlineStyleSize = FileTool.humanReadableByteCount(
-                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineStyleSize(), systemOfUnits);
+                htmlCompressor.getHtmlCompressor().getStatistics().getOriginalMetrics().getInlineStyleSize(),
+                systemOfUnits);
 
         int compFilesizeBytes = htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getFilesize();
         String compFilesize = FileTool.humanReadableByteCount(compFilesizeBytes, systemOfUnits);
         String compEmptyChars = String
                 .valueOf(htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getEmptyChars());
         String compInlineEventSize = FileTool.humanReadableByteCount(
-                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineEventSize(), systemOfUnits);
+                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineEventSize(),
+                systemOfUnits);
         String compInlineScriptSize = FileTool.humanReadableByteCount(
-                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineScriptSize(), systemOfUnits);
+                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineScriptSize(),
+                systemOfUnits);
         String compInlineStyleSize = FileTool.humanReadableByteCount(
-                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineStyleSize(), systemOfUnits);
+                htmlCompressor.getHtmlCompressor().getStatistics().getCompressedMetrics().getInlineStyleSize(),
+                systemOfUnits);
 
         String elapsedTime = FileTool.getElapsedHMSTime(htmlCompressor.getHtmlCompressor().getStatistics().getTime());
-        String preservedSize = FileTool
-                .humanReadableByteCount(htmlCompressor.getHtmlCompressor().getStatistics().getPreservedSize(), systemOfUnits);
+        String preservedSize = FileTool.humanReadableByteCount(
+                htmlCompressor.getHtmlCompressor().getStatistics().getPreservedSize(), systemOfUnits);
         Float compressionRatio = Float.valueOf(compFilesizeBytes) / Float.valueOf(origFilesizeBytes);
         Float spaceSavings = Float.valueOf(1) - compressionRatio;
 
