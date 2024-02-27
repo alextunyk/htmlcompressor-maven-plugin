@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2024 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,8 +44,8 @@ public class FileTool {
     /** The root dir path. */
     private String rootDirPath;
 
-    /** The file ext. */
-    private String[] fileExt;
+    /** The file extensions. */
+    private String[] fileExtensions;
 
     /** The recursive. */
     private boolean recursive;
@@ -58,7 +58,7 @@ public class FileTool {
      *
      * @param rootDir
      *            the root dir
-     * @param fileExt
+     * @param fileExtensions
      *            the file ext
      * @param recursive
      *            the recursive
@@ -66,9 +66,9 @@ public class FileTool {
      * @throws IOException
      *             Signals that an I/O exception has occurred.
      */
-    public FileTool(String rootDir, String[] fileExt, boolean recursive) throws IOException {
+    public FileTool(String rootDir, String[] fileExtensions, boolean recursive) throws IOException {
         this.setRootDirPath(rootDir);
-        this.fileExt = fileExt;
+        this.fileExtensions = fileExtensions;
         this.recursive = recursive;
     }
 
@@ -86,7 +86,7 @@ public class FileTool {
         List<Path> paths;
         try (Stream<Path> walk = Files.walk(rootDir)) {
             paths = walk.map(Path::normalize).filter(Files::isRegularFile)
-                    .filter(path -> Arrays.stream(fileExt).anyMatch(path.getFileName().toString()::endsWith))
+                    .filter(path -> Arrays.stream(fileExtensions).anyMatch(path.getFileName().toString()::endsWith))
                     .collect(Collectors.toList());
         }
         int truncationIndex = 0;
@@ -219,22 +219,22 @@ public class FileTool {
     }
 
     /**
-     * Gets the file ext.
+     * Gets the file extensions.
      *
-     * @return the file ext
+     * @return the file extensions
      */
-    public String[] getFileExt() {
-        return fileExt;
+    public String[] getFileExtensions() {
+        return fileExtensions;
     }
 
     /**
-     * Sets the file ext.
+     * Sets the file extensions.
      *
-     * @param fileExt
-     *            the new file ext
+     * @param fileExtensions
+     *            the new file extensions
      */
-    public void setFileExt(String[] fileExt) {
-        this.fileExt = fileExt;
+    public void setFileExtensions(String[] fileExtensions) {
+        this.fileExtensions = fileExtensions;
     }
 
     /**

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2024 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ public class XmlCompressor {
     private static final String[] FILE_EXT = { "xml" };
 
     /** The file ext. */
-    private String[] fileExt;
+    private String[] fileExtensions;
 
     /** The src dir path. */
     private String srcDirPath;
@@ -65,11 +65,11 @@ public class XmlCompressor {
      *             the exception
      */
     public void compress() throws Exception {
-        if (fileExt == null || fileExt.length == 0) {
-            fileExt = FILE_EXT;
+        if (fileExtensions == null || fileExtensions.length == 0) {
+            fileExtensions = FILE_EXT;
         }
 
-        FileTool fileTool = new FileTool(srcDirPath, fileExt, true);
+        FileTool fileTool = new FileTool(srcDirPath, fileExtensions, true);
         fileTool.setFileEncoding(fileEncoding);
         ConcurrentMap<String, String> map = fileTool.getFiles();
 
@@ -85,22 +85,22 @@ public class XmlCompressor {
     }
 
     /**
-     * Gets the file ext.
+     * Gets the file extension.
      *
-     * @return the file ext
+     * @return the file extensions
      */
-    public String[] getFileExt() {
-        return fileExt;
+    public String[] getFileExtensions() {
+        return fileExtensions;
     }
 
     /**
      * Sets the file ext.
      *
-     * @param fileExt
-     *            the new file ext
+     * @param fileExtensions
+     *            the new file extensions
      */
-    public void setFileExt(String[] fileExt) {
-        this.fileExt = fileExt;
+    public void setFileExtensions(String[] fileExtensions) {
+        this.fileExtensions = fileExtensions;
     }
 
     /**
