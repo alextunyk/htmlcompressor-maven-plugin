@@ -18,6 +18,8 @@ Notice
 
 Project is currently built and release from following [fork](https://github.com/hazendaz/htmlcompressor-maven-plugin)
 
+'javax' branch is for javax namespace.
+
 Getting started
 ---------------
 
