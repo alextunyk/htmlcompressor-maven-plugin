@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2024 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,9 +51,20 @@ public class HtmlCompressorMojo extends AbstractMojo {
     @Parameter(property = "htmlcompressor.htmlCompressionStatistics", defaultValue = "${project.build.directory}/htmlcompressor/html-compression-statistics.txt")
     private String htmlCompressionStatistics = "target/htmlcompressor/html-compression-statistics.txt";
 
-    /** file types to be processed. */
+    /**
+     * file types to be processed.
+     *
+     * @deprecated use fileExtensions
+     */
+    @Deprecated
     @Parameter(property = "htmlcompressor.fileExt")
     private String[] fileExt;
+
+    /**
+     * File extensions to be processed.
+     */
+    @Parameter(property = "htmlcompressor.fileExtensions")
+    private String[] fileExtensions;
 
     /** if false all compression is off (default is true). */
     @Parameter(property = "htmlcompressor.enabled", defaultValue = "true")
@@ -258,7 +269,12 @@ public class HtmlCompressorMojo extends AbstractMojo {
         getLog().info("Compressing " + srcFolder);
         HtmlCompressor htmlCompressor = new HtmlCompressor(srcFolder, targetFolder);
 
-        htmlCompressor.setFileExt(fileExt);
+        // Deprecated
+        if (fileExt != null && fileExtensions == null) {
+            fileExtensions = fileExt;
+        }
+
+        htmlCompressor.setFileExtensions(fileExtensions);
         htmlCompressor.setFileEncoding(Charset.forName(encoding));
         htmlCompressor.setCreateJsonFile(javascriptHtmlSprite);
         htmlCompressor.setJsonIntegrationFilePath(javascriptHtmlSpriteIntegrationFile);
@@ -465,7 +481,10 @@ public class HtmlCompressorMojo extends AbstractMojo {
      * Gets the file ext.
      *
      * @return the file ext
+     *
+     * @deprecated use getFileExtensions
      */
+    @Deprecated
     public String[] getFileExt() {
         return fileExt;
     }
@@ -475,9 +494,31 @@ public class HtmlCompressorMojo extends AbstractMojo {
      *
      * @param fileExt
      *            the new file ext
+     *
+     * @deprecated use setFileExtensions
      */
+    @Deprecated
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
+    }
+
+    /**
+     * Gets the file ext.
+     *
+     * @return the file extensions
+     */
+    public String[] getFileExtensions() {
+        return fileExtensions;
+    }
+
+    /**
+     * Sets the file ext.
+     *
+     * @param fileExtensions
+     *            the new file ext
+     */
+    public void setFileExtensions(String[] fileExtensions) {
+        this.fileExtensions = fileExtensions;
     }
 
     /**

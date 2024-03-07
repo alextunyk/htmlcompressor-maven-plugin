@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2024 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,9 +32,17 @@ import org.apache.maven.plugins.annotations.Parameter;
 @Mojo(name = "xml", defaultPhase = LifecyclePhase.COMPILE, requiresProject = false, threadSafe = true)
 public class XmlCompressorMojo extends AbstractMojo {
 
-    /** file types to be processed. */
+    /**
+     * File extensions to be processed.
+     *
+     * @deprecated use fileExtensions
+     */
     @Parameter(property = "htmlcompressor.fileExt")
     private String[] fileExt;
+
+    /** file extensions to be processed. */
+    @Parameter(property = "htmlcompressor.fileExtensions")
+    private String[] fileExtensions;
 
     /** if false all compression is off (default is true). */
     @Parameter(property = "htmlcompressor.enabled", defaultValue = "true")
@@ -81,9 +89,14 @@ public class XmlCompressorMojo extends AbstractMojo {
             return;
         }
 
+        // Deprecated
+        if (fileExt != null && fileExtensions == null) {
+            fileExtensions = fileExt;
+        }
+
         getLog().info("Compressing " + srcFolder);
         XmlCompressor xmlCompressor = new XmlCompressor(srcFolder, targetFolder);
-        xmlCompressor.setFileExt(fileExt);
+        xmlCompressor.setFileExtensions(fileExtensions);
         xmlCompressor.setFileEncoding(Charset.forName(encoding));
 
         com.googlecode.htmlcompressor.compressor.XmlCompressor xmlCompressorHandler = new com.googlecode.htmlcompressor.compressor.XmlCompressor();
@@ -105,6 +118,8 @@ public class XmlCompressorMojo extends AbstractMojo {
      * Gets the file ext.
      *
      * @return the file ext
+     *
+     * @deprecated use getFileExtensions
      */
     public String[] getFileExt() {
         return fileExt;
@@ -115,9 +130,30 @@ public class XmlCompressorMojo extends AbstractMojo {
      *
      * @param fileExt
      *            the new file ext
+     *
+     * @deprecated use setFileExtensions
      */
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
+    }
+
+    /**
+     * Gets the file extensions.
+     *
+     * @return the file extensions
+     */
+    public String[] getFileExtensions() {
+        return fileExtensions;
+    }
+
+    /**
+     * Sets the file ext.
+     *
+     * @param fileExtensions
+     *            the new file extensions
+     */
+    public void setFileExtensions(String[] fileExtensions) {
+        this.fileExtensions = fileExtensions;
     }
 
     /**
