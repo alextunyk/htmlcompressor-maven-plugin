@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-    Copyright (c) 2011-2023 Alex Tunyk <alex at tunyk.com>.
+    Copyright (c) 2011-2024 Alex Tunyk <alex at tunyk.com>.
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -20,214 +20,214 @@
 
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+    <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.github.hazendaz</groupId>
-    <artifactId>base-parent</artifactId>
-    <version>44</version>
-    <relativePath />
-  </parent>
+    <parent>
+        <groupId>com.github.hazendaz</groupId>
+        <artifactId>base-parent</artifactId>
+        <version>44</version>
+        <relativePath />
+    </parent>
 
-  <groupId>com.github.hazendaz.maven</groupId>
-  <artifactId>htmlcompressor-maven-plugin</artifactId>
-  <version>2.0.1-SNAPSHOT</version>
-  <packaging>maven-plugin</packaging>
+    <groupId>com.github.hazendaz.maven</groupId>
+    <artifactId>htmlcompressor-maven-plugin</artifactId>
+    <version>2.0.1-SNAPSHOT</version>
+    <packaging>maven-plugin</packaging>
 
-  <name>htmlcompressor-maven-plugin</name>
-  <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
-  <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
-  <inceptionYear>2011</inceptionYear>
-
-  <organization>
-    <name>alextunyk</name>
-    <url>https://github.com/alextunyk/</url>
-  </organization>
-  <licenses>
-    <license>
-      <name>Apache License 2.0</name>
-      <url>https://www.apache.org/licenses/LICENSE-2.0</url>
-      <distribution>manual</distribution>
-      <comments>Maven HTMLCompressor Plugin is distributed under Apache License 2.0</comments>
-    </license>
-  </licenses>
-
-  <developers>
-    <developer>
-      <id>alextunyk</id>
-      <name>alextunyk</name>
-      <email>alex@tunyk.com</email>
-      <url>https://github.com/alextunyk/</url>
-      <organization>alextunyk</organization>
-      <organizationUrl>https://github.com/alextunyk/</organizationUrl>
-      <roles>
-        <role>owner</role>
-        <role>developer</role>
-      </roles>
-      <timezone>2</timezone>
-    </developer>
-  </developers>
-
-  <scm>
-    <connection>scm:git:ssh://git@github.com/alextunyk/htmlcompressor-maven-plugin.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/alextunyk/htmlcompressor-maven-plugin.git</developerConnection>
+    <name>htmlcompressor-maven-plugin</name>
+    <description>Maven HTMLCompressor Plugin allows to compress html/xml by adding a few lines to the pom file.</description>
     <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
-    <tag>HEAD</tag>
-  </scm>
-  <issueManagement>
-    <system>GitHub Issue Tracking</system>
-    <url>https://github.com/alextunyk/htmlcompressor-maven-plugin/issues</url>
-  </issueManagement>
-  <ciManagement>
-    <system>Github</system>
-    <url>https://github.com/hazendaz/htmlcompressor-maven-plugin/actions</url>
-  </ciManagement>
-  <distributionManagement>
-    <site>
-      <id>gh-pages-scm</id>
-      <name>GitHub Pages</name>
-      <url>scm:git:ssh://git@github.com/hazendaz/htmlcompressor-maven-plugin.git</url>
-    </site>
-  </distributionManagement>
+    <inceptionYear>2011</inceptionYear>
 
-  <properties>
-    <!-- Maven compiler options -->
-    <java.version>11</java.version>
-    <java.release.version>11</java.release.version>
-    <!-- Future need for javadocs, we are at 8 now but org.jspecify export issue haven't figured out.
+    <organization>
+        <name>alextunyk</name>
+        <url>https://github.com/alextunyk/</url>
+    </organization>
+    <licenses>
+        <license>
+            <name>Apache License 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0</url>
+            <distribution>manual</distribution>
+            <comments>Maven HTMLCompressor Plugin is distributed under Apache License 2.0</comments>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <id>alextunyk</id>
+            <name>alextunyk</name>
+            <email>alex@tunyk.com</email>
+            <url>https://github.com/alextunyk/</url>
+            <organization>alextunyk</organization>
+            <organizationUrl>https://github.com/alextunyk/</organizationUrl>
+            <roles>
+                <role>owner</role>
+                <role>developer</role>
+            </roles>
+            <timezone>2</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:ssh://git@github.com/alextunyk/htmlcompressor-maven-plugin.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/alextunyk/htmlcompressor-maven-plugin.git</developerConnection>
+        <tag>HEAD</tag>
+        <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
+    </scm>
+    <issueManagement>
+        <system>GitHub Issue Tracking</system>
+        <url>https://github.com/alextunyk/htmlcompressor-maven-plugin/issues</url>
+    </issueManagement>
+    <ciManagement>
+        <system>Github</system>
+        <url>https://github.com/hazendaz/htmlcompressor-maven-plugin/actions</url>
+    </ciManagement>
+    <distributionManagement>
+        <site>
+            <id>gh-pages-scm</id>
+            <name>GitHub Pages</name>
+            <url>scm:git:ssh://git@github.com/hazendaz/htmlcompressor-maven-plugin.git</url>
+        </site>
+    </distributionManagement>
+
+    <properties>
+        <!-- Maven compiler options -->
+        <java.version>11</java.version>
+        <java.release.version>11</java.release.version>
+        <!-- Future need for javadocs, we are at 8 now but org.jspecify export issue haven't figured out.
     <javadoc.java.release.version>11</javadoc.java.release.version>
     -->
 
-    <!-- Automatic Module Name -->
-    <module.name>com.github.hazendaz.htmlcompressor.maven.plugin</module.name>
+        <!-- Automatic Module Name -->
+        <module.name>com.github.hazendaz.htmlcompressor.maven.plugin</module.name>
 
-    <!-- Reproducible Builds -->
-    <project.build.outputTimestamp>1701567060</project.build.outputTimestamp>
+        <!-- Reproducible Builds -->
+        <project.build.outputTimestamp>1701567060</project.build.outputTimestamp>
 
-    <!-- External Modules -->
-    <maven-plugin.version>3.10.2</maven-plugin.version>
-    <slf4j.version>2.0.9</slf4j.version>
-  </properties>
+        <!-- External Modules -->
+        <maven-plugin.version>3.11.0</maven-plugin.version>
+        <slf4j.version>2.0.12</slf4j.version>
+    </properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.github.hazendaz</groupId>
-      <artifactId>htmlcompressor</artifactId>
-      <version>2.0.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.google.javascript</groupId>
-      <artifactId>closure-compiler</artifactId>
-      <version>v20231112</version>
-      <optional>true</optional>
-    </dependency>
-    <dependency>
-      <groupId>com.yahoo.platform.yui</groupId>
-      <artifactId>yuicompressor</artifactId>
-      <version>2.4.8</version>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.servlet.jsp</groupId>
-      <artifactId>jakarta.servlet.jsp-api</artifactId>
-      <version>2.3.6</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.velocity</groupId>
-      <artifactId>velocity-engine-core</artifactId>
-      <version>2.3</version>
-    </dependency>
-    <dependency>
-      <groupId>org.json</groupId>
-      <artifactId>json</artifactId>
-      <version>20231013</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>3.9.6</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugin-tools</groupId>
-      <artifactId>maven-plugin-annotations</artifactId>
-      <version>3.10.2</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-simple</artifactId>
-      <version>${slf4j.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <version>5.10.1</version>
-      <scope>test</scope>
-    </dependency>
+    <dependencies>
+        <dependency>
+            <groupId>com.github.hazendaz</groupId>
+            <artifactId>htmlcompressor</artifactId>
+            <version>2.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.javascript</groupId>
+            <artifactId>closure-compiler</artifactId>
+            <version>v20231112</version>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>com.yahoo.platform.yui</groupId>
+            <artifactId>yuicompressor</artifactId>
+            <version>2.4.8</version>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.servlet.jsp</groupId>
+            <artifactId>jakarta.servlet.jsp-api</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven</groupId>
+            <artifactId>maven-plugin-api</artifactId>
+            <version>3.9.6</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.maven.plugin-tools</groupId>
+            <artifactId>maven-plugin-annotations</artifactId>
+            <version>3.11.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.10.2</version>
+            <scope>test</scope>
+        </dependency>
 
-    <!-- Override the following -->
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-utils</artifactId>
-      <version>4.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.codehaus.plexus</groupId>
-      <artifactId>plexus-xml</artifactId>
-      <version>3.0.0</version>
-      <scope>provided</scope>
-    </dependency>
-  </dependencies>
+        <!-- Override the following -->
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-utils</artifactId>
+            <version>4.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.plexus</groupId>
+            <artifactId>plexus-xml</artifactId>
+            <version>3.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <configuration>
-            <show>private</show>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-plugin</artifactId>
-        <version>${maven-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>default-descriptor</id>
-            <goals>
-              <goal>descriptor</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>help-goal</id>
-            <goals>
-              <goal>helpmojo</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <configuration>
+                        <show>private</show>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-descriptor</id>
+                        <goals>
+                            <goal>descriptor</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>help-goal</id>
+                        <goals>
+                            <goal>helpmojo</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-plugin-report-plugin</artifactId>
-        <version>${maven-plugin.version}</version>
-      </plugin>
-    </plugins>
-  </reporting>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-plugin-report-plugin</artifactId>
+                <version>${maven-plugin.version}</version>
+            </plugin>
+        </plugins>
+    </reporting>
 
 </project>
