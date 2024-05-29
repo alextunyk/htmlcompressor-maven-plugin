@@ -25,7 +25,7 @@
     <parent>
         <groupId>com.github.hazendaz</groupId>
         <artifactId>base-parent</artifactId>
-        <version>45</version>
+        <version>46</version>
         <relativePath />
     </parent>
 
@@ -105,7 +105,7 @@
         <project.build.outputTimestamp>1709786389</project.build.outputTimestamp>
 
         <!-- External Modules -->
-        <maven-plugin.version>3.12.0</maven-plugin.version>
+        <maven-plugin.version>3.13.0</maven-plugin.version>
         <slf4j.version>2.0.13</slf4j.version>
     </properties>
 
@@ -144,13 +144,13 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-plugin-api</artifactId>
-            <version>3.9.6</version>
+            <version>3.9.7</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.maven.plugin-tools</groupId>
             <artifactId>maven-plugin-annotations</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -180,7 +180,7 @@
         <dependency>
             <groupId>org.codehaus.plexus</groupId>
             <artifactId>plexus-xml</artifactId>
-            <version>3.0.0</version>
+            <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
