@@ -94,9 +94,9 @@
         <!-- Maven compiler options -->
         <java.version>11</java.version>
         <java.release.version>11</java.release.version>
-        <!-- Future need for javadocs, we are at 8 now but org.jspecify export issue haven't figured out.
-    <javadoc.java.release.version>11</javadoc.java.release.version>
-    -->
+
+        <!-- Future need for javadocs, we are at 8 now but org.jspecify export issue haven't figured out. -->
+        <javadoc.java.release.version>8</javadoc.java.release.version>
 
         <!-- Automatic Module Name -->
         <module.name>com.github.hazendaz.htmlcompressor.maven.plugin</module.name>
@@ -119,7 +119,6 @@
             <groupId>com.google.javascript</groupId>
             <artifactId>closure-compiler</artifactId>
             <version>v20240317</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>com.yahoo.platform.yui</groupId>
