@@ -37,6 +37,7 @@ public class XmlCompressorMojo extends AbstractMojo {
      *
      * @deprecated use fileExtensions
      */
+    @Deprecated
     @Parameter(property = "htmlcompressor.fileExt")
     private String[] fileExt;
 
@@ -121,6 +122,7 @@ public class XmlCompressorMojo extends AbstractMojo {
      *
      * @deprecated use getFileExtensions
      */
+    @Deprecated
     public String[] getFileExt() {
         return fileExt;
     }
@@ -133,6 +135,7 @@ public class XmlCompressorMojo extends AbstractMojo {
      *
      * @deprecated use setFileExtensions
      */
+    @Deprecated
     public void setFileExt(String[] fileExt) {
         this.fileExt = fileExt;
     }
