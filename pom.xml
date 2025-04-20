@@ -32,7 +32,7 @@
 
     <groupId>com.github.hazendaz.maven</groupId>
     <artifactId>htmlcompressor-maven-plugin</artifactId>
-    <version>2.1.1</version>
+    <version>2.1.2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
     <name>htmlcompressor-maven-plugin</name>
@@ -76,7 +76,7 @@
     <scm>
         <connection>scm:git:ssh://git@github.com/alextunyk/htmlcompressor-maven-plugin.git</connection>
         <developerConnection>scm:git:ssh://git@github.com/alextunyk/htmlcompressor-maven-plugin.git</developerConnection>
-        <tag>htmlcompressor-maven-plugin-2.1.1</tag>
+        <tag>HEAD</tag>
         <url>https://github.com/alextunyk/htmlcompressor-maven-plugin</url>
     </scm>
     <issueManagement>
@@ -108,7 +108,7 @@
         <module.name>com.github.hazendaz.htmlcompressor.maven.plugin</module.name>
 
         <!-- Reproducible Builds -->
-        <project.build.outputTimestamp>1745172652</project.build.outputTimestamp>
+        <project.build.outputTimestamp>1745172691</project.build.outputTimestamp>
 
         <!-- External Modules -->
         <maven-plugin.version>3.15.1</maven-plugin.version>
