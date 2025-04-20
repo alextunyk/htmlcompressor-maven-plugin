@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2024 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2025 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -261,7 +261,7 @@ public class HtmlCompressorMojo extends AbstractMojo {
             return;
         }
 
-        if (!new File(srcFolder).exists()) {
+        if (!Files.exists(Path.of(srcFolder))) {
             getLog().warn("Compressor folder does not exist, skipping compression of " + srcFolder);
             return;
         }

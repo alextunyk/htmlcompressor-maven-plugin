@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2011-2024 Alex Tunyk <alex at tunyk.com>.
+ * Copyright (c) 2011-2025 Alex Tunyk <alex at tunyk.com>.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,7 +18,6 @@
  */
 package com.tunyk.mvn.plugins.htmlcompressor;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -214,8 +213,8 @@ public class FileTool {
      *             Signals that an I/O exception has occurred.
      */
     public void setRootDirPath(String rootDirPath) throws IOException {
-        File file = new File(rootDirPath);
-        this.rootDirPath = file.getCanonicalPath().replace("\\", "/").replaceAll("/$", "");
+        Path path = Path.of(rootDirPath);
+        this.rootDirPath = path.toFile().getCanonicalPath().replace("\\", "/").replaceAll("/$", "");
     }
 
     /**
